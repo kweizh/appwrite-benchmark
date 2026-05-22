@@ -1,0 +1,38 @@
+version = "1.0"
+
+[metadata]
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 10240
+gpus = 0
+allow_internet = true
+mcp_servers = []
+
+[environment.env]
+POCHI_LOG = "debug"
+POCHI_API_KEY = "${POCHI_API_KEY}"
+APPWRITE_ENDPOINT = "${APPWRITE_ENDPOINT}"
+APPWRITE_PROJECT_ID = "${APPWRITE_PROJECT_ID}"
+APPWRITE_API_KEY = "${APPWRITE_API_KEY}"
+ZEALT_RUN_ID = "${ZEALT_RUN_ID}"
+APPWRITE_BUCKET_ID = "${APPWRITE_BUCKET_ID}"
+
+[agent]
+timeout_sec = 600.0
+
+[verifier]
+timeout_sec = 600.0
+
+[verifier.env]
+POCHI_LOG = "debug"
+APPWRITE_ENDPOINT = "${APPWRITE_ENDPOINT}"
+APPWRITE_PROJECT_ID = "${APPWRITE_PROJECT_ID}"
+APPWRITE_API_KEY = "${APPWRITE_API_KEY}"
+ZEALT_RUN_ID = "${ZEALT_RUN_ID}"
+APPWRITE_BUCKET_ID = "${APPWRITE_BUCKET_ID}"
+
+[solution.env]
+

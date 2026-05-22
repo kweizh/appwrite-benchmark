@@ -1,0 +1,7 @@
+{
+  "library_name": "appwrite",
+  "task_name": "appwrite_cli_project_init",
+  "complexity_level": "multi-step sequential command set",
+  "research_plan_path": "scratchpad/research-plans/appwrite.md",
+  "output_dir": "scratchpad/pending-tasks/"
+}

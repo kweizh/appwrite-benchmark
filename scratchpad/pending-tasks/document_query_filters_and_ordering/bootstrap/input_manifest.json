@@ -1,0 +1,7 @@
+{
+  "library_name": "Appwrite",
+  "task_name": "document_query_filters_and_ordering",
+  "complexity_level": "simple set of 2-5 commands",
+  "research_plan_path": "N/A - inline task concept provided by user",
+  "output_dir": "scratchpad/pending-tasks/"
+}

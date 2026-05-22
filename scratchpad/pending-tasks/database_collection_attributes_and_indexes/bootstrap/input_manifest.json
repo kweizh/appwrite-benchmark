@@ -1,0 +1,7 @@
+{
+  "library_name": "Appwrite",
+  "task_name": "database_collection_attributes_and_indexes",
+  "complexity_level": "multi-step sequential command set",
+  "research_plan_path": "inline (user prompt)",
+  "output_dir": "scratchpad/pending-tasks/"
+}

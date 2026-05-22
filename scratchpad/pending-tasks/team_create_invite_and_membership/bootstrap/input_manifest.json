@@ -1,0 +1,7 @@
+{
+  "library_name": "Appwrite",
+  "task_name": "team_create_invite_and_membership",
+  "complexity_level": "simple set of 2-5 commands",
+  "research_plan_path": "plan.md",
+  "output_dir": "scratchpad/pending-tasks/"
+}

@@ -1,0 +1,40 @@
+# Appwrite Databases: Collection Attributes and Indexes (Node.js)
+
+## Background
+You are building the persistence layer for a simple task tracker on Appwrite. You will use the `node-appwrite` (server) SDK with an API key to provision a database, a collection, a set of typed attributes, and the indexes needed to query the data efficiently.
+
+## Requirements
+- Write a Node.js script at `/home/user/myproject/index.js` that uses the `node-appwrite` server SDK and performs the following, in order:
+  1. Create a new database whose name is `tasks_db_${run-id}` (where `${run-id}` is read from the `ZEALT_RUN_ID` environment variable). Generate the database ID with `ID.unique()`.
+  2. Create a collection inside that database named `tasks`. Generate the collection ID with `ID.unique()`. The collection must grant read permission to `Role.any()`.
+  3. Create the following attributes on the `tasks` collection:
+     - `title`: string, size `255`, required.
+     - `priority`: integer, required, with min `1` and max `5`.
+     - `completed`: boolean, not required, default `false`.
+     - `dueDate`: datetime, not required.
+  4. Wait for every attribute to reach `status = "available"` before creating any index (poll the collection's attributes list).
+  5. Create the following indexes on the `tasks` collection:
+     - `priority_idx`: type `key`, attributes `["priority"]`, orders `["asc"]`.
+     - `title_unique`: type `unique`, attributes `["title"]`.
+  6. As the last line written to standard output, print a single JSON object with exactly the keys `databaseId` and `collectionId` containing the IDs that were created. Example shape: `{"databaseId":"...","collectionId":"..."}`.
+
+## Implementation Hints
+- Use only the `node-appwrite` server SDK. Do not call the Appwrite REST API directly with `fetch`/`axios`/`curl`.
+- Configure the SDK client from the environment variables `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY`.
+- Read `ZEALT_RUN_ID` from the environment and append it to the database name as described above.
+- Attribute creation is asynchronous. Newly created attributes start with `status = "processing"`; only attributes with `status = "available"` can back an index. Poll `databases.listAttributes` (or `databases.getCollection`) until every attribute is available.
+- Use the SDK helpers `ID.unique()`, `Permission.read`, and `Role.any()` exported from `node-appwrite`.
+- Print the final JSON object on its own line as the very last thing your script writes to stdout, so the verifier can parse it.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: `node /home/user/myproject/index.js`
+- The command must exit with status 0.
+- The last non-empty line printed to stdout must be a JSON object containing exactly the keys `databaseId` and `collectionId` (both non-empty strings).
+- After the command finishes, the following must hold in the Appwrite project (verified via a separate admin SDK call):
+  - A database with id equal to the returned `databaseId` and name `tasks_db_${run-id}` exists.
+  - A collection with id equal to the returned `collectionId` and name `tasks` exists inside that database, and its permissions include read access for `any`.
+  - The collection has exactly the four attributes `title` (string, size 255, required), `priority` (integer, required, min 1, max 5), `completed` (boolean, not required, default false), and `dueDate` (datetime, not required). All four attributes must have `status = "available"`.
+  - The collection has the two indexes `priority_idx` (type `key`, attributes `["priority"]`, orders `["asc"]`) and `title_unique` (type `unique`, attributes `["title"]`).
+- Only the `node-appwrite` server SDK may be used to talk to Appwrite; manual HTTP requests are not allowed.
+
