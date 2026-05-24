@@ -4,21 +4,824 @@
 4:I[63155,["/appwrite-benchmark/_next/static/chunks/babff0e7418ab052.js","/appwrite-benchmark/_next/static/chunks/3ecbb78a8ff87549.js"],"ThemeToggle"]
 5:I[36064,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
 6:I[81497,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
-e:I[9986,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
-:HL["/appwrite-benchmark/_next/static/chunks/29c80e0ec759ef35.css","style"]
+7:"$Sreact.suspense"
+8:I[42654,["/appwrite-benchmark/_next/static/chunks/babff0e7418ab052.js","/appwrite-benchmark/_next/static/chunks/3ecbb78a8ff87549.js","/appwrite-benchmark/_next/static/chunks/5a1b2ff02f64b1cd.js","/appwrite-benchmark/_next/static/chunks/f9f579c42c486944.js"],"TasksPageClient"]
+21:I[9986,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
+:HL["/appwrite-benchmark/_next/static/chunks/fecfeccd55475e2b.css","style"]
 :HL["/appwrite-benchmark/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"P":null,"b":"fr2ayXls_HrRMTxoWPtsp","c":["","tasks",""],"q":"","i":false,"f":[[["",{"children":["tasks",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/appwrite-benchmark/_next/static/chunks/29c80e0ec759ef35.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/appwrite-benchmark/_next/static/chunks/babff0e7418ab052.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/appwrite-benchmark/_next/static/chunks/3ecbb78a8ff87549.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"inter_5972bc34-module__OU16Qa__className antialiased","children":["$","$L2",null,{"children":["$","$L3",null,{"defaultTheme":"dark","children":[["$","div",null,{"className":"fixed right-4 top-6 z-50 sm:top-8","children":["$","$L4",null,{}]}],["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","div",null,{"className":"container mx-auto px-4 sm:px-8 lg:px-12 py-8 max-w-screen-2xl h-[100dvh] flex flex-col overflow-hidden","children":[["$","div",null,{"className":"mb-6 space-y-4 shrink-0","children":[["$","div",null,{"className":"flex items-center gap-4","children":["$","a",null,{"href":"/","className":"text-sm text-muted-foreground hover:text-foreground transition-colors","children":"← Back to Leaderboard"}]}],["$","div",null,{"children":["$","h1",null,{"className":"text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50","children":"Task"}]}]]}],["$","div",null,{"className":"relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card/90 to-background/90 px-5 pb-10 pt-6 text-center shadow-[0_0_0_1px_hsl(var(--primary)/0.18),0_28px_72px_-32px_hsl(var(--foreground)/0.45)] backdrop-blur-sm sm:px-8 sm:pb-14 sm:pt-8","children":[["$","div",null,{"className":"pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-primary/20 blur-3xl sm:-right-14 sm:-top-14 sm:h-40 sm:w-40"}],["$","div",null,{"className":"pointer-events-none absolute -left-20 bottom-0 h-32 w-32 rounded-full bg-foreground/10 blur-3xl sm:h-36 sm:w-36"}],["$","div",null,{"className":"relative mx-auto mb-8 inline-flex items-center rounded-full border border-primary/40 bg-primary/15 px-3 py-1 text-xs font-semibold tracking-[0.12em] text-foreground sm:text-sm sm:tracking-[0.16em]","children":"⏳ PIPELINE PENDING REVIEW"}],"$L7","$L8","$L9"]}]]}]]}],["$La","$Lb"],"$Lc"]}],{},null,false,false]},null,false,false]},null,false,false],"$Ld",false]],"m":"$undefined","G":["$e",[]],"S":true}
-f:I[75049,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
-10:"$Sreact.suspense"
-12:I[75049,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"ViewportBoundary"]
-14:I[75049,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"MetadataBoundary"]
-7:["$","p",null,{"className":"relative mx-auto max-w-2xl px-4 text-center text-lg font-semibold tracking-wide text-foreground sm:px-5 sm:text-xl","children":[26," sample cases generated — pending review"]}]
-8:["$","p",null,{"className":"relative mx-auto mt-2 max-w-2xl px-4 text-left text-sm leading-relaxed text-muted-foreground sm:px-5","children":"Your sample cases are ready. Before moving forward, we do a quick review together to make sure everything looks right and aligns with real-world usage."}]
-9:["$","div",null,{"className":"relative mx-auto mt-8 max-w-2xl rounded-xl bg-primary/10 px-4 py-4 text-left sm:px-5","children":[["$","p",null,{"className":"text-base font-semibold text-foreground sm:text-lg text-center","children":"Next step: join Slack for review"}],["$","p",null,{"className":"mt-1 text-sm leading-relaxed text-muted-foreground","children":"We've sent you a Slack invitation to your registered email with Zealt. Please join and we'll walk through the next step together."}],["$","p",null,{"className":"mt-3 text-xs text-muted-foreground","children":["If you don't see it, just reach out at"," ",["$","a",null,{"href":"mailto:zealtdev@tabbyml.com","className":"font-normal text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary transition-colors","children":"zealtdev@tabbyml.com"}],"."]}]]}]
-a:["$","script","script-0",{"src":"/appwrite-benchmark/_next/static/chunks/5a1b2ff02f64b1cd.js","async":true,"nonce":"$undefined"}]
-b:["$","script","script-1",{"src":"/appwrite-benchmark/_next/static/chunks/f9f579c42c486944.js","async":true,"nonce":"$undefined"}]
-c:["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]
-d:["$","$1","h",{"children":[null,["$","$L12",null,{"children":"$L13"}],["$","div",null,{"hidden":true,"children":["$","$L14",null,{"children":["$","$10",null,{"name":"Next.Metadata","children":"$L15"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-13:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-11:null
-15:[["$","title","0",{"children":"Appwrite Benchmark"}],["$","meta","1",{"name":"description","content":"Performance results of AI coding models on Appwrite tasks, measuring success rate and execution time with high precision."}]]
+9:T96e,# Trigger an Appwrite Account Email Verification
+
+## Background
+Appwrite supports an email verification flow whereby a logged-in user can request a verification email containing a one-time secret. The application then redirects the user (via the URL provided to `createVerification`) to a route that calls `updateVerification(userId, secret)` to mark the user as verified.
+
+In this task you implement the **user-facing first half** of that flow using the Appwrite Web SDK (`appwrite` npm package). An admin has already provisioned a user account in the project — your job is to log that user in and trigger the verification email by calling `account.createVerification`.
+
+## Requirements
+- Implement a Node.js CLI script at `/home/user/myproject/index.js`.
+- Read the seeded user's credentials from `/home/user/myproject/.seed.json` (keys `email`, `password`).
+- Read `APPWRITE_ENDPOINT` and `APPWRITE_PROJECT_ID` from the environment.
+- Use the **Appwrite Web SDK** (`appwrite`) — NOT the admin/server SDK — and configure a `Client` with `.setEndpoint(...).setProject(...)` only (do NOT call `.setKey(...)`).
+- **Step 1 — Login**: call `account.createEmailPasswordSession(email, password)` and capture the session.
+- **Step 2 — Fetch user**: call `account.get()` to obtain the current user's `$id`.
+- **Step 3 — Trigger verification**: call `account.createVerification('http://localhost:3000/verify')` to trigger the verification email/token.
+- **Step 4 — Output**: print `{"userId":"<id>","verificationUrl":"http://localhost:3000/verify"}` as the last non-empty stdout line.
+- Exit code `0` on success.
+
+## Implementation Hints
+- `appwrite` (Web SDK) and `node-appwrite` (server SDK) are pre-installed under `/home/user/myproject/node_modules`.
+- Do not call `updateVerification` — only the first half of the flow is in scope; `emailVerification` will remain `false` until the email link is followed.
+- Log any debug messages to `stderr` to keep stdout clean.
+
+## Acceptance Criteria
+- Project path: `/home/user/myproject`.
+- Command: `node /home/user/myproject/index.js`.
+- Exit code: `0`.
+- Stdout: last non-empty line is a JSON object with exactly two keys: `userId` (matches the seeded user's `$id`) and `verificationUrl` (equals `http://localhost:3000/verify`).
+- The script must reference `createEmailPasswordSession` and `createVerification` and must NOT reference `setKey` on the client.
+a:Te3c,# Appwrite CLI: Initialize Project and Push a Collection
+
+## Background
+Your team wants to drive Appwrite resource setup from a shell pipeline so that every CI run can reproducibly create and tear down a database with a collection. You will use the Appwrite CLI (`appwrite-cli`, the official `appwrite` command) in non-interactive mode to authenticate against an Appwrite Cloud project, write a project configuration file declaring a database and a collection, and push the schema to Appwrite.
+
+The CLI must be driven without any interactive prompts and without using the language SDKs directly to create resources.
+
+## Requirements
+- Place all your project files under `/home/user/myproject/`.
+- Write a runnable shell script `/home/user/myproject/run.sh` that, when executed with `bash`, performs the full workflow end-to-end.
+- Read `ZEALT_RUN_ID`, `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY` from the environment.
+- Use the Appwrite CLI (`appwrite`) — NOT the Appwrite SDK — to:
+  1. Switch the CLI to non-interactive mode using the project ID, endpoint, and API key.
+  2. Create / write an `appwrite.config.json` (or equivalent multi-file Appwrite project config) that declares:
+     - a database with id `cli-${ZEALT_RUN_ID}` and name `cli-${ZEALT_RUN_ID}` (or any human-readable name).
+     - a single collection / table inside that database with id `notes-${ZEALT_RUN_ID}` and one string attribute / varchar column `body` (size 255, not required).
+  3. Push the declared resources to Appwrite non-interactively using the CLI's push command (e.g. `appwrite push collections --all --force`, or the modern `appwrite push tables --all --force` equivalent, depending on CLI version).
+- After the push, the script's very last line on stdout MUST be a single JSON object with the database id and collection id, exactly in the form: `{"databaseId":"cli-${ZEALT_RUN_ID}","collectionId":"notes-${ZEALT_RUN_ID}"}`.
+
+## Implementation Hints
+- Read the run id from `ZEALT_RUN_ID` and use it to suffix the database and collection ids so the task is safe to retry.
+- The CLI is already on PATH (`appwrite --version`). Configure it with `appwrite client --endpoint ... --project-id ... --key ...` to enter non-interactive mode.
+- The `appwrite.config.json` schema supports both the legacy `databases` + `collections` arrays and the newer `tablesDB` + `tables` arrays; either is acceptable as long as the resulting Appwrite database and collection have the required ids and attribute.
+- Use the CLI's non-interactive push flags (`--all --force`) to skip prompts.
+- For the final stdout line, you can either echo a literal JSON object based on the config you just wrote, or read the ids back via `appwrite databases list` / `appwrite tables-db list` and `jq`.
+- Make sure `run.sh` exits with status 0 on success.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: `bash /home/user/myproject/run.sh`
+- The script must use the Appwrite CLI (`appwrite ...`) to push the database/collection. Do not call the Appwrite SDK directly to create the resources.
+- After the script finishes:
+  - A database with id `cli-${ZEALT_RUN_ID}` exists in the target Appwrite project.
+  - That database contains a collection (or table) with id `notes-${ZEALT_RUN_ID}`.
+  - The collection has an attribute (or column) named `body` of string/varchar type.
+- The very last line of the script's stdout is a JSON object exactly in the form:
+  ```json
+  {"databaseId":"cli-<ZEALT_RUN_ID>","collectionId":"notes-<ZEALT_RUN_ID>"}
+  ```
+  where `<ZEALT_RUN_ID>` is substituted with the actual run id.
+- The script exits with status 0.
+
+b:Tcfb,# Appwrite Storage: Create a Secure Uploads Bucket
+
+## Background
+Appwrite Storage organizes files into buckets. Each bucket can enforce file size limits, allowed extensions, compression, encryption, virus scanning, and per-file or per-bucket permissions. Your team needs a hardened bucket called `secure-uploads` that only authenticated users can access, with a strict size/extension policy and storage-side protections enabled.
+
+You will write a Node.js script (using the official `node-appwrite` Server SDK) that creates this bucket against a real Appwrite project. The Appwrite endpoint, project ID, and API key are provided via environment variables.
+
+## Requirements
+- Create a new Storage bucket using `storage.createBucket` with all of the following settings:
+  - `permissions`: grant read AND write access to any signed-in user (use `Role.users()`).
+  - `fileSecurity`: `true` (per-file permissions enabled).
+  - `maximumFileSize`: `5242880` bytes (exactly 5 MiB).
+  - `allowedFileExtensions`: `["jpg", "jpeg", "png", "webp"]` (order does not matter; values must be exactly these four).
+  - `compression`: `"gzip"`.
+  - `encryption`: `true`.
+  - `antivirus`: `true`.
+- Use the bucket name `secure-uploads-${run-id}` (see `run-id` rules below). The bucket display name and the bucket ID must both incorporate the `run-id` suffix.
+- After creation, print the newly created bucket's ID to standard output as the LAST non-empty line, in the format: `BUCKET_ID: <bucket_id>`.
+
+## Implementation Hints
+- Install/use the `node-appwrite` Server SDK. The SDK exposes `Client`, `Storage`, `ID`, `Permission`, and `Role`.
+- Read `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY` from environment variables to configure the client.
+- Read the current `run-id` from the `ZEALT_RUN_ID` environment variable and append it to the bucket name and ID so the task is safe to run concurrently.
+- Refer to the Appwrite docs:
+  - https://appwrite.io/docs/references/cloud/server-nodejs/storage#createBucket
+  - https://appwrite.io/docs/products/storage/buckets
+- The newer SDK style uses a single options object: `storage.createBucket({ bucketId, name, permissions, fileSecurity, maximumFileSize, allowedFileExtensions, compression, encryption, antivirus })`.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Entry point: a Node.js script that can be executed by the verifier. The verifier will invoke it with `node /home/user/myproject/index.js`.
+- The script reads `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from environment variables.
+- When the script runs successfully, a Storage bucket exists in the configured Appwrite project whose ID matches the value the script printed to stdout.
+- The created bucket must satisfy ALL of:
+  - `name` equals `secure-uploads-${run-id}` (where `run-id` is read from `ZEALT_RUN_ID`).
+  - `fileSecurity` is `true`.
+  - `maximumFileSize` equals `5242880`.
+  - `allowedFileExtensions` is a set equal to `{"jpg", "jpeg", "png", "webp"}`.
+  - `compression` equals `"gzip"`.
+  - `encryption` is `true`.
+  - `antivirus` is `true`.
+  - `$permissions` contains both `read("users")` and `write("users")` (i.e., `Role.users()` for read and write).
+- The final non-empty line of stdout must match the pattern: `BUCKET_ID: <bucket_id>`.
+
+c:Tf22,# Appwrite Storage: Upload a Large File with Chunked Progress Reporting
+
+## Background
+Appwrite Storage automatically splits files larger than 5 MB into 5 MB chunks when uploaded through any of the official SDKs. The Node.js Server SDK (`node-appwrite`) exposes an `onProgress` callback that is invoked once per chunk so server-side automation can report upload progress to operators or downstream systems.
+
+Your environment already contains a 6.5 MiB random binary file ready to be uploaded. Your job is to write a Node.js script that first creates a new Appwrite Storage bucket, then uploads that file to the newly created bucket using the chunked upload helper, emits a JSON progress log to stderr for every chunk, and prints the resulting file ID to stdout.
+
+## Requirements
+- Use the `node-appwrite` Server SDK against a real Appwrite project. Build a `Client` configured from `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY`.
+- Create a new Storage bucket with the ID `bkt-$ZEALT_RUN_ID` (where `$ZEALT_RUN_ID` is read from the environment) and name it `bkt-$ZEALT_RUN_ID`.
+- Upload the file at `/home/user/myproject/sample.bin` to this newly created bucket. Use `InputFile.fromPath('/home/user/myproject/sample.bin', 'sample.bin')` as the binary input so the SDK performs the multi-chunk upload automatically.
+- Generate the file's identifier with `ID.unique()` and grant `Permission.read(Role.any())` on the created file.
+- Provide an `onProgress` callback to `storage.createFile` that emits one JSON object per chunk to **stderr** (one JSON object per line, no surrounding text) with EXACTLY these keys: `chunksTotal`, `chunksUploaded`, `progress`, `sizeUploaded`, `id`. The `id` field MUST be the file's `$id` (passthrough from the SDK's `UploadProgress` object).
+- After `createFile` resolves, print the resulting file's `$id` to **stdout** as the last non-empty line of output. No prefix or label — just the bare ID.
+
+## Implementation Hints
+- The SDK exposes `Client`, `Storage`, `ID`, `Permission`, and `Role` from the `node-appwrite` package entry. `InputFile` is exposed under the `node-appwrite/file` subpath export (e.g. `require('node-appwrite/file').InputFile`).
+- The legacy positional form of `createFile` accepts a trailing `onProgress` callback: `storage.createFile(bucketId, ID.unique(), InputFile.fromPath(path, name), permissions, onProgress)`. The callback receives an `UploadProgress` object with fields `$id`, `progress`, `sizeUploaded`, `chunksTotal`, `chunksUploaded`.
+- Files larger than 5 MB are split automatically by the SDK; a 6.5 MiB file produces at least two chunks so the callback runs more than once.
+- Refer to the Appwrite documentation:
+  - https://appwrite.io/docs/references/cloud/server-nodejs/storage#createFile
+  - https://appwrite.io/docs/products/storage/upload-download
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: `node /home/user/myproject/index.js`
+- The command reads `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from environment variables.
+- The command exits with status 0 on success.
+- The command MUST emit at least 2 lines to stderr, each parseable as a JSON object with the keys `chunksTotal`, `chunksUploaded`, `progress`, `sizeUploaded`, and `id`.
+  - `chunksTotal` must be an integer `>= 2`.
+  - `chunksUploaded` must be monotonically non-decreasing across consecutive progress lines.
+  - The final progress line must have `chunksUploaded == chunksTotal`.
+- The last non-empty line of stdout must be the file `$id` of the newly created Appwrite Storage file (matching `[A-Za-z0-9._-]{1,36}`).
+- After the command exits, the file referenced by that ID must exist in the bucket identified by `bkt-$ZEALT_RUN_ID`, and the file's `sizeOriginal` field returned by the Appwrite API must equal exactly `6815744` bytes (6.5 MiB).
+
+d:Tec2,# Appwrite Databases: Collection Attributes and Indexes (Node.js)
+
+## Background
+You are building the persistence layer for a simple task tracker on Appwrite. You will use the `node-appwrite` (server) SDK with an API key to provision a database, a collection, a set of typed attributes, and the indexes needed to query the data efficiently.
+
+## Requirements
+- Write a Node.js script at `/home/user/myproject/index.js` that uses the `node-appwrite` server SDK and performs the following, in order:
+  1. Create a new database whose name is `tasks_db_${run-id}` (where `${run-id}` is read from the `ZEALT_RUN_ID` environment variable). Generate the database ID with `ID.unique()`.
+  2. Create a collection inside that database named `tasks`. Generate the collection ID with `ID.unique()`. The collection must grant read permission to `Role.any()`.
+  3. Create the following attributes on the `tasks` collection:
+     - `title`: string, size `255`, required.
+     - `priority`: integer, required, with min `1` and max `5`.
+     - `completed`: boolean, not required, default `false`.
+     - `dueDate`: datetime, not required.
+  4. Wait for every attribute to reach `status = "available"` before creating any index (poll the collection's attributes list).
+  5. Create the following indexes on the `tasks` collection:
+     - `priority_idx`: type `key`, attributes `["priority"]`, orders `["asc"]`.
+     - `title_unique`: type `unique`, attributes `["title"]`.
+  6. As the last line written to standard output, print a single JSON object with exactly the keys `databaseId` and `collectionId` containing the IDs that were created. Example shape: `{"databaseId":"...","collectionId":"..."}`.
+
+## Implementation Hints
+- Use only the `node-appwrite` server SDK. Do not call the Appwrite REST API directly with `fetch`/`axios`/`curl`.
+- Configure the SDK client from the environment variables `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY`.
+- Read `ZEALT_RUN_ID` from the environment and append it to the database name as described above.
+- Attribute creation is asynchronous. Newly created attributes start with `status = "processing"`; only attributes with `status = "available"` can back an index. Poll `databases.listAttributes` (or `databases.getCollection`) until every attribute is available.
+- Use the SDK helpers `ID.unique()`, `Permission.read`, and `Role.any()` exported from `node-appwrite`.
+- Print the final JSON object on its own line as the very last thing your script writes to stdout, so the verifier can parse it.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: `node /home/user/myproject/index.js`
+- The command must exit with status 0.
+- The last non-empty line printed to stdout must be a JSON object containing exactly the keys `databaseId` and `collectionId` (both non-empty strings).
+- After the command finishes, the following must hold in the Appwrite project (verified via a separate admin SDK call):
+  - A database with id equal to the returned `databaseId` and name `tasks_db_${run-id}` exists.
+  - A collection with id equal to the returned `collectionId` and name `tasks` exists inside that database, and its permissions include read access for `any`.
+  - The collection has exactly the four attributes `title` (string, size 255, required), `priority` (integer, required, min 1, max 5), `completed` (boolean, not required, default false), and `dueDate` (datetime, not required). All four attributes must have `status = "available"`.
+  - The collection has the two indexes `priority_idx` (type `key`, attributes `["priority"]`, orders `["asc"]`) and `title_unique` (type `unique`, attributes `["title"]`).
+- Only the `node-appwrite` server SDK may be used to talk to Appwrite; manual HTTP requests are not allowed.
+
+e:T1190,# Appwrite Databases: One-to-Many Relationship Between Collections
+
+## Background
+Appwrite Databases support **relationships** between collections so related documents can be linked, queried together, and cascaded on delete. Your team wants to model a classic blogging schema in which a single **author** can write **many posts**, with a two-way relationship so it is easy to navigate from an author to all of their posts and from a post back to its author.
+
+You will write a Node.js script (using the official `node-appwrite` Server SDK) that creates this schema against a real Appwrite project. The Appwrite endpoint, project ID, and API key are provided via environment variables. To make the task safe to run concurrently, every resource must be scoped with the value of `ZEALT_RUN_ID`.
+
+## Requirements
+- Create a new **database** whose ID is `blog_${run-id}` (use the same value for the database name) via `databases.create`.
+- Create two **collections** inside that database:
+  - `authors` collection (ID and name both `authors`).
+  - `posts` collection (ID and name both `posts`).
+- Add the following string **attributes** with `databases.createStringAttribute`:
+  - `authors.name`: size `255`, required `true`.
+  - `posts.title`: size `255`, required `true`.
+  - `posts.body`: size `10000`, required `true`.
+- Add a **two-way one-to-many relationship** from `authors` to `posts` using `databases.createRelationshipAttribute`:
+  - relationship type: `RelationshipType.OneToMany`.
+  - `twoWay`: `true`.
+  - parent-side attribute key (on `authors`): `posts`.
+  - child-side attribute key (on `posts`, the `twoWayKey`): `author`.
+  - `onDelete`: `RelationMutate.SetNull` (deleting an author keeps the posts but nulls out their `author` reference).
+- Wait until every attribute, including the relationship attribute, reaches `status === "available"` before exiting (otherwise subsequent verification will race).
+- The script must NOT model the relation with plain string fields — the relationship MUST be created with `databases.createRelationshipAttribute`.
+
+## Implementation Hints
+- Install/use the `node-appwrite` Server SDK. The SDK exposes `Client`, `Databases`, `ID`, `RelationshipType`, and `RelationMutate`.
+- Read `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from environment variables.
+- After issuing the `createRelationshipAttribute` request, poll `databases.getAttribute(databaseId, 'authors', 'posts')` (and/or the child-side `databases.getAttribute(databaseId, 'posts', 'author')`) until `status === 'available'`. The API call returns `202 Accepted` and the attribute is built asynchronously.
+- Refer to the Appwrite docs:
+  - https://appwrite.io/docs/products/databases/relationships
+  - https://appwrite.io/docs/references/cloud/server-nodejs/databases#createRelationshipAttribute
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Entry point: a Node.js script that can be executed by the verifier. The verifier will invoke it with `node /home/user/myproject/index.js`.
+- The script reads `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from environment variables.
+- The **last non-empty line** of stdout MUST be a single JSON object with exactly the keys `databaseId`, `authorsCollectionId`, and `postsCollectionId`, e.g.:
+  ```json
+  {"databaseId":"blog_zr-abc123","authorsCollectionId":"authors","postsCollectionId":"posts"}
+  ```
+- When the script exits successfully, the following must be true in the configured Appwrite project (verified via the Server SDK / REST API):
+  - A database with the printed `databaseId` exists.
+  - A collection `authorsCollectionId` exists inside that database with a required string attribute `name` (size 255).
+  - A collection `postsCollectionId` exists inside that database with required string attributes `title` (size 255) and `body` (size 10000).
+  - The `authors` collection has a **relationship attribute** with key `posts` whose `relationType` is `oneToMany`, `twoWay` is `true`, and `twoWayKey` is `author`, with `onDelete` equal to `setNull` and `status` equal to `available`.
+  - The `posts` collection has the corresponding **child-side relationship attribute** with key `author`, `relationType` `oneToMany`, `twoWay` `true`, `twoWayKey` `posts`, and `status` `available`.
+  - The relationship MUST be created via `databases.createRelationshipAttribute`; modeling the relation through plain string foreign-key fields is NOT acceptable.
+
+f:Tf17,# Appwrite Databases: Query, Filter, Order, Limit, and Select Documents
+
+## Background
+Appwrite Databases lets you filter, sort, paginate, and project documents using the `Query` helper class together with `databases.listDocuments`. In this task you will query an existing collection of products and return only the records that satisfy a set of business rules, formatted as JSON.
+
+The verifier has pre-seeded a database named `products_${run-id}` containing a single collection (id `products`) with 20 documents. Each document has the attributes:
+- `name` (string)
+- `category` (string) — one of `electronics`, `books`, `clothing`
+- `price` (float) — between 10 and 500
+- `stock` (integer)
+
+The concrete database id, collection id, and `ZEALT_RUN_ID` are made available to your script via environment variables AND via a small JSON file at `/home/user/myproject/.seed.json`:
+
+```json
+{
+  "database_id": "products_${run-id}",
+  "collection_id": "products"
+}
+```
+
+## Requirements
+Write a Node.js program at `/home/user/myproject/index.js` that uses the official `node-appwrite` Server SDK to query the seeded collection and print the matching documents.
+
+Your query MUST be expressed entirely through `Query` helpers passed to `databases.listDocuments`. It must:
+- Filter `category` equal to `"electronics"` using `Query.equal`.
+- Filter `price` greater than or equal to `100` using `Query.greaterThanEqual`.
+- Order the results by `price` in DESCENDING order using `Query.orderDesc`.
+- Return at most 5 documents using `Query.limit`.
+- Project only the `name` and `price` fields using `Query.select` (so Appwrite returns only those user attributes; internal `$id`, `$createdAt`, etc. may still be present in the response).
+
+The program must print the `documents` array from the Appwrite response as a single line of JSON to standard output (using `JSON.stringify` with no extra whitespace and no trailing/leading log lines). The JSON line must be the LAST non-empty line on stdout.
+
+## Implementation Hints
+- Install/use the `node-appwrite` Server SDK; it exposes `Client`, `Databases`, and `Query`.
+- Read `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from environment variables.
+- Read `database_id` and `collection_id` from `/home/user/myproject/.seed.json` (or derive `database_id` from `ZEALT_RUN_ID` — it is `products_${ZEALT_RUN_ID}`).
+- The newer Node SDK uses an options-object call style: `databases.listDocuments({ databaseId, collectionId, queries: [...] })`.
+- Reference docs:
+  - https://appwrite.io/docs/products/databases/queries
+  - https://appwrite.io/docs/references/cloud/server-nodejs/databases#listDocuments
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Entry point: `/home/user/myproject/index.js`, executed by the verifier with `node /home/user/myproject/index.js`.
+- The script reads `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from environment variables.
+- The script uses `Query.equal`, `Query.greaterThanEqual`, `Query.orderDesc`, `Query.limit`, and `Query.select` (passed to `databases.listDocuments`).
+- The LAST non-empty line of stdout MUST be a single line containing a valid JSON array (the `documents` array as returned by Appwrite, or the equivalent shape).
+- After parsing that JSON array:
+  - Its length is exactly `5`.
+  - Every element's user attributes are exactly `{name, price}` (Appwrite internal fields prefixed with `$` such as `$id`, `$createdAt`, `$updatedAt`, `$permissions`, `$collectionId`, `$databaseId`, `$sequence` are tolerated). No other non-`$` keys are allowed.
+  - Every element refers to a document whose stored `category` (verified independently via the admin SDK) is `"electronics"`.
+  - Every element has `price >= 100`.
+  - The `price` values are non-increasing across the array (descending order).
+
+10:Tf0b,# Email/Password Signup and Session Creation with Appwrite
+
+## Background
+You are building the email/password authentication backbone for a SaaS application. Appwrite provides two complementary SDKs for this flow:
+
+- **`node-appwrite`** (server SDK): used with an API key to administratively create user accounts via the Users service.
+- **`appwrite`** (client-web SDK): used from end-user contexts to create authenticated sessions through the Account service.
+
+Your job is to write a single Node.js script that exercises both SDKs against the same Appwrite project: it must first provision a brand-new user account (server-side, using the API key), then immediately log that user in (client-side, no API key) and print the resulting Appwrite session identifier so other tooling can pick it up.
+
+## Requirements
+- Implement a Node.js CLI script at `/home/user/myproject/index.js`.
+- Read the Appwrite endpoint, project ID, and admin API key from the environment variables `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY`.
+- Read the current `run-id` from the `ZEALT_RUN_ID` environment variable and build the user email as `harbor-${run-id}@example.com`. This run-scoped email keeps concurrent runs of the task isolated from each other.
+- **Step 1 – Server-side signup:**
+  - Use `node-appwrite`'s `Users` service configured with the admin API key.
+  - Create a new user account whose user ID is generated by Appwrite's `ID.unique()` helper (no hardcoded user IDs).
+  - Use a freshly generated random password of at least 8 characters (e.g., random alphanumeric).
+- **Step 2 – Client-side session:**
+  - Use the `appwrite` client-web SDK's `Account` service against the same endpoint and project. **Do not** attach the admin API key to this client.
+  - Call `account.createEmailPasswordSession(email, password)` with the email and password from Step 1.
+- **Step 3 – Output:**
+  - Print the returned session's `$id` value as the **last non-empty line** of stdout, with no extra prefix or formatting on that line.
+  - Exit with status `0` on success and a non-zero status on failure.
+
+## Implementation Hints
+- Both `node-appwrite` and `appwrite` are already installed inside `/home/user/myproject/node_modules`.
+- The server SDK's `Users.create(...)` accepts a user ID, email, optional phone, and password (in that order). The phone argument may be left undefined for this task.
+- The client SDK exposes `Client`, `Account`, and `ID`; build a new `Client` with `.setEndpoint(...).setProject(...)` (do **not** call `.setKey(...)` on the client SDK) and pass it to `new Account(client)`.
+- Be careful to print only the session `$id` on the last line — log other diagnostics earlier or to `stderr` if needed. The verifier reads the last non-empty stdout line.
+- Make the script safe to run repeatedly during development: catch and surface SDK errors via a non-zero exit code so the verifier can detect failures.
+
+## Acceptance Criteria
+- Project path: `/home/user/myproject`
+- Command: `node /home/user/myproject/index.js`
+- The script reads `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from the environment.
+- The user account it creates must have the email `harbor-${ZEALT_RUN_ID}@example.com`.
+- The user ID passed to the server SDK's user-creation call must be generated via `ID.unique()` (no hardcoded literal user IDs).
+- The script must call the client-web SDK's `account.createEmailPasswordSession(...)` (do not substitute another session method).
+- Exit code: `0` on success.
+- Stdout: the last non-empty line is the Appwrite session `$id`, a non-empty alphanumeric string matching `^[A-Za-z0-9]{8,}$`.
+- Side effect: after running the script, the Appwrite project must contain a user account whose email equals `harbor-${ZEALT_RUN_ID}@example.com` (looked up via the server SDK).
+
+11:T1b88,# Appwrite Function Triggered by Database Events
+
+## Background
+You are building an audit pipeline on top of Appwrite Functions. Whenever a document is created in a designated "trigger" collection, an Appwrite Function should fire automatically (via Appwrite's database event subscription), receive the new document in the request payload, and write an audit record into a separate audit collection. You will implement the function source code, its `package.json`, and a deploy script that wires everything together end-to-end against a real Appwrite project.
+
+The target Appwrite project is already provisioned. Credentials are provided via the following environment variables:
+- `APPWRITE_ENDPOINT` (e.g. `https://<region>.cloud.appwrite.io/v1`)
+- `APPWRITE_PROJECT_ID`
+- `APPWRITE_API_KEY` (server API key with full Databases + Functions scopes)
+- `ZEALT_RUN_ID` (a safe `zr-...` string used to isolate resources for this run)
+
+The initial environment already contains the following Appwrite resources, pre-provisioned for this run:
+- A database with ID `evt_${ZEALT_RUN_ID}` (the "audit database").
+- Inside it, a collection with ID `audit` (the "audit collection") that already has a string attribute named `source_id` (size 64, required).
+
+You must not recreate those resources; only create new ones in addition to them.
+
+## Requirements
+1. Implement an Appwrite Function in `src/main.js` using the Node.js 22 runtime that:
+   - Exports a default async handler with the signature `({ req, res, log, error })`.
+   - Is designed to be invoked by a database `documents.*.create` event on the `triggers` collection (described below). The triggering document is delivered to the function in the request body.
+   - Logs the incoming document via `log()` (so it shows up in the Appwrite Function execution logs).
+   - Uses the `node-appwrite` SDK to create one new document in the audit collection whose `source_id` attribute equals the triggering document's `$id`. The audit database ID and the audit collection ID must be read from the function's environment variables (see below), not hard-coded.
+   - Returns any JSON response (e.g. `res.json({ ok: true })`); the response body itself is not inspected by the verifier.
+2. Provide a `package.json` in the project root listing `node-appwrite` as a runtime dependency so that `npm install` in the function build step pulls it in.
+3. Implement a deploy script `deploy.js` (run with `node deploy.js`) that uses the `node-appwrite` SDK to:
+   - Read `run-id` from the `ZEALT_RUN_ID` environment variable.
+   - Create a new collection with ID `triggers` inside the existing database `evt_${run-id}`. The collection's create/read/update/delete permissions must allow the API key (use `any` role to keep it simple) so the deploy script can write to it. The collection does not need any custom attributes for this task; documents can be inserted with an empty data payload (`{}`).
+   - Create an Appwrite Function with ID `evt-fn-${run-id}`, runtime `node-22`, entrypoint `src/main.js`, and an `events` subscription list containing exactly one event: `databases.evt_${run-id}.collections.triggers.documents.*.create` (so the function fires whenever a document is created in the `triggers` collection of the `evt_${run-id}` database).
+   - Set the following function variables (so the function can authenticate and locate the audit collection at runtime):
+     - `APPWRITE_API_KEY` set to the same API key value the deploy script uses.
+     - `AUDIT_DB` set to `evt_${run-id}`.
+     - `AUDIT_COL` set to `audit`.
+   - Package the `src/` directory and the project `package.json` into a `tar.gz` archive on disk and upload it as a new deployment that is activated automatically (the deployment must end up as the active deployment for the function).
+   - Wait until the deployment build status becomes `ready` (poll `functions.getDeployment` and fail fast on `failed`) before triggering the function.
+   - Insert one test document into the `triggers` collection (data may be `{}`).
+   - Print the `$id` of that inserted trigger document to stdout in the exact format `Trigger doc ID: <id>` (on its own line). This is the contract the verifier uses to discover which document the function should have processed.
+
+## Implementation Hints
+- Use the `node-appwrite` SDK for every Appwrite call (`Client`, `Databases`, `Functions`, `InputFile`, `ID`, `Permission`, `Role`). Do not hit the REST API directly with `fetch`/`curl`.
+- For packaging, the `tar` npm package (preinstalled in the project) can produce a gzipped tarball from the project directory.
+- `functions.createDeployment` accepts `code` as `InputFile.fromPath(<path-to-tar.gz>, <filename>)` and exposes an `activate` flag.
+- Function builds are asynchronous: after `createDeployment`, poll `functions.getDeployment` until its `status` becomes `ready` (or fail fast on `failed`) before inserting the trigger document.
+- Inside the function (`src/main.js`), authenticate the `node-appwrite` client with the API key passed in via the function variable `APPWRITE_API_KEY`. The audit database ID and audit collection ID must come from the `AUDIT_DB` and `AUDIT_COL` function variables.
+- The triggering document is delivered to the function via the request body. With `node-appwrite` runtime v3+, prefer `req.bodyJson` (or fall back to parsing `req.bodyText`/`req.body`) to obtain the document, and read `$id` from it.
+- Functions event subscription docs:
+  - https://appwrite.io/docs/products/functions/develop
+  - https://appwrite.io/docs/references/cloud/server-nodejs/functions
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: node deploy.js (must be runnable from the project path with the environment variables above set)
+- Resource naming (all derived from the `ZEALT_RUN_ID` environment variable):
+  - Audit database ID: `evt_${run-id}` (pre-existing, do NOT recreate).
+  - Audit collection ID: `audit` (pre-existing, do NOT recreate).
+  - Trigger collection ID: `triggers` (created by `deploy.js`, inside the audit database).
+  - Function ID: `evt-fn-${run-id}` (created by `deploy.js`).
+- The deployed function must be configured with:
+  - Runtime `node-22`.
+  - Entrypoint `src/main.js`.
+  - An active (built) deployment.
+  - At least one event subscription matching `databases.evt_${run-id}.collections.triggers.documents.*.create`.
+  - Function variables `APPWRITE_API_KEY`, `AUDIT_DB`, `AUDIT_COL` set as described above.
+- Running `node deploy.js`:
+  - Creates the `triggers` collection if it does not already exist.
+  - Creates and activates the function and its deployment.
+  - Inserts exactly one document into the `triggers` collection per invocation.
+  - Prints a line to stdout in the exact format `Trigger doc ID: <id>` where `<id>` is the `$id` of the inserted trigger document.
+- End-to-end behavior: after `node deploy.js` completes and the Appwrite event has been processed, the `audit` collection must contain exactly one document whose `source_id` attribute equals that printed trigger document `$id`.
+
+12:Tf1a,# Appwrite Function HTTP JSON Endpoint
+
+## Background
+You are building a small JSON HTTP endpoint on top of Appwrite Functions. The Function exposes a single route that responds with a greeting message in JSON, and a deploy script packages and ships the Function code to a real Appwrite project using the `node-appwrite` SDK.
+
+The target Appwrite project is already provisioned. Credentials are provided via the following environment variables:
+- `APPWRITE_ENDPOINT` (e.g. `https://<region>.cloud.appwrite.io/v1`)
+- `APPWRITE_PROJECT_ID`
+- `APPWRITE_API_KEY` (server API key with full Functions scopes)
+
+## Requirements
+1. Implement an Appwrite Function in `src/main.js` using the Node.js 22 runtime that:
+   - Exports a default async handler with the signature `({ req, res, log, error })`.
+   - When `req.method` is `GET` and `req.path` is `/greeting`, returns `res.json({ message: 'Hello, ' + (req.query.name || 'world') })` with HTTP status `200`.
+   - For any other request, returns `res.json({ error: 'not found' }, 404)`.
+2. Implement a deploy script `deploy.js` (run with `node deploy.js`) that uses the `node-appwrite` SDK to:
+   - Read `run-id` from the `ZEALT_RUN_ID` environment variable.
+   - Create a function whose ID is `greeting-fn-${run-id}` with runtime `node-22`, execute permission `any`, and entrypoint `src/main.js`.
+   - Package the `src/` directory into a `tar.gz` archive on disk and upload it as a new deployment that is activated automatically (the deployment must end up as the active deployment for the function).
+   - Trigger an execution against path `/greeting?name=Appwrite` using HTTP method `GET` (synchronous, not async).
+   - Print the execution response body to stdout, and additionally write a log file containing the response body.
+
+## Implementation Hints
+- Use the `node-appwrite` SDK (`Client`, `Functions`, `InputFile`) for every Appwrite call — do not hit the REST API directly with `fetch`/`curl`.
+- For packaging, the `tar` npm package (already installed) can create a gzipped tarball from the `src/` directory.
+- `functions.createDeployment` accepts `code` as an `InputFile.fromPath(<path-to-tar.gz>, <filename>)` and exposes an `activate` flag.
+- Function builds are asynchronous: after `createDeployment`, poll `functions.getDeployment` until its `status` becomes `ready` (or fail fast on `failed`) before invoking the function.
+- `functions.createExecution` accepts `path` (e.g. `/greeting?name=Appwrite`), `method` (`GET`), and `async: false` so the response body comes back inline as `responseBody`.
+- Functions and runtimes documentation:
+  - https://appwrite.io/docs/products/functions/develop
+  - https://appwrite.io/docs/references/cloud/server-nodejs/functions#createDeployment
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Log file: /home/user/myproject/output.log
+- Resource naming: The deployed function ID must be exactly `greeting-fn-${run-id}` where `run-id` is read from the `ZEALT_RUN_ID` environment variable.
+- Running `node deploy.js` from the project path must:
+  - Create the function (runtime `node-22`, execute role `any`, entrypoint `src/main.js`) if it does not already exist.
+  - Create and activate a new deployment built from the `src/` directory (packaged as `tar.gz`).
+  - Invoke the deployed function at path `/greeting?name=Appwrite` with method `GET` using `node-appwrite`'s `functions.createExecution` (synchronous).
+  - Print the execution response body to stdout, and append the same response body to `/home/user/myproject/output.log`.
+- The Function code at `src/main.js`:
+  - GET `/greeting?name=Appwrite` returns HTTP 200 with JSON body `{"message":"Hello, Appwrite"}`.
+  - GET `/greeting` (no `name` query) returns HTTP 200 with JSON body `{"message":"Hello, world"}`.
+  - Any other path or method returns HTTP 404 with JSON body `{"error":"not found"}`.
+
+13:T1045,# Appwrite Scheduled Function (CRON)
+
+## Background
+You are setting up a backend Appwrite Function that runs automatically on a fixed CRON schedule (every 5 minutes). The function does not need event triggers — it must rely solely on Appwrite's built-in schedule feature exposed via the `node-appwrite` Server SDK. You will write the function code and a deployment script that registers the function with the schedule and ships an active deployment built from the local `src/` directory.
+
+The target Appwrite project is already provisioned. Credentials are provided via the following environment variables:
+- `APPWRITE_ENDPOINT` (e.g. `https://<region>.cloud.appwrite.io/v1`)
+- `APPWRITE_PROJECT_ID`
+- `APPWRITE_API_KEY` (server API key with full Functions scopes)
+- `ZEALT_RUN_ID` (used to make resource names unique per run)
+
+## Requirements
+1. Implement an Appwrite Function in `src/main.js` using the Node.js 22 runtime that:
+   - Exports a default async handler with the signature `({ req, res, log, error })`.
+   - For any incoming request, returns `res.json({ ok: true, ts: new Date().toISOString() })` with HTTP status `200`.
+2. Implement a deploy script `deploy.js` (run with `node deploy.js`) that uses the `node-appwrite` SDK to:
+   - Read `run-id` from the `ZEALT_RUN_ID` environment variable.
+   - Create a function whose ID is `cron-fn-${run-id}` configured with:
+     - `runtime = 'node-22'`
+     - `schedule = '*/5 * * * *'` (every 5 minutes)
+     - `execute = ['any']`
+     - No event triggers (the `events` array must be empty / unset)
+     - Entrypoint `src/main.js`
+   - Package the `src/` directory into a `tar.gz` archive on disk and upload it as a new deployment that is activated automatically (the deployment must end up as the active deployment for the function).
+   - Poll the deployment until its build `status` becomes `ready` before exiting.
+   - As the LAST line of stdout, print a single JSON object with exactly the function `$id` and the function's `schedule` field, e.g. `{"$id":"cron-fn-<run-id>","schedule":"*/5 * * * *"}`.
+
+## Implementation Hints
+- Use the `node-appwrite` SDK (`Client`, `Functions`, `InputFile`) for every Appwrite call — do **not** invoke the REST API directly with `fetch`/`curl`, and do **not** use the Appwrite CLI / `appwrite.json` flow.
+- The schedule must be configured via the SDK's `functions.create` call by passing the `schedule` argument; do not rely on a separate `functions.update` call.
+- For packaging, the `tar` npm package (already installed) can create a gzipped tarball from the `src/` directory.
+- `functions.createDeployment` accepts `code` as an `InputFile.fromPath(<path-to-tar.gz>, <filename>)` and exposes an `activate` flag.
+- Function builds are asynchronous: after `createDeployment`, poll `functions.getDeployment` until its `status` becomes `ready` (or fail fast on `failed`) before printing the final JSON line.
+- After polling, you can call `functions.get` once more to read the persisted `schedule` value before printing the final JSON line.
+- Functions and schedule documentation:
+  - https://appwrite.io/docs/products/functions/schedule
+  - https://appwrite.io/docs/references/cloud/server-nodejs/functions#create
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Resource naming: The deployed function ID must be exactly `cron-fn-${run-id}` where `run-id` is read from the `ZEALT_RUN_ID` environment variable.
+- Running `node deploy.js` from the project path must:
+  - Create the function via the SDK's `functions.create` call with `runtime='node-22'`, `schedule='*/5 * * * *'`, `execute=['any']`, no event triggers, and entrypoint `src/main.js` (if it does not already exist).
+  - Create and activate a new deployment built from the `src/` directory (packaged as `tar.gz`). The function's active deployment must have build status `ready`.
+  - As the LAST line of stdout, print a single JSON object containing the function `$id` and its `schedule` field, both matching the values configured above.
+- The Function code at `src/main.js` must respond to any request with HTTP 200 and a JSON body of shape `{"ok": true, "ts": <ISO-8601 timestamp string>}`.
+
+14:T9be,# Query Appwrite Documents via the GraphQL Endpoint
+
+## Background
+In addition to its REST and SDK interfaces, Appwrite exposes a complete GraphQL endpoint at `${APPWRITE_ENDPOINT}/graphql`. Every operation available in the REST API is also available as a GraphQL field, allowing front-ends to fetch exactly the data they need in a single request.
+
+In this task you must call the GraphQL endpoint directly (using Node 20's built-in `fetch`) to list documents from a seeded collection, extract the `title` of each document, and print them sorted alphabetically.
+
+## Requirements
+- Implement a Node.js CLI script at `/home/user/myproject/index.js`.
+- Read `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY` from the environment.
+- Read the seeded database/collection IDs from `/home/user/myproject/.seed.json` (keys `databaseId`, `collectionId`).
+- Construct an HTTPS POST request to `${APPWRITE_ENDPOINT}/graphql` with:
+  - Header `Content-Type: application/json`
+  - Header `X-Appwrite-Project: ${APPWRITE_PROJECT_ID}`
+  - Header `X-Appwrite-Key: ${APPWRITE_API_KEY}`
+  - Body: a JSON object with a `query` field that calls the `databasesListDocuments` query with the seeded `databaseId` and `collectionId` and selects `{ total documents { _id data } }`. (The `data` field is returned as a JSON-encoded string; you must `JSON.parse` it to extract `title`.)
+- Parse the response, extract each document's `title`, sort the titles alphabetically (case-sensitive ASCII order), and print the result as a compact JSON array on the last non-empty stdout line.
+- Constraint: you **must** use the GraphQL endpoint (not the REST `/databases/.../documents` endpoint and not a SDK helper).
+- Exit code `0` on success.
+
+## Implementation Hints
+- Node 20 has a built-in global `fetch` API; no extra packages are required.
+- The GraphQL field `databasesListDocuments` accepts arguments `databaseId: String!` and `collectionId: String!`.
+- The returned `documents[].data` field is a string of JSON; parse it with `JSON.parse` to read the `title` attribute.
+- If the GraphQL response contains an `errors` array, fail fast (non-zero exit code).
+
+## Acceptance Criteria
+- Project path: `/home/user/myproject`.
+- Command: `node /home/user/myproject/index.js`.
+- Exit code: `0`.
+- Stdout: last non-empty line is the compact JSON array `["Alpha","Beta","Gamma"]`.
+- The script must POST to `${APPWRITE_ENDPOINT}/graphql` and must reference the field `databasesListDocuments` somewhere in the source.
+15:Tcfc,# Appwrite Storage: Generate a Transformed Image Preview URL
+
+## Background
+Appwrite Storage exposes a preview endpoint that can resize, crop, re-quality, and re-encode any image stored in a bucket. The Web SDK (`appwrite`) provides a `getFilePreview` helper that returns a URL pointing at this preview endpoint with the requested transformation parameters already encoded as query string arguments.
+
+For this task, the environment is **already configured** before you start:
+- A public-read Storage bucket has been created in the Appwrite project.
+- A small PNG image has already been uploaded into that bucket.
+- The IDs of both the bucket and the file have been written into `/home/user/myproject/.env` as `APPWRITE_BUCKET_ID` and `APPWRITE_FILE_ID`.
+
+Your job is to write a small Node.js program that uses the **Web SDK** (`appwrite`) to compute the transformed preview URL for that file and print it to stdout.
+
+## Requirements
+- Write the program at `/home/user/myproject/index.js`.
+- Load environment variables from `/home/user/myproject/.env` using the `dotenv` npm package. The relevant variables are `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_BUCKET_ID`, and `APPWRITE_FILE_ID`.
+- Build an Appwrite `Client` using only `setEndpoint(APPWRITE_ENDPOINT)` and `setProject(APPWRITE_PROJECT_ID)`. Do NOT set an API key on this client; this task uses the public Web SDK access pattern.
+- Call `storage.getFilePreview(...)` from the `appwrite` Web SDK with the following transformation parameters and no others:
+  - `width = 400`
+  - `height = 400`
+  - `gravity = 'center'`
+  - `quality = 80`
+  - `output = 'webp'`
+- Print the resulting URL string on the **last line of stdout**.
+
+## Implementation Hints
+- The Web SDK is the `appwrite` npm package (NOT `node-appwrite`). It is already installed in `/home/user/myproject`.
+- The current Web SDK uses a single-options-object call style: `storage.getFilePreview({ bucketId, fileId, width, height, gravity, quality, output })`. The result is a URL object; call `.toString()` (or read `.href`) to get the string form, then print it.
+- Do NOT manually concatenate the URL or query string. Use whatever the SDK returns.
+- Refer to the docs:
+  - https://appwrite.io/docs/references/cloud/client-web/storage#getFilePreview
+  - https://appwrite.io/docs/products/storage/images
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Entry point: /home/user/myproject/index.js, invoked by the verifier with `node /home/user/myproject/index.js` (env vars from `/home/user/myproject/.env` will be exported into the process environment first).
+- The script must read configuration from `/home/user/myproject/.env` via `dotenv`.
+- The script must use the `appwrite` Web SDK's `storage.getFilePreview` helper to construct the URL; it MUST NOT build the URL manually.
+- The last non-empty line of stdout must be the preview URL produced by the SDK.
+- The printed URL must:
+  - Use the host of `APPWRITE_ENDPOINT`.
+  - Have a path that ends with `/storage/buckets/<APPWRITE_BUCKET_ID>/files/<APPWRITE_FILE_ID>/preview`.
+  - Contain the query parameters `width=400`, `height=400`, `gravity=center`, `quality=80`, and `output=webp`.
+  - When fetched via HTTP GET with the `X-Appwrite-Project` header, return status 200 and a WebP-encoded image body (RIFF/WEBP container).
+
+16:Tab1,# End-to-End Appwrite JWT Round Trip
+
+## Background
+Appwrite supports a JWT (JSON Web Token) flow that lets a backend service act *as* a logged-in end-user. The flow is:
+
+1. The user logs in via the client SDK (`appwrite`) using their email/password.
+2. The client calls `account.createJWT()` to obtain a short-lived JWT bound to that session.
+3. The JWT is passed to a backend service which configures a `node-appwrite` server client with `setJWT(jwt)` (instead of `setKey(apiKey)`). Server calls made through that client are then scoped to the user's permissions.
+
+Your job is to implement this entire round trip in a single Node.js script.
+
+## Requirements
+- Implement a Node.js CLI script at `/home/user/myproject/index.js`.
+- Read `APPWRITE_ENDPOINT` and `APPWRITE_PROJECT_ID` from the environment.
+- Read the seeded user's credentials from `/home/user/myproject/.seed.json` (keys `email`, `password`).
+- **Step 1 — Client login**: build an `appwrite` (client-web SDK) `Client` with `.setEndpoint(...).setProject(...)` and call `account.createEmailPasswordSession(email, password)`.
+- **Step 2 — JWT creation**: call `account.createJWT()` on the same client SDK and capture the returned JWT string.
+- **Step 3 — Server call with JWT**: build a separate `node-appwrite` `Client` with `.setEndpoint(...).setProject(...).setJWT(jwt)` (do **not** call `.setKey(...)` on this client). Use it to instantiate `new Account(serverClient)` and call `.get()` to fetch the current user's account.
+- **Step 4 — Output**: print a single JSON object on the last non-empty stdout line: `{"jwt":"<jwt>","userId":"<$id>","email":"<email>"}`.
+- Exit code `0` on success.
+
+## Implementation Hints
+- Both `appwrite` and `node-appwrite` are pre-installed under `/home/user/myproject/node_modules`.
+- The client SDK exports `{ Client, Account }`; the server SDK exports `{ Client, Account }` from `node-appwrite`. Alias them at import time to avoid name clashes.
+- The JWT returned by `createJWT()` is a standard JWT (`header.payload.signature`) — you only need to pass it to `setJWT`. The verifier will base64-decode the payload separately to validate the `sub` claim.
+- Log anything else you need to `stderr` so the verifier reliably gets your JSON on the last stdout line.
+
+## Acceptance Criteria
+- Project path: `/home/user/myproject`.
+- Command: `node /home/user/myproject/index.js`.
+- Exit code: `0`.
+- Stdout: last non-empty line is a JSON object with string keys `jwt`, `userId`, and `email`. `userId` matches the seeded user, `email` matches `jwt-user-${ZEALT_RUN_ID}@example.com`, `jwt` decodes to a JWT whose `sub` claim equals `userId`.
+- The script must call `setJWT` on the server SDK and must NOT call `setKey` on the server SDK.
+17:Tc73,# Passwordless Magic URL Authentication with Appwrite
+
+## Background
+You are building the sign-in flow for a web app that uses passwordless authentication. Appwrite's Magic URL login lets a user enter their email address, receive a one-time link in their inbox, and click it to be signed in.
+
+You must write a small Node.js script that initiates this flow by calling Appwrite's `account.createMagicURLToken()` method on the client (web) SDK. The user that receives the link is identified by an email address you must generate using the `ZEALT_RUN_ID` environment variable (e.g., `test-user-${process.env.ZEALT_RUN_ID}@example.com`). The Appwrite project and endpoint are also configured through environment variables.
+
+## Requirements
+- Implement a Node.js CLI script that uses the `appwrite` (client-web) SDK package to call `account.createMagicURLToken()`.
+- Read the Appwrite endpoint, project ID, and run ID from environment variables (`APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `ZEALT_RUN_ID`).
+- Construct a unique email address using the `ZEALT_RUN_ID` environment variable (e.g., `test-user-${process.env.ZEALT_RUN_ID}@example.com`).
+- Use Appwrite's `ID.unique()` helper to generate the `userId` argument. Do **NOT** hardcode the user ID.
+- Use `http://localhost:3000/auth/callback` as the redirect URL passed to `createMagicURLToken`.
+- After the call succeeds, print **only** the returned token's `userId` value to stdout, on its own line, with no extra prefix.
+- Exit with status `0` on success and a non-zero status on failure.
+
+## Implementation Hints
+- Install dependencies with npm and use the `appwrite` package (the client-web SDK) for the `Client`, `Account`, and `ID` exports. The `node-appwrite` server SDK is also present in the environment for verification, but the task itself should use the client SDK.
+- Configure the `Client` with `.setEndpoint(...)` and `.setProject(...)` using the values from the environment.
+- The third argument to `createMagicURLToken` is the redirect `url`; Appwrite will append `userId` and `secret` query parameters to it when sending the magic link.
+- Keep the script idempotent: each run sends a fresh magic-URL email for the configured address. Appwrite handles existing accounts automatically — when the email already exists, the supplied `userId` is ignored.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: `node send_magic_url.js`
+- Reads the Appwrite endpoint from `APPWRITE_ENDPOINT`, the project ID from `APPWRITE_PROJECT_ID`, and the run ID from `ZEALT_RUN_ID`.
+- The script must use the `appwrite` (client-web) SDK's `account.createMagicURLToken()` method with the redirect URL `http://localhost:3000/auth/callback`.
+- The first positional argument passed to `createMagicURLToken` must be produced by `ID.unique()` (no hardcoded user IDs).
+- Stdout: prints the token's returned `userId` string (a non-empty Appwrite user ID) on its own line.
+- Exit code: `0` on success.
+- After running the script, the Appwrite project must contain a user account with the email address generated using `ZEALT_RUN_ID` (created automatically by Appwrite on first magic-URL request if it does not already exist).
+
+18:Td32,# Server-Side OAuth2 Token Exchange with Appwrite
+
+## Background
+When integrating Appwrite with an OAuth2 provider (Google, GitHub, etc.), the typical flow is: the user logs in through the provider, Appwrite redirects back to your backend with a `userId` and a one-time `secret`, and your code must exchange that pair for an actual Appwrite session. The same two-parameter exchange pattern is used by every token-based login flow in Appwrite (Magic URL, Phone OTP, Email OTP, OAuth2).
+
+In this task you will write the client-side exchange step. The environment has been pre-seeded as if the OAuth2 redirect (or any other token-issuing flow) just happened: a real Appwrite user has been created via the server SDK, and a one-time token has been issued for that user using `users.createToken(userId)`. The resulting `userId` and `secret` have been written to a JSON file on disk. Your job is to read them and exchange them for a real session using the **client-web** `appwrite` SDK, then look up the authenticated user.
+
+## Requirements
+- Implement a Node.js script at `/home/user/myproject/index.js` that uses the `appwrite` (client-web) SDK.
+- Read the Appwrite endpoint and project ID from environment variables `APPWRITE_ENDPOINT` and `APPWRITE_PROJECT_ID`.
+- Read the pre-seeded `userId` and `secret` from `/home/user/myproject/.seed.json` (a JSON file with keys `userId` and `secret`).
+- Exchange the token for a session by calling `account.createSession(userId, secret)`.
+- After the session is created, call `account.get()` to retrieve the now-authenticated user profile.
+- Print a single JSON object on the **last** stdout line with exactly these keys: `sessionId`, `userId`, `email` (corresponding to the session's `$id`, the user's `$id`, and the user's `email`).
+- Exit with status `0` on success and a non-zero status on failure.
+
+## Implementation Hints
+- Use the **client-web** `appwrite` package (not `node-appwrite`). Construct a `Client`, set the endpoint and project, then build an `Account`.
+- The `account.createSession(userId, secret)` call is the token-to-session exchange and is the same call shared by OAuth2, Magic URL, Phone OTP, and Email OTP flows.
+- After `createSession` succeeds the same `Client` instance is authenticated for subsequent calls, so `account.get()` will return the user belonging to that new session.
+- Make sure the JSON object is the **last** line printed on stdout (the verifier reads the last non-empty line and parses it as JSON).
+- Do **not** create the user or issue the token yourself — those steps are already performed by the environment's initial-state setup.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: `node index.js`
+- Reads the Appwrite endpoint from `APPWRITE_ENDPOINT` and the project ID from `APPWRITE_PROJECT_ID`.
+- Reads the seeded credentials from `/home/user/myproject/.seed.json` (keys: `userId`, `secret`).
+- Calls the client-web `account.createSession(userId, secret)` to exchange the token for a session.
+- Calls `account.get()` to fetch the authenticated user.
+- Stdout: the last non-empty line is a JSON object with the shape `{"sessionId": "<session_$id>", "userId": "<user_$id>", "email": "<user_email>"}`.
+- Exit code: `0` on success.
+- Side effect: a new Appwrite session must exist for the seeded user (verifiable via `users.listSessions(userId)` from the server SDK).
+
+19:Tbd8,# Appwrite Phone OTP Token Creation (Web SDK)
+
+## Background
+Appwrite supports passwordless authentication by issuing short-lived tokens delivered through SMS via the `createPhoneToken` endpoint of the Account service. In this task you will use the Appwrite Web SDK (`appwrite`) from a Node.js script to initiate a phone OTP flow by creating a new phone token. Appwrite will provision an anonymous user identified by the userId you provide and dispatch an OTP code through the configured SMS provider. Your job is to perform the token creation and surface the resulting userId so the rest of the authentication flow can later verify the OTP and create a session.
+
+## Requirements
+- Implement a Node.js script at `/home/user/myproject/index.js` that:
+  - Imports `Client`, `Account`, and `ID` from the `appwrite` package.
+  - Configures the SDK `Client` using `APPWRITE_ENDPOINT` and `APPWRITE_PROJECT_ID` from the environment.
+  - Calls `account.createPhoneToken` to start a phone OTP flow using a newly generated user id and a generated test phone number.
+  - The test phone number must be constructed from the `ZEALT_RUN_ID` environment variable: extract all digits from `ZEALT_RUN_ID`, pad the end with `0`s if there are fewer than 10 digits, take exactly the first 10 digits, and prepend `+1`. (e.g., if `ZEALT_RUN_ID` is `123a-45`, the digits are `12345`, padded to `1234500000`, resulting in `+11234500000`).
+  - Prints the resulting `userId` so that automated verification can pick it up.
+- Use `ID.unique()` to generate the userId; do NOT hardcode or reuse an existing user id.
+- Do NOT call `createSession`, `updatePhoneSession`, or any session-creation endpoint; the task scope is limited to creating the phone OTP token.
+
+## Implementation Hints
+- The `appwrite` Web SDK is already installed in `/home/user/myproject`.
+- The `Client` needs both `setEndpoint(...)` and `setProject(...)` calls before constructing an `Account` instance.
+- `createPhoneToken` is an async function that returns a `Token` object whose `userId` field is the new user's id.
+- Read all configuration from environment variables rather than embedding secrets in the source.
+- The verifier will execute the script and parse the last non-empty line of stdout, so make sure the userId is printed as the final piece of stdout output (no extra trailing logs or banners after it).
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: node /home/user/myproject/index.js
+- The script reads `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `ZEALT_RUN_ID` from environment variables.
+- The script uses the `appwrite` Web SDK (NOT `node-appwrite`) and calls `account.createPhoneToken(ID.unique(), <phone>)`.
+- The last non-empty line of stdout is the Appwrite userId, matching the regex `^[a-zA-Z0-9_\-\.]{1,36}$`.
+- After execution, the Appwrite project contains a user identified by that userId whose `phone` field equals the constructed phone number.
+- No Appwrite session is created by the script (the task only creates the OTP token).
+
+1a:Tdab,# Appwrite Realtime Document Subscription
+
+## Background
+You are building a small Node.js script that subscribes to Appwrite Realtime and reacts to document creation events on a specific collection. The Appwrite project is already provisioned, and a database and a `messages` collection have been pre-created in the task environment for you.
+
+Credentials and configuration are provided via the following environment variables:
+- `APPWRITE_ENDPOINT` (e.g. `https://<region>.cloud.appwrite.io/v1`)
+- `APPWRITE_PROJECT_ID`
+- `APPWRITE_API_KEY` (server API key used only for the pre-provisioned setup; the realtime client does NOT need it)
+- `ZEALT_RUN_ID` (a safe `zr-...` suffix; the pre-provisioned database id is `rt_${ZEALT_RUN_ID}`)
+
+## Requirements
+1. Implement a Node.js program at `/home/user/myproject/index.js` that:
+   - Uses the `appwrite` (web/client) SDK to subscribe to the Realtime channel for documents in the `messages` collection of the database `rt_${ZEALT_RUN_ID}`.
+   - Configures the `Client` with the endpoint (`APPWRITE_ENDPOINT`) and project id (`APPWRITE_PROJECT_ID`).
+   - Subscribes to the channel `databases.rt_${ZEALT_RUN_ID}.collections.messages.documents`.
+   - When a realtime response is received whose `events` array contains an entry matching `*.documents.*.create` (i.e. a document creation event for this collection), writes the document payload as a single JSON line to stdout using `JSON.stringify(response.payload)` and exits with status code `0`.
+   - If no matching event arrives within `30` seconds of starting, exits with a non-zero status code.
+2. Running `node index.js` from `/home/user/myproject` must execute the program.
+
+## Implementation Hints
+- The `appwrite` package is the client/web SDK and expects a browser `WebSocket` global. In Node.js you can polyfill it with the `ws` package (already installed) by assigning `globalThis.WebSocket ||= require('ws')` before constructing the client.
+- Build the channel string from `ZEALT_RUN_ID` and pass it directly to `client.subscribe(channel, callback)`.
+- The callback receives an object with `events` (an array of event strings like `databases.<db>.collections.<col>.documents.<doc>.create`) and a `payload` (the document body).
+- Use `String.prototype.match` against the pattern `*.documents.*.create` (converted to a regex) or `events.some(e => /\\.documents\\..*\\.create$/.test(e))` to detect creation events.
+- Make sure the process actually exits with `process.exit(0)` after printing the payload, and `process.exit(1)` (or similar non-zero) after the 30s timeout.
+- Realtime docs:
+  - https://appwrite.io/docs/apis/realtime
+  - https://appwrite.io/docs/products/databases/realtime
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Script entry point: /home/user/myproject/index.js (run with `node index.js`)
+- The program subscribes to channel `databases.rt_${ZEALT_RUN_ID}.collections.messages.documents` where `ZEALT_RUN_ID` is read from the environment.
+- When a document is created in the pre-existing collection `messages` of database `rt_${ZEALT_RUN_ID}`, the program:
+  - Writes `JSON.stringify(response.payload)` as the final line of stdout.
+  - Exits with status code `0` within a few seconds of receiving the event.
+- If no document is created within 30 seconds, the program exits with a non-zero status code.
+- The program uses the `appwrite` client SDK's realtime subscription API (no direct REST polling, no `node-appwrite` server SDK for the subscription itself).
+
+1b:Ta77,# Create a Team, a User, and Add the User as a Member with Appwrite
+
+## Background
+Appwrite's Teams service models organizations and workspaces. A team is created with `teams.create(teamId, name)`, real user accounts are provisioned via the Users service (`users.create(...)`), and the two are linked via `teams.createMembership(teamId, roles, ...)`.
+
+When the server-side `node-appwrite` SDK calls `createMembership` with a `userId` and **no** `url`, the user is **directly added** to the team without an invitation email. This is the flow you must implement.
+
+## Requirements
+- Implement a Node.js CLI script at `/home/user/myproject/index.js` using the `node-appwrite` server SDK only.
+- Read `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from the environment.
+- **Step 1 – Create a team** named `Engineering-${ZEALT_RUN_ID}` via `teams.create(ID.unique(), name)`.
+- **Step 2 – Create a user** via `users.create(ID.unique(), 'member-${ZEALT_RUN_ID}@example.com', undefined, 'TempPassw0rd!')`.
+- **Step 3 – Create a membership** that directly adds the user to the team. The server-side signature is `teams.createMembership(teamId, roles, email?, userId?, phone?, url?, name?)`. Pass `roles=['member']`, `userId=user.$id`, leave `url` undefined to skip the email-confirmation flow, and provide `name='Member ${ZEALT_RUN_ID}'`.
+- **Step 4 – Output:** Print exactly one JSON object as the **last non-empty stdout line**: `{"teamId":"...","userId":"...","membershipId":"..."}`.
+- Exit code `0` on success.
+
+## Implementation Hints
+- The `node-appwrite` SDK is already installed in `/home/user/myproject/node_modules`.
+- Build a single `Client` with `.setEndpoint(...).setProject(...).setKey(API_KEY)` and pass it to both `new Teams(client)` and `new Users(client)`.
+- Consult https://appwrite.io/docs/references/cloud/server-nodejs/teams#createMembership for the exact parameter ordering.
+- Log diagnostics to `stderr` so they do not pollute the last stdout line that the verifier parses.
+
+## Acceptance Criteria
+- Project path: `/home/user/myproject`.
+- Command: `node /home/user/myproject/index.js`.
+- Exit code: `0`.
+- Stdout: last non-empty line parses as JSON with string keys `teamId`, `userId`, `membershipId` (all non-empty alphanumeric IDs of at least 8 characters).
+- Side effects (verified via the Python admin SDK):
+  - A team with `$id == teamId` exists and its `name` equals `Engineering-${ZEALT_RUN_ID}`.
+  - A user with `$id == userId` exists and its email equals `member-${ZEALT_RUN_ID}@example.com`.
+  - A membership with `$id == membershipId` exists on the team, references that user, and contains the role `member`.
+1c:T94a,# Assign Role-Based Access Labels to an Appwrite User
+
+## Background
+Appwrite supports server-side **labels** on user accounts. Labels are arbitrary string tags that you can attach to a user via `Users.updateLabels(userId, labels)` and then reference inside permission strings (e.g. `Role.label('admin')`) to drive role-based access control. Labels are only mutable from server contexts that hold an API key — they are not exposed via the client account API for self-modification.
+
+A user account has already been provisioned for you. Your job is to attach two labels — `admin` and `moderator` — to that user, then print the updated label set to stdout.
+
+## Requirements
+- Implement a Node.js CLI script at `/home/user/myproject/index.js`.
+- Read the seeded `userId` from the JSON file `/home/user/myproject/.seed.json` (key `userId`).
+- Read `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY` from the environment.
+- Build a `node-appwrite` `Client` configured with `.setEndpoint(...).setProject(...).setKey(API_KEY)` and instantiate `new Users(client)`.
+- Call `users.updateLabels(userId, ['admin', 'moderator'])`.
+- Print the returned user's `labels` array as a compact JSON array (e.g. `["admin","moderator"]`) on the **last non-empty stdout line**.
+- Constraint: you **must** use `users.updateLabels(...)`. Do not attempt to attach labels by writing to the document store, by using Teams, or by sending raw REST requests.
+- Exit code `0` on success.
+
+## Implementation Hints
+- `node-appwrite` is pre-installed under `/home/user/myproject/node_modules`.
+- The Users service is exported from `node-appwrite`: `const { Client, Users } = require('node-appwrite');`.
+- The order of labels in the printed array does not matter as long as both `admin` and `moderator` are present and no other labels are added.
+- The `.seed.json` file is created by the initial-state fixture and looks like `{"userId":"...","email":"labels-user-<run-id>@example.com"}`.
+
+## Acceptance Criteria
+- Project path: `/home/user/myproject`.
+- Command: `node /home/user/myproject/index.js`.
+- Exit code: `0`.
+- Stdout: the last non-empty line is a JSON array containing exactly the strings `admin` and `moderator` (in any order, no duplicates, no extra entries).
+- Side effect (verified via the Python admin SDK): `users.get(userId).labels` equals the multiset `{admin, moderator}`.
+0:{"P":null,"b":"7DN5nwJkHxJ0Z6yXDKk4Y","c":["","tasks",""],"q":"","i":false,"f":[[["",{"children":["tasks",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/appwrite-benchmark/_next/static/chunks/fecfeccd55475e2b.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/appwrite-benchmark/_next/static/chunks/babff0e7418ab052.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/appwrite-benchmark/_next/static/chunks/3ecbb78a8ff87549.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"inter_5972bc34-module__OU16Qa__className antialiased","children":["$","$L2",null,{"children":["$","$L3",null,{"defaultTheme":"dark","children":[["$","div",null,{"className":"fixed right-4 top-6 z-50 sm:top-8","children":["$","$L4",null,{}]}],["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$7",null,{"fallback":["$","div",null,{"className":"container mx-auto py-8 text-center","children":"Loading tasks..."}],"children":["$","$L8",null,{"tasksData":[{"taskName":"account_email_verification_flow","instruction":"$9","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"account_email_verification_flow__GnnYGKf","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":84.33,"latency_breakdown":{"env_setup":13.166,"agent_setup":51.387,"agent_exec":3.488,"verifier":null},"taskName":"account_email_verification_flow","jobId":"GnnYGKf","exec_duration":3.488}]},{"taskName":"appwrite_cli_project_init","instruction":"$a","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"appwrite_cli_project_init__z8LQfoo","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":179.784,"latency_breakdown":{"env_setup":15.06,"agent_setup":43.809,"agent_exec":94.504,"verifier":11.436},"taskName":"appwrite_cli_project_init","jobId":"z8LQfoo","exec_duration":94.504}]},{"taskName":"bucket_security_constraints_creation","instruction":"$b","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"bucket_security_constraints_crea__RXPjbHW","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":191.991,"latency_breakdown":{"env_setup":19.825,"agent_setup":93.13,"agent_exec":62.324,"verifier":2.214},"taskName":"bucket_security_constraints_crea","jobId":"RXPjbHW","exec_duration":62.324}]},{"taskName":"chunked_large_file_upload","instruction":"$c","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"chunked_large_file_upload__yANtoFJ","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":129.337,"latency_breakdown":{"env_setup":17.793,"agent_setup":41.041,"agent_exec":54.687,"verifier":2.276},"taskName":"chunked_large_file_upload","jobId":"yANtoFJ","exec_duration":54.687}]},{"taskName":"database_collection_attributes_and_indexes","instruction":"$d","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"database_collection_attributes_a__UXT5exr","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":181.385,"latency_breakdown":{"env_setup":8.836,"agent_setup":55.784,"agent_exec":97.111,"verifier":2.899},"taskName":"database_collection_attributes_a","jobId":"UXT5exr","exec_duration":97.111}]},{"taskName":"database_one_to_many_relationship","instruction":"$e","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"database_one_to_many_relationshi__F7AaaHC","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":121.868,"latency_breakdown":{"env_setup":8.64,"agent_setup":40.368,"agent_exec":52.407,"verifier":6.909},"taskName":"database_one_to_many_relationshi","jobId":"F7AaaHC","exec_duration":52.407}]},{"taskName":"document_query_filters_and_ordering","instruction":"$f","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"document_query_filters_and_order__iSMsAkm","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":87.347,"latency_breakdown":{"env_setup":13.112,"agent_setup":54.831,"agent_exec":5.136,"verifier":null},"taskName":"document_query_filters_and_order","jobId":"iSMsAkm","exec_duration":5.136}]},{"taskName":"email_password_signup_and_session","instruction":"$10","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"email_password_signup_and_sessio__LMbJrMP","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":291.168,"latency_breakdown":{"env_setup":12.996,"agent_setup":40.834,"agent_exec":214.885,"verifier":8.442},"taskName":"email_password_signup_and_sessio","jobId":"LMbJrMP","exec_duration":214.885}]},{"taskName":"function_database_event_trigger","instruction":"$11","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"function_database_event_trigger__cBgNWN2","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":83.485,"latency_breakdown":{"env_setup":21.736,"agent_setup":40.147,"agent_exec":7.424,"verifier":null},"taskName":"function_database_event_trigger","jobId":"cBgNWN2","exec_duration":7.424}]},{"taskName":"function_http_endpoint_json","instruction":"$12","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"function_http_endpoint_json__yWaNPdU","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":338.134,"latency_breakdown":{"env_setup":18.574,"agent_setup":45.969,"agent_exec":247.901,"verifier":8.828},"taskName":"function_http_endpoint_json","jobId":"yWaNPdU","exec_duration":247.901}]},{"taskName":"function_scheduled_cron","instruction":"$13","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"function_scheduled_cron__r8VCTtW","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":263.197,"latency_breakdown":{"env_setup":5.848,"agent_setup":81.813,"agent_exec":143.389,"verifier":18.552},"taskName":"function_scheduled_cron","jobId":"r8VCTtW","exec_duration":143.389}]},{"taskName":"graphql_query_documents","instruction":"$14","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"graphql_query_documents__jyEJ8gv","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":85.578,"latency_breakdown":{"env_setup":13.072,"agent_setup":49.626,"agent_exec":8.358,"verifier":null},"taskName":"graphql_query_documents","jobId":"jyEJ8gv","exec_duration":8.358}]},{"taskName":"image_preview_url_transformations","instruction":"$15","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"image_preview_url_transformation__azBxzKs","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":65.549,"latency_breakdown":{"env_setup":7.856,"agent_setup":42.912,"agent_exec":1.887,"verifier":null},"taskName":"image_preview_url_transformation","jobId":"azBxzKs","exec_duration":1.887}]},{"taskName":"jwt_authenticated_server_call","instruction":"$16","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"jwt_authenticated_server_call__x7wm2nG","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":88.717,"latency_breakdown":{"env_setup":13.246,"agent_setup":57.534,"agent_exec":3.645,"verifier":null},"taskName":"jwt_authenticated_server_call","jobId":"x7wm2nG","exec_duration":3.645}]},{"taskName":"magic_url_token_creation","instruction":"$17","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"magic_url_token_creation__MSf8LTp","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":113.753,"latency_breakdown":{"env_setup":29.499,"agent_setup":65.616,"agent_exec":4.169,"verifier":null},"taskName":"magic_url_token_creation","jobId":"MSf8LTp","exec_duration":4.169}]},{"taskName":"oauth2_session_token_exchange","instruction":"$18","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"oauth2_session_token_exchange__8ZoRuAE","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":80.691,"latency_breakdown":{"env_setup":4.467,"agent_setup":52.686,"agent_exec":6.14,"verifier":null},"taskName":"oauth2_session_token_exchange","jobId":"8ZoRuAE","exec_duration":6.14}]},{"taskName":"phone_otp_token_creation","instruction":"$19","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"phone_otp_token_creation__cuXqfrj","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":87.333,"latency_breakdown":{"env_setup":18.631,"agent_setup":46.874,"agent_exec":3.806,"verifier":null},"taskName":"phone_otp_token_creation","jobId":"cuXqfrj","exec_duration":3.806}]},{"taskName":"realtime_document_subscription","instruction":"$1a","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"realtime_document_subscription__jw2s6Pd","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":82.087,"latency_breakdown":{"env_setup":10.422,"agent_setup":54.2,"agent_exec":4.283,"verifier":null},"taskName":"realtime_document_subscription","jobId":"jw2s6Pd","exec_duration":4.283}]},{"taskName":"team_create_invite_and_membership","instruction":"$1b","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"team_create_invite_and_membershi__jnyn3At","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":113.15,"latency_breakdown":{"env_setup":4.122,"agent_setup":46.331,"agent_exec":44.716,"verifier":3.639},"taskName":"team_create_invite_and_membershi","jobId":"jnyn3At","exec_duration":44.716}]},{"taskName":"user_labels_for_role_based_access","instruction":"$1c","trials":[{"job_name":"2026-05-22__21-29-40","trial_name":"user_labels_for_role_based_acces__3oUxjQj","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":null,"error":true,"latency_sec":77.17,"latency_breakdown":{"env_setup":5.565,"agent_setup":53.649,"agent_exec":3.461,"verifier":null},"taskName":"user_labels_for_role_based_acces","jobId":"3oUxjQj","exec_duration":3.461}]}]}]}]]}],["$L1d","$L1e"],"$L1f"]}],{},null,false,false]},null,false,false]},null,false,false],"$L20",false]],"m":"$undefined","G":["$21",[]],"S":true}
+22:I[75049,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+24:I[75049,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"ViewportBoundary"]
+26:I[75049,["/appwrite-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/appwrite-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"MetadataBoundary"]
+1d:["$","script","script-0",{"src":"/appwrite-benchmark/_next/static/chunks/5a1b2ff02f64b1cd.js","async":true,"nonce":"$undefined"}]
+1e:["$","script","script-1",{"src":"/appwrite-benchmark/_next/static/chunks/f9f579c42c486944.js","async":true,"nonce":"$undefined"}]
+1f:["$","$L22",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@23"}]}]
+20:["$","$1","h",{"children":[null,["$","$L24",null,{"children":"$L25"}],["$","div",null,{"hidden":true,"children":["$","$L26",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":"$L27"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+25:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+23:null
+27:[["$","title","0",{"children":"Appwrite Benchmark"}],["$","meta","1",{"name":"description","content":"Performance results of AI coding models on Appwrite tasks, measuring success rate and execution time with high precision."}]]
