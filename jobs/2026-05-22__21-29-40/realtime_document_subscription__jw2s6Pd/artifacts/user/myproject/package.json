@@ -1,0 +1,12 @@
+{
+  "name": "appwrite-realtime-document-subscription",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Solver scaffold for the Appwrite Realtime document subscription task.",
+  "type": "commonjs",
+  "dependencies": {
+    "appwrite": "^25.2.0",
+    "node-appwrite": "^25.2.0",
+    "ws": "^8.20.1"
+  }
+}

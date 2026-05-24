@@ -1,0 +1,29 @@
+{
+    "projectId": "REDACTED",
+    "projectName": "CLI Project",
+    "databases": [
+        {
+            "$id": "cli-zr-z8lqfoo",
+            "name": "cli-zr-z8lqfoo",
+            "enabled": true
+        }
+    ],
+    "collections": [
+        {
+            "$id": "notes-zr-z8lqfoo",
+            "databaseId": "cli-zr-z8lqfoo",
+            "name": "notes-zr-z8lqfoo",
+            "enabled": true,
+            "attributes": [
+                {
+                    "key": "body",
+                    "type": "string",
+                    "size": 255,
+                    "required": false,
+                    "array": false
+                }
+            ],
+            "indexes": []
+        }
+    ]
+}

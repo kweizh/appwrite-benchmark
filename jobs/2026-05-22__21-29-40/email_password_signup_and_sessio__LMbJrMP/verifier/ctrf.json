@@ -1,0 +1,64 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 3,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1779456855398,
+            "stop": 1779456863259
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_solver_exit_code_zero",
+                "status": "passed",
+                "duration": 4499,
+                "start": 1779456855413,
+                "stop": 1779456859912,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_solver_prints_session_id",
+                "status": "passed",
+                "duration": 1,
+                "start": 1779456859912,
+                "stop": 1779456859913,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_uses_required_apis",
+                "status": "passed",
+                "duration": 1,
+                "start": 1779456859913,
+                "stop": 1779456859914,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_appwrite_user_with_expected_email_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 3345,
+                "start": 1779456859914,
+                "stop": 1779456863259,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "run_solver = {'returncode': 0, 'stderr': 'Creating user: harbor-zr-lmbjrmp@example.com\\nUser created successfully (server-side).\\nCreating session (client-side)...\\n', 'stdout': '6a105b5b6304484d5fea\\n'}\n\n    def test_appwrite_user_with_expected_email_exists(run_solver):\n        \"\"\"Confirm via the Python admin SDK that the run-scoped user was created.\"\"\"\n        email = _expected_email()\n>       matched = _list_users_by_email(email)\n\ntests/test_final_state.py:162: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_final_state.py:45: in _list_users_by_email\n    return response.get(\"users\", []) or []\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = UserList(total=1.0, users=[User(id='6a105b580029ec88b312', createdat='2026-05-22T13:34:17.932+00:00', updatedat='2026-...ntifier='harbor-zr-lmbjrmp@example.com', expired=False)], accessedat='', impersonator=False, impersonatoruserid=None)])\nitem = 'get'\n\n    def __getattr__(self, item: str) -> Any:\n        private_attributes = object.__getattribute__(self, '__private_attributes__')\n        if item in private_attributes:\n            attribute = private_attributes[item]\n            if hasattr(attribute, '__get__'):\n                return attribute.__get__(self, type(self))  # type: ignore\n    \n            try:\n                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items\n                return self.__pydantic_private__[item]  # type: ignore\n            except KeyError as exc:\n                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc\n        else:\n            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.\n            # See `BaseModel.__repr_args__` for more details\n            try:\n                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')\n            except AttributeError:\n                pydantic_extra = None\n    \n            if pydantic_extra and item in pydantic_extra:\n                return pydantic_extra[item]\n            else:\n                if hasattr(self.__class__, item):\n                    return super().__getattribute__(item)  # Raises AttributeError if appropriate\n                else:\n                    # this is the current error\n>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')\nE                   AttributeError: 'UserList' object has no attribute 'get'\n\nusr/local/lib/python3.12/dist-packages/pydantic/main.py:1042: AttributeError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

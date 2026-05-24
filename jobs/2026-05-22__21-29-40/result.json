@@ -1,0 +1,63 @@
+{
+    "id": "77a6be25-a61b-40e6-b154-6055c1dc487c",
+    "started_at": "2026-05-22T21:29:42.472041",
+    "updated_at": "2026-05-22T21:39:17.741498",
+    "finished_at": "2026-05-22T21:39:17.741498",
+    "n_total_trials": 20,
+    "stats": {
+        "n_completed_trials": 20,
+        "n_errored_trials": 11,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "pochi__gemini-3-flash__tasks": {
+                "n_trials": 9,
+                "n_errors": 11,
+                "metrics": [
+                    {
+                        "mean": 0.1
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "email_password_signup_and_sessio__LMbJrMP",
+                            "appwrite_cli_project_init__z8LQfoo",
+                            "bucket_security_constraints_crea__RXPjbHW",
+                            "database_one_to_many_relationshi__F7AaaHC",
+                            "database_collection_attributes_a__UXT5exr",
+                            "team_create_invite_and_membershi__jnyn3At",
+                            "chunked_large_file_upload__yANtoFJ"
+                        ],
+                        "1.0": [
+                            "function_http_endpoint_json__yWaNPdU",
+                            "function_scheduled_cron__r8VCTtW"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "InitialStateError": [
+                        "jwt_authenticated_server_call__x7wm2nG",
+                        "account_email_verification_flow__GnnYGKf",
+                        "document_query_filters_and_order__iSMsAkm",
+                        "graphql_query_documents__jyEJ8gv",
+                        "function_database_event_trigger__cBgNWN2",
+                        "image_preview_url_transformation__azBxzKs",
+                        "user_labels_for_role_based_acces__3oUxjQj",
+                        "oauth2_session_token_exchange__8ZoRuAE",
+                        "realtime_document_subscription__jw2s6Pd",
+                        "magic_url_token_creation__MSf8LTp",
+                        "phone_otp_token_creation__cuXqfrj"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 160461,
+        "cost_usd": null
+    }
+}

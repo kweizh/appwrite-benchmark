@@ -1,0 +1,135 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.0
+collected 10 items
+
+tests/test_final_state.py FFF...FEEE                                     [100%]
+
+==================================== ERRORS ====================================
+___________ ERROR at setup of test_uploaded_file_matches_expected_id ___________
+
+solver_run = {'file_id': None, 'progress_lines': [], 'returncode': 1, 'stderr': 'AppwriteException: The maximum number of buckets a...d. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n', ...}
+bucket_id = 'bkt-zr-yantofj'
+
+    @pytest.fixture(scope="session")
+    def fetched_file(solver_run, bucket_id):
+        file_id = solver_run["file_id"]
+>       assert file_id, "Cannot fetch file without a file id from solver stdout."
+E       AssertionError: Cannot fetch file without a file id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:185: AssertionError
+________ ERROR at setup of test_uploaded_file_belongs_to_created_bucket ________
+
+solver_run = {'file_id': None, 'progress_lines': [], 'returncode': 1, 'stderr': 'AppwriteException: The maximum number of buckets a...d. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n', ...}
+bucket_id = 'bkt-zr-yantofj'
+
+    @pytest.fixture(scope="session")
+    def fetched_file(solver_run, bucket_id):
+        file_id = solver_run["file_id"]
+>       assert file_id, "Cannot fetch file without a file id from solver stdout."
+E       AssertionError: Cannot fetch file without a file id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:185: AssertionError
+______ ERROR at setup of test_uploaded_file_size_original_matches_6_5_mib ______
+
+solver_run = {'file_id': None, 'progress_lines': [], 'returncode': 1, 'stderr': 'AppwriteException: The maximum number of buckets a...d. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n', ...}
+bucket_id = 'bkt-zr-yantofj'
+
+    @pytest.fixture(scope="session")
+    def fetched_file(solver_run, bucket_id):
+        file_id = solver_run["file_id"]
+>       assert file_id, "Cannot fetch file without a file id from solver stdout."
+E       AssertionError: Cannot fetch file without a file id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:185: AssertionError
+=================================== FAILURES ===================================
+________________________ test_solver_exits_successfully ________________________
+
+solver_run = {'file_id': None, 'progress_lines': [], 'returncode': 1, 'stderr': 'AppwriteException: The maximum number of buckets a...d. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n', ...}
+
+    def test_solver_exits_successfully(solver_run):
+>       assert solver_run["returncode"] == 0, (
+            f"Solver exited with code {solver_run['returncode']}.\n"
+            f"stdout:\n{solver_run['stdout']}\nstderr:\n{solver_run['stderr']}"
+        )
+E       AssertionError: Solver exited with code 1.
+E         stdout:
+E         
+E         stderr:
+E         AppwriteException: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.
+E             at _Client.call (/home/user/myproject/node_modules/node-appwrite/dist/client.js:575:13)
+E             at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+E             at async run (/home/user/myproject/index.js:26:9) {
+E           code: 403,
+E           type: 'additional_resource_not_allowed',
+E           response: '{"message":"The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}'
+E         }
+E         
+E       assert 1 == 0
+
+tests/test_final_state.py:120: AssertionError
+__________________ test_stdout_last_line_is_appwrite_file_id ___________________
+
+solver_run = {'file_id': None, 'progress_lines': [], 'returncode': 1, 'stderr': 'AppwriteException: The maximum number of buckets a...d. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n', ...}
+
+    def test_stdout_last_line_is_appwrite_file_id(solver_run):
+        file_id = solver_run["file_id"]
+>       assert file_id, (
+            "Solver stdout did not end in a non-empty line containing the file id. "
+            f"Full stdout:\n{solver_run['stdout']}"
+        )
+E       AssertionError: Solver stdout did not end in a non-empty line containing the file id. Full stdout:
+E         
+E       assert None
+
+tests/test_final_state.py:128: AssertionError
+____________ test_stderr_contains_at_least_two_progress_json_lines _____________
+
+solver_run = {'file_id': None, 'progress_lines': [], 'returncode': 1, 'stderr': 'AppwriteException: The maximum number of buckets a...d. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n', ...}
+
+    def test_stderr_contains_at_least_two_progress_json_lines(solver_run):
+        n = len(solver_run["progress_lines"])
+>       assert n >= 2, (
+            f"Expected >=2 JSON progress lines on stderr; got {n}.\n"
+            f"stderr:\n{solver_run['stderr']}"
+        )
+E       AssertionError: Expected >=2 JSON progress lines on stderr; got 0.
+E         stderr:
+E         AppwriteException: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.
+E             at _Client.call (/home/user/myproject/node_modules/node-appwrite/dist/client.js:575:13)
+E             at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+E             at async run (/home/user/myproject/index.js:26:9) {
+E           code: 403,
+E           type: 'additional_resource_not_allowed',
+E           response: '{"message":"The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}'
+E         }
+E         
+E       assert 0 >= 2
+
+tests/test_final_state.py:140: AssertionError
+_________________ test_final_progress_line_reports_completion __________________
+
+solver_run = {'file_id': None, 'progress_lines': [], 'returncode': 1, 'stderr': 'AppwriteException: The maximum number of buckets a...d. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n', ...}
+
+    def test_final_progress_line_reports_completion(solver_run):
+>       last = solver_run["progress_lines"][-1]
+E       IndexError: list index out of range
+
+tests/test_final_state.py:176: IndexError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_progress_lines_have_required_keys
+PASSED tests/test_final_state.py::test_chunks_total_is_at_least_two
+PASSED tests/test_final_state.py::test_chunks_uploaded_is_monotonically_non_decreasing
+ERROR tests/test_final_state.py::test_uploaded_file_matches_expected_id - Ass...
+ERROR tests/test_final_state.py::test_uploaded_file_belongs_to_created_bucket
+ERROR tests/test_final_state.py::test_uploaded_file_size_original_matches_6_5_mib
+FAILED tests/test_final_state.py::test_solver_exits_successfully - AssertionE...
+FAILED tests/test_final_state.py::test_stdout_last_line_is_appwrite_file_id
+FAILED tests/test_final_state.py::test_stderr_contains_at_least_two_progress_json_lines
+FAILED tests/test_final_state.py::test_final_progress_line_reports_completion
+==================== 4 failed, 3 passed, 3 errors in 1.83s =====================

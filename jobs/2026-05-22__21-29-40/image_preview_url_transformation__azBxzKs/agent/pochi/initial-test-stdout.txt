@@ -1,0 +1,460 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 10 items
+
+bootstrap/test_initial_state.py::test_node_binary_available ERROR
+bootstrap/test_initial_state.py::test_npm_binary_available ERROR
+bootstrap/test_initial_state.py::test_project_directory_exists ERROR
+bootstrap/test_initial_state.py::test_appwrite_web_sdk_installed ERROR
+bootstrap/test_initial_state.py::test_dotenv_installed ERROR
+bootstrap/test_initial_state.py::test_env_vars_present ERROR
+bootstrap/test_initial_state.py::test_env_file_created ERROR
+bootstrap/test_initial_state.py::test_bucket_created_in_appwrite ERROR
+bootstrap/test_initial_state.py::test_file_uploaded_in_appwrite ERROR
+bootstrap/test_initial_state.py::test_appwrite_endpoint_reachable ERROR
+
+==================================== ERRORS ====================================
+_________________ ERROR at setup of test_node_binary_available _________________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+_________________ ERROR at setup of test_npm_binary_available __________________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+_______________ ERROR at setup of test_project_directory_exists ________________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+______________ ERROR at setup of test_appwrite_web_sdk_installed _______________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+___________________ ERROR at setup of test_dotenv_installed ____________________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+___________________ ERROR at setup of test_env_vars_present ____________________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+___________________ ERROR at setup of test_env_file_created ____________________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+______________ ERROR at setup of test_bucket_created_in_appwrite _______________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+_______________ ERROR at setup of test_file_uploaded_in_appwrite _______________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+______________ ERROR at setup of test_appwrite_endpoint_reachable ______________
+
+    @pytest.fixture(scope="session", autouse=True)
+    def initial_state_setup():
+        """Provision the Appwrite Storage bucket, upload the seed PNG, and write the
+        `.env` file the solver will read. Runs once per test session.
+    
+        All required environment variables (APPWRITE_*, ZEALT_RUN_ID) are validated
+        here so the per-test assertions below have something concrete to check.
+        """
+        for var in ("APPWRITE_ENDPOINT", "APPWRITE_PROJECT_ID", "APPWRITE_API_KEY", "ZEALT_RUN_ID"):
+            assert os.environ.get(var), f"Environment variable {var} must be set."
+    
+        run_id = os.environ["ZEALT_RUN_ID"].strip()
+        bucket_id = f"bkt-{run_id}"
+        file_id = f"img-{run_id}"
+    
+        # Best-effort cleanup of any leftovers from a prior aborted run.
+        _appwrite_request("DELETE", f"/storage/buckets/{bucket_id}")
+    
+        # Create a public-read bucket (anyone can read; only the API key writes).
+        bucket_payload = {
+            "bucketId": bucket_id,
+            "name": bucket_id,
+            "permissions": ['read("any")'],
+            "fileSecurity": False,
+            "maximumFileSize": 5_242_880,
+            "allowedFileExtensions": ["png", "jpg", "jpeg", "webp", "gif"],
+            "compression": "none",
+            "encryption": False,
+            "antivirus": False,
+        }
+        status, data = _appwrite_request(
+            "POST",
+            "/storage/buckets",
+            data=json.dumps(bucket_payload).encode("utf-8"),
+            content_type="application/json",
+        )
+>       assert status in (200, 201), f"Failed to create bucket {bucket_id}: {status} {data!r}"
+E       AssertionError: Failed to create bucket bkt-zr-azbxzks: 403 {'message': 'The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.', 'code': 403, 'type': 'additional_resource_not_allowed', 'version': '1.9.5'}
+E       assert 403 in (200, 201)
+
+bootstrap/test_initial_state.py:115: AssertionError
+=========================== short test summary info ============================
+ERROR bootstrap/test_initial_state.py::test_node_binary_available - Assertion...
+ERROR bootstrap/test_initial_state.py::test_npm_binary_available - AssertionE...
+ERROR bootstrap/test_initial_state.py::test_project_directory_exists - Assert...
+ERROR bootstrap/test_initial_state.py::test_appwrite_web_sdk_installed - Asse...
+ERROR bootstrap/test_initial_state.py::test_dotenv_installed - AssertionError...
+ERROR bootstrap/test_initial_state.py::test_env_vars_present - AssertionError...
+ERROR bootstrap/test_initial_state.py::test_env_file_created - AssertionError...
+ERROR bootstrap/test_initial_state.py::test_bucket_created_in_appwrite - Asse...
+ERROR bootstrap/test_initial_state.py::test_file_uploaded_in_appwrite - Asser...
+ERROR bootstrap/test_initial_state.py::test_appwrite_endpoint_reachable - Ass...
+============================== 10 errors in 1.40s ==============================

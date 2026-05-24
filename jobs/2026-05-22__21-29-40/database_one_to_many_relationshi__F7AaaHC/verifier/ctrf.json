@@ -1,0 +1,157 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 12,
+            "passed": 0,
+            "failed": 12,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1779456856929,
+            "stop": 1779456863321
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_solver_exits_successfully",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 2589,
+                "start": 1779456856984,
+                "stop": 1779456859573,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    def test_solver_exits_successfully(solver_run):\n>       assert solver_run[\"returncode\"] == 0, (\n            f\"Solver script failed with exit code {solver_run['returncode']}.\\n\"\n            f\"stdout:\\n{solver_run['stdout']}\\nstderr:\\n{solver_run['stderr']}\"\n        )\nE       AssertionError: Solver script failed with exit code 1.\nE         stdout:\nE         \nE         stderr:\nE         AppwriteException: The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.\nE             at _Client.call (/home/user/myproject/node_modules/node-appwrite/dist/client.js:575:13)\nE             at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\nE             at async run (/home/user/myproject/index.js:27:9) {\nE           code: 403,\nE           type: 'additional_resource_not_allowed',\nE           response: '{\"message\":\"The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.\",\"code\":403,\"type\":\"additional_resource_not_allowed\",\"version\":\"1.9.5\"}'\nE         }\nE         \nE       assert 1 == 0\n\ntests/test_final_state.py:174: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_solver_prints_json_on_last_line",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1779456859573,
+                "stop": 1779456859580,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    def test_solver_prints_json_on_last_line(solver_run):\n        parsed = solver_run[\"parsed\"]\n>       assert isinstance(parsed, dict), (\n            \"Last non-empty line of stdout must be a JSON object with keys \"\n            f\"databaseId, authorsCollectionId, postsCollectionId. Full stdout:\\n{solver_run['stdout']}\"\n        )\nE       AssertionError: Last non-empty line of stdout must be a JSON object with keys databaseId, authorsCollectionId, postsCollectionId. Full stdout:\nE         \nE       assert False\nE        +  where False = isinstance(None, dict)\n\ntests/test_final_state.py:182: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_database_id_matches_run_id",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1779456859580,
+                "stop": 1779456859588,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\nexpected_database_id = 'blog_zr-f7aaahc'\n\n    def test_database_id_matches_run_id(solver_run, expected_database_id):\n>       assert solver_run[\"databaseId\"] == expected_database_id, (\n            f\"databaseId must be {expected_database_id!r}, got {solver_run['databaseId']!r}.\"\n        )\nE       AssertionError: databaseId must be 'blog_zr-f7aaahc', got None.\nE       assert None == 'blog_zr-f7aaahc'\n\ntests/test_final_state.py:193: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_database_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 654,
+                "start": 1779456859588,
+                "stop": 1779456860242,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    def test_database_exists(solver_run):\n        db = solver_run[\"databaseId\"]\n        status, data = _appwrite_request(\"GET\", f\"/databases/{db}\")\n>       assert status == 200, f\"GET /databases/{db} returned status {status}. Body: {data!r}\"\nE       AssertionError: GET /databases/None returned status 404. Body: {'message': \"Database with the requested ID 'None' could not be found.\", 'code': 404, 'type': 'database_not_found', 'version': '1.9.5'}\nE       assert 404 == 200\n\ntests/test_final_state.py:201: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_authors_collection_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1604,
+                "start": 1779456860243,
+                "stop": 1779456861847,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    def test_authors_collection_exists(solver_run):\n        db = solver_run[\"databaseId\"]\n        coll = solver_run[\"authorsCollectionId\"]\n        status, data = _appwrite_request(\"GET\", f\"/databases/{db}/collections/{coll}\")\n>       assert status == 200, f\"GET /databases/{db}/collections/{coll} returned status {status}. Body: {data!r}\"\nE       AssertionError: GET /databases/None/collections/None returned status 404. Body: {'message': \"Database with the requested ID 'None' could not be found.\", 'code': 404, 'type': 'database_not_found', 'version': '1.9.5'}\nE       assert 404 == 200\n\ntests/test_final_state.py:208: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_posts_collection_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 626,
+                "start": 1779456861848,
+                "stop": 1779456862474,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    def test_posts_collection_exists(solver_run):\n        db = solver_run[\"databaseId\"]\n        coll = solver_run[\"postsCollectionId\"]\n        status, data = _appwrite_request(\"GET\", f\"/databases/{db}/collections/{coll}\")\n>       assert status == 200, f\"GET /databases/{db}/collections/{coll} returned status {status}. Body: {data!r}\"\nE       AssertionError: GET /databases/None/collections/None returned status 404. Body: {'message': \"Database with the requested ID 'None' could not be found.\", 'code': 404, 'type': 'database_not_found', 'version': '1.9.5'}\nE       assert 404 == 200\n\ntests/test_final_state.py:215: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_authors_name_attribute",
+                "status": "failed",
+                "duration": 11,
+                "start": 1779456862474,
+                "stop": 1779456862485,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    @pytest.fixture(scope=\"session\")\n    def authors_attributes(solver_run):\n        db = solver_run[\"databaseId\"]\n        coll = solver_run[\"authorsCollectionId\"]\n>       assert db and coll, \"Cannot fetch authors attributes without database/collection IDs from solver stdout.\"\nE       AssertionError: Cannot fetch authors attributes without database/collection IDs from solver stdout.\nE       assert (None)\n\ntests/test_final_state.py:137: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_posts_title_attribute",
+                "status": "failed",
+                "duration": 7,
+                "start": 1779456862485,
+                "stop": 1779456862492,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    @pytest.fixture(scope=\"session\")\n    def posts_attributes(solver_run):\n        db = solver_run[\"databaseId\"]\n        coll = solver_run[\"postsCollectionId\"]\n>       assert db and coll, \"Cannot fetch posts attributes without database/collection IDs from solver stdout.\"\nE       AssertionError: Cannot fetch posts attributes without database/collection IDs from solver stdout.\nE       assert (None)\n\ntests/test_final_state.py:152: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_posts_body_attribute",
+                "status": "failed",
+                "duration": 7,
+                "start": 1779456862493,
+                "stop": 1779456862500,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    @pytest.fixture(scope=\"session\")\n    def posts_attributes(solver_run):\n        db = solver_run[\"databaseId\"]\n        coll = solver_run[\"postsCollectionId\"]\n>       assert db and coll, \"Cannot fetch posts attributes without database/collection IDs from solver stdout.\"\nE       AssertionError: Cannot fetch posts attributes without database/collection IDs from solver stdout.\nE       assert (None)\n\ntests/test_final_state.py:152: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_authors_parent_relationship_attribute",
+                "status": "failed",
+                "duration": 7,
+                "start": 1779456862500,
+                "stop": 1779456862507,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    @pytest.fixture(scope=\"session\")\n    def authors_attributes(solver_run):\n        db = solver_run[\"databaseId\"]\n        coll = solver_run[\"authorsCollectionId\"]\n>       assert db and coll, \"Cannot fetch authors attributes without database/collection IDs from solver stdout.\"\nE       AssertionError: Cannot fetch authors attributes without database/collection IDs from solver stdout.\nE       assert (None)\n\ntests/test_final_state.py:137: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_posts_child_relationship_attribute",
+                "status": "failed",
+                "duration": 7,
+                "start": 1779456862507,
+                "stop": 1779456862514,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    @pytest.fixture(scope=\"session\")\n    def posts_attributes(solver_run):\n        db = solver_run[\"databaseId\"]\n        coll = solver_run[\"postsCollectionId\"]\n>       assert db and coll, \"Cannot fetch posts attributes without database/collection IDs from solver stdout.\"\nE       AssertionError: Cannot fetch posts attributes without database/collection IDs from solver stdout.\nE       assert (None)\n\ntests/test_final_state.py:152: AssertionError"
+            },
+            {
+                "name": "test_final_state.py::test_relationship_link_via_documents",
+                "status": "failed",
+                "duration": 807,
+                "start": 1779456862514,
+                "stop": 1779456863321,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "solver_run = {'authorsCollectionId': None, 'databaseId': None, 'parsed': None, 'postsCollectionId': None, ...}\n\n    @pytest.fixture(scope=\"session\")\n    def created_author(solver_run):\n        db = solver_run[\"databaseId\"]\n        authors = solver_run[\"authorsCollectionId\"]\n        aid = _unique_id(\"a\")\n        status, data = _appwrite_request(\n            \"POST\",\n            f\"/databases/{db}/collections/{authors}/documents\",\n            body={\"documentId\": aid, \"data\": {\"name\": \"Ada\"}},\n        )\n>       assert status in (200, 201), f\"Failed to create author document: {status} {data!r}\"\nE       AssertionError: Failed to create author document: 404 {'message': \"Database with the requested ID 'None' could not be found.\", 'code': 404, 'type': 'database_not_found', 'version': '1.9.5'}\nE       assert 404 in (200, 201)\n\ntests/test_final_state.py:329: AssertionError"
+            }
+        ]
+    }
+}

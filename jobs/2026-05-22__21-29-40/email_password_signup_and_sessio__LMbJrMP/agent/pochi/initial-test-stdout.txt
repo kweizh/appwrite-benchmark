@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 9 items
+
+bootstrap/test_initial_state.py::test_node_available PASSED
+bootstrap/test_initial_state.py::test_npm_available PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_appwrite_client_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_node_appwrite_server_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_python_appwrite_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_python_requests_installed PASSED
+bootstrap/test_initial_state.py::test_appwrite_env_vars_present PASSED
+bootstrap/test_initial_state.py::test_appwrite_health_version_endpoint_reachable 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/health/version HTTP/1.1" 200 19
+PASSED
+
+============================== 9 passed in 1.72s ===============================

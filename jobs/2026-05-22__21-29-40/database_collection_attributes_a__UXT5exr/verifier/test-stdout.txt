@@ -1,0 +1,243 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.0
+collected 4 items
+
+tests/test_final_state.py EEEE                                           [100%]
+
+==================================== ERRORS ====================================
+__________ ERROR at setup of test_database_exists_and_named_correctly __________
+
+    @pytest.fixture(scope="module")
+    def solver_result():
+        assert os.path.isfile(SOLVER_PATH), (
+            f"Solver file not found at {SOLVER_PATH}."
+        )
+    
+        # Disallow manual REST calls in the solver source.
+        with open(SOLVER_PATH, "r", encoding="utf-8", errors="replace") as fh:
+            src = fh.read()
+        forbidden_patterns = [
+            r"\brequire\(['\"]axios['\"]\)",
+            r"from\s+['\"]axios['\"]",
+            r"\brequire\(['\"]node-fetch['\"]\)",
+            r"\bfetch\s*\(",
+            r"\brequire\(['\"]https?['\"]\)",
+            r"\bhttp\.request\s*\(",
+            r"\bhttps\.request\s*\(",
+            r"\bchild_process\b.*\bcurl\b",
+        ]
+        for pat in forbidden_patterns:
+            assert not re.search(pat, src), (
+                f"Solver appears to use a manual HTTP/REST mechanism matching /{pat}/. "
+                "Only the node-appwrite server SDK is permitted."
+            )
+    
+        env = os.environ.copy()
+        proc = subprocess.run(
+            ["node", "index.js"],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=600,
+        )
+>       assert proc.returncode == 0, (
+            f"Solver script exited with code {proc.returncode}.\n"
+            f"STDOUT:\n{proc.stdout}\nSTDERR:\n{proc.stderr}"
+        )
+E       AssertionError: Solver script exited with code 1.
+E         STDOUT:
+E         
+E         STDERR:
+E         AppwriteException: The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.
+E             at _Client.call (/home/user/myproject/node_modules/node-appwrite/dist/client.js:575:13)
+E             at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+E             at async run (/home/user/myproject/index.js:18:16) {
+E           code: 403,
+E           type: 'additional_resource_not_allowed',
+E           response: '{"message":"The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', 'index.js'], returncode=1, stdout='', stderr='AppwriteException: The maximum number of ...eached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n').returncode
+
+tests/test_final_state.py:61: AssertionError
+______ ERROR at setup of test_collection_exists_with_read_any_permission _______
+
+    @pytest.fixture(scope="module")
+    def solver_result():
+        assert os.path.isfile(SOLVER_PATH), (
+            f"Solver file not found at {SOLVER_PATH}."
+        )
+    
+        # Disallow manual REST calls in the solver source.
+        with open(SOLVER_PATH, "r", encoding="utf-8", errors="replace") as fh:
+            src = fh.read()
+        forbidden_patterns = [
+            r"\brequire\(['\"]axios['\"]\)",
+            r"from\s+['\"]axios['\"]",
+            r"\brequire\(['\"]node-fetch['\"]\)",
+            r"\bfetch\s*\(",
+            r"\brequire\(['\"]https?['\"]\)",
+            r"\bhttp\.request\s*\(",
+            r"\bhttps\.request\s*\(",
+            r"\bchild_process\b.*\bcurl\b",
+        ]
+        for pat in forbidden_patterns:
+            assert not re.search(pat, src), (
+                f"Solver appears to use a manual HTTP/REST mechanism matching /{pat}/. "
+                "Only the node-appwrite server SDK is permitted."
+            )
+    
+        env = os.environ.copy()
+        proc = subprocess.run(
+            ["node", "index.js"],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=600,
+        )
+>       assert proc.returncode == 0, (
+            f"Solver script exited with code {proc.returncode}.\n"
+            f"STDOUT:\n{proc.stdout}\nSTDERR:\n{proc.stderr}"
+        )
+E       AssertionError: Solver script exited with code 1.
+E         STDOUT:
+E         
+E         STDERR:
+E         AppwriteException: The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.
+E             at _Client.call (/home/user/myproject/node_modules/node-appwrite/dist/client.js:575:13)
+E             at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+E             at async run (/home/user/myproject/index.js:18:16) {
+E           code: 403,
+E           type: 'additional_resource_not_allowed',
+E           response: '{"message":"The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', 'index.js'], returncode=1, stdout='', stderr='AppwriteException: The maximum number of ...eached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n').returncode
+
+tests/test_final_state.py:61: AssertionError
+__________ ERROR at setup of test_collection_has_required_attributes ___________
+
+    @pytest.fixture(scope="module")
+    def solver_result():
+        assert os.path.isfile(SOLVER_PATH), (
+            f"Solver file not found at {SOLVER_PATH}."
+        )
+    
+        # Disallow manual REST calls in the solver source.
+        with open(SOLVER_PATH, "r", encoding="utf-8", errors="replace") as fh:
+            src = fh.read()
+        forbidden_patterns = [
+            r"\brequire\(['\"]axios['\"]\)",
+            r"from\s+['\"]axios['\"]",
+            r"\brequire\(['\"]node-fetch['\"]\)",
+            r"\bfetch\s*\(",
+            r"\brequire\(['\"]https?['\"]\)",
+            r"\bhttp\.request\s*\(",
+            r"\bhttps\.request\s*\(",
+            r"\bchild_process\b.*\bcurl\b",
+        ]
+        for pat in forbidden_patterns:
+            assert not re.search(pat, src), (
+                f"Solver appears to use a manual HTTP/REST mechanism matching /{pat}/. "
+                "Only the node-appwrite server SDK is permitted."
+            )
+    
+        env = os.environ.copy()
+        proc = subprocess.run(
+            ["node", "index.js"],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=600,
+        )
+>       assert proc.returncode == 0, (
+            f"Solver script exited with code {proc.returncode}.\n"
+            f"STDOUT:\n{proc.stdout}\nSTDERR:\n{proc.stderr}"
+        )
+E       AssertionError: Solver script exited with code 1.
+E         STDOUT:
+E         
+E         STDERR:
+E         AppwriteException: The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.
+E             at _Client.call (/home/user/myproject/node_modules/node-appwrite/dist/client.js:575:13)
+E             at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+E             at async run (/home/user/myproject/index.js:18:16) {
+E           code: 403,
+E           type: 'additional_resource_not_allowed',
+E           response: '{"message":"The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', 'index.js'], returncode=1, stdout='', stderr='AppwriteException: The maximum number of ...eached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n').returncode
+
+tests/test_final_state.py:61: AssertionError
+____________ ERROR at setup of test_collection_has_required_indexes ____________
+
+    @pytest.fixture(scope="module")
+    def solver_result():
+        assert os.path.isfile(SOLVER_PATH), (
+            f"Solver file not found at {SOLVER_PATH}."
+        )
+    
+        # Disallow manual REST calls in the solver source.
+        with open(SOLVER_PATH, "r", encoding="utf-8", errors="replace") as fh:
+            src = fh.read()
+        forbidden_patterns = [
+            r"\brequire\(['\"]axios['\"]\)",
+            r"from\s+['\"]axios['\"]",
+            r"\brequire\(['\"]node-fetch['\"]\)",
+            r"\bfetch\s*\(",
+            r"\brequire\(['\"]https?['\"]\)",
+            r"\bhttp\.request\s*\(",
+            r"\bhttps\.request\s*\(",
+            r"\bchild_process\b.*\bcurl\b",
+        ]
+        for pat in forbidden_patterns:
+            assert not re.search(pat, src), (
+                f"Solver appears to use a manual HTTP/REST mechanism matching /{pat}/. "
+                "Only the node-appwrite server SDK is permitted."
+            )
+    
+        env = os.environ.copy()
+        proc = subprocess.run(
+            ["node", "index.js"],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=600,
+        )
+>       assert proc.returncode == 0, (
+            f"Solver script exited with code {proc.returncode}.\n"
+            f"STDOUT:\n{proc.stdout}\nSTDERR:\n{proc.stderr}"
+        )
+E       AssertionError: Solver script exited with code 1.
+E         STDOUT:
+E         
+E         STDERR:
+E         AppwriteException: The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.
+E             at _Client.call (/home/user/myproject/node_modules/node-appwrite/dist/client.js:575:13)
+E             at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+E             at async run (/home/user/myproject/index.js:18:16) {
+E           code: 403,
+E           type: 'additional_resource_not_allowed',
+E           response: '{"message":"The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['node', 'index.js'], returncode=1, stdout='', stderr='AppwriteException: The maximum number of ...eached. Upgrade to increase the limit.","code":403,"type":"additional_resource_not_allowed","version":"1.9.5"}\'\n}\n').returncode
+
+tests/test_final_state.py:61: AssertionError
+=========================== short test summary info ============================
+ERROR tests/test_final_state.py::test_database_exists_and_named_correctly - A...
+ERROR tests/test_final_state.py::test_collection_exists_with_read_any_permission
+ERROR tests/test_final_state.py::test_collection_has_required_attributes - As...
+ERROR tests/test_final_state.py::test_collection_has_required_indexes - Asser...
+============================== 4 errors in 2.33s ===============================

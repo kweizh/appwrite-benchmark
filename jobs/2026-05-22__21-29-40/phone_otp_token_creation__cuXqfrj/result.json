@@ -1,0 +1,109 @@
+{
+    "id": "51aa300a-972e-4f1b-ab36-e04b94685f54",
+    "task_name": "phone_otp_token_creation",
+    "trial_name": "phone_otp_token_creation__cuXqfrj",
+    "trial_uri": "file:///home/kw/code/zealt/pochi-harbor/jobs/2026-05-22__21-29-40/phone_otp_token_creation__cuXqfrj",
+    "task_id": {
+        "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/phone_otp_token_creation"
+    },
+    "source": "tasks",
+    "task_checksum": "042a76575b343b89e885b847cf9863f454e026d21731ea6bd6b89e9e8e3cf758",
+    "config": {
+        "task": {
+            "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/phone_otp_token_creation",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "phone_otp_token_creation__cuXqfrj",
+        "trials_dir": "jobs/2026-05-22__21-29-40",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "agents.pochi:Pochi",
+            "model_name": "google/gemini-3-flash",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts": [
+                {
+                    "type": "bind",
+                    "source": "test_initial_state.py",
+                    "target": "/bootstrap/test_initial_state.py"
+                }
+            ],
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [
+            "/home/user"
+        ],
+        "job_id": "77a6be25-a61b-40e6-b154-6055c1dc487c"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "0.6.8",
+        "model_info": {
+            "name": "gemini-3-flash",
+            "provider": "google"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "InitialStateError",
+        "exception_message": "Initial state test failed",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/kw/code/zealt/pochi-harbor/agents/pochi.py\", line 208, in run\n    await self.exec_as_agent(\n  File \"/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 366, in exec_as_agent\n    return await self._exec(\n           ^^^^^^^^^^^^^^^^^\n  File \"/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 329, in _exec\n    raise NonZeroAgentExitCodeError(\nharbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 1): if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi\nstdout: ============================= test session starts ==============================\nplatform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0\nrootdir: /bootstrap\nplugins: json-ctrf-0.5.0\ncollected 15 items\n\nbootstrap/test_initial_state.py::test_node_binary_available PASSED\nbootstrap/test_initial_state.py::test_npm_binary_available PASSED\nbootstrap/test_initial_state.py::test_python3_binary_available PASSED\nbootstrap/test_initial_state.py::test_pytest_binary_available PASSED\nbootstrap/test_initial_state.py::test_project_dir_exists PASSED\nbootstrap/test_initial_state.py::test_package_json_exists PASSED\nbootstrap/test_initial_state.py::test_appwrite_web_sdk_installed PASSED\nbootstrap/test_initial_state.py::test_node_appwrite_sdk_installed PASSED\nbootstrap/test_initial_state.py::test_python_appwrite_sdk_importable PASSED\nbootstrap/test_initial_state.py::test_required_env_vars_present[APPWRITE_ENDPOINT] PASSED\nbootstrap/test_initial_state.py::test_required_env_vars_present[APPWRITE_PROJECT_I ... [truncated]\nstderr: None\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py\", line 1262, in run\n    await self._execute_agent()\n  File \"/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py\", line 391, in _execute_agent\n    await asyncio.wait_for(\n  File \"/opt/miniconda3/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 42, in wrapper\n    return await fn(self, instruction, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kw/code/zealt/pochi-harbor/agents/pochi.py\", line 220, in run\n    raise InitialStateError(\"Initial state test failed\") from e\nagents.pochi.InitialStateError: Initial state test failed\n",
+        "occurred_at": "2026-05-22T21:38:36.012883"
+    },
+    "started_at": "2026-05-22T13:37:26.309439Z",
+    "finished_at": "2026-05-22T13:38:53.642326Z",
+    "environment_setup": {
+        "started_at": "2026-05-22T13:37:26.316028Z",
+        "finished_at": "2026-05-22T13:37:44.947601Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-05-22T13:37:44.947614Z",
+        "finished_at": "2026-05-22T13:38:31.821054Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-05-22T13:38:31.821098Z",
+        "finished_at": "2026-05-22T13:38:35.627413Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

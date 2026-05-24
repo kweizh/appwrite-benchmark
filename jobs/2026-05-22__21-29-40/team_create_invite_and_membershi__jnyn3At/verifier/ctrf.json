@@ -1,0 +1,74 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 5,
+            "passed": 1,
+            "failed": 4,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1779457011732,
+            "stop": 1779457014723
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_solver_exit_code_zero",
+                "status": "failed",
+                "duration": 1373,
+                "start": 1779457011753,
+                "stop": 1779457013126,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "@pytest.fixture(scope=\"module\")\n    def run_solver():\n        assert os.path.isfile(SCRIPT_PATH), f\"Solver missing at {SCRIPT_PATH}.\"\n    \n        # Pre-clean prior runs for this run-id.\n>       for t in _list_teams_by_name(_expected_team_name()):\n\ntests/test_final_state.py:110: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_final_state.py:54: in _list_teams_by_name\n    return resp.get(\"teams\", []) or []\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = TeamList(total=0.0, teams=[]), item = 'get'\n\n    def __getattr__(self, item: str) -> Any:\n        private_attributes = object.__getattribute__(self, '__private_attributes__')\n        if item in private_attributes:\n            attribute = private_attributes[item]\n            if hasattr(attribute, '__get__'):\n                return attribute.__get__(self, type(self))  # type: ignore\n    \n            try:\n                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items\n                return self.__pydantic_private__[item]  # type: ignore\n            except KeyError as exc:\n                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc\n        else:\n            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.\n            # See `BaseModel.__repr_args__` for more details\n            try:\n                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')\n            except AttributeError:\n                pydantic_extra = None\n    \n            if pydantic_extra and item in pydantic_extra:\n                return pydantic_extra[item]\n            else:\n                if hasattr(self.__class__, item):\n                    return super().__getattribute__(item)  # Raises AttributeError if appropriate\n                else:\n                    # this is the current error\n>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')\nE                   AttributeError: 'TeamList' object has no attribute 'get'\n\nusr/local/lib/python3.12/dist-packages/pydantic/main.py:1042: AttributeError"
+            },
+            {
+                "name": "test_final_state.py::test_script_uses_required_apis",
+                "status": "passed",
+                "duration": 1,
+                "start": 1779457013126,
+                "stop": 1779457013127,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_team_exists_with_expected_name",
+                "status": "failed",
+                "duration": 25,
+                "start": 1779457013127,
+                "stop": 1779457013152,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "@pytest.fixture(scope=\"module\")\n    def run_solver():\n        assert os.path.isfile(SCRIPT_PATH), f\"Solver missing at {SCRIPT_PATH}.\"\n    \n        # Pre-clean prior runs for this run-id.\n>       for t in _list_teams_by_name(_expected_team_name()):\n\ntests/test_final_state.py:110: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_final_state.py:54: in _list_teams_by_name\n    return resp.get(\"teams\", []) or []\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = TeamList(total=0.0, teams=[]), item = 'get'\n\n    def __getattr__(self, item: str) -> Any:\n        private_attributes = object.__getattribute__(self, '__private_attributes__')\n        if item in private_attributes:\n            attribute = private_attributes[item]\n            if hasattr(attribute, '__get__'):\n                return attribute.__get__(self, type(self))  # type: ignore\n    \n            try:\n                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items\n                return self.__pydantic_private__[item]  # type: ignore\n            except KeyError as exc:\n                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc\n        else:\n            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.\n            # See `BaseModel.__repr_args__` for more details\n            try:\n                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')\n            except AttributeError:\n                pydantic_extra = None\n    \n            if pydantic_extra and item in pydantic_extra:\n                return pydantic_extra[item]\n            else:\n                if hasattr(self.__class__, item):\n                    return super().__getattribute__(item)  # Raises AttributeError if appropriate\n                else:\n                    # this is the current error\n>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')\nE                   AttributeError: 'TeamList' object has no attribute 'get'\n\nusr/local/lib/python3.12/dist-packages/pydantic/main.py:1042: AttributeError"
+            },
+            {
+                "name": "test_final_state.py::test_user_exists_with_expected_email",
+                "status": "failed",
+                "duration": 26,
+                "start": 1779457013152,
+                "stop": 1779457013178,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "@pytest.fixture(scope=\"module\")\n    def run_solver():\n        assert os.path.isfile(SCRIPT_PATH), f\"Solver missing at {SCRIPT_PATH}.\"\n    \n        # Pre-clean prior runs for this run-id.\n>       for t in _list_teams_by_name(_expected_team_name()):\n\ntests/test_final_state.py:110: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_final_state.py:54: in _list_teams_by_name\n    return resp.get(\"teams\", []) or []\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = TeamList(total=0.0, teams=[]), item = 'get'\n\n    def __getattr__(self, item: str) -> Any:\n        private_attributes = object.__getattribute__(self, '__private_attributes__')\n        if item in private_attributes:\n            attribute = private_attributes[item]\n            if hasattr(attribute, '__get__'):\n                return attribute.__get__(self, type(self))  # type: ignore\n    \n            try:\n                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items\n                return self.__pydantic_private__[item]  # type: ignore\n            except KeyError as exc:\n                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc\n        else:\n            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.\n            # See `BaseModel.__repr_args__` for more details\n            try:\n                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')\n            except AttributeError:\n                pydantic_extra = None\n    \n            if pydantic_extra and item in pydantic_extra:\n                return pydantic_extra[item]\n            else:\n                if hasattr(self.__class__, item):\n                    return super().__getattribute__(item)  # Raises AttributeError if appropriate\n                else:\n                    # this is the current error\n>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')\nE                   AttributeError: 'TeamList' object has no attribute 'get'\n\nusr/local/lib/python3.12/dist-packages/pydantic/main.py:1042: AttributeError"
+            },
+            {
+                "name": "test_final_state.py::test_membership_exists_with_member_role",
+                "status": "failed",
+                "duration": 1544,
+                "start": 1779457013178,
+                "stop": 1779457014722,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "@pytest.fixture(scope=\"module\")\n    def run_solver():\n        assert os.path.isfile(SCRIPT_PATH), f\"Solver missing at {SCRIPT_PATH}.\"\n    \n        # Pre-clean prior runs for this run-id.\n>       for t in _list_teams_by_name(_expected_team_name()):\n\ntests/test_final_state.py:110: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_final_state.py:54: in _list_teams_by_name\n    return resp.get(\"teams\", []) or []\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = TeamList(total=0.0, teams=[]), item = 'get'\n\n    def __getattr__(self, item: str) -> Any:\n        private_attributes = object.__getattribute__(self, '__private_attributes__')\n        if item in private_attributes:\n            attribute = private_attributes[item]\n            if hasattr(attribute, '__get__'):\n                return attribute.__get__(self, type(self))  # type: ignore\n    \n            try:\n                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items\n                return self.__pydantic_private__[item]  # type: ignore\n            except KeyError as exc:\n                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc\n        else:\n            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.\n            # See `BaseModel.__repr_args__` for more details\n            try:\n                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')\n            except AttributeError:\n                pydantic_extra = None\n    \n            if pydantic_extra and item in pydantic_extra:\n                return pydantic_extra[item]\n            else:\n                if hasattr(self.__class__, item):\n                    return super().__getattribute__(item)  # Raises AttributeError if appropriate\n                else:\n                    # this is the current error\n>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')\nE                   AttributeError: 'TeamList' object has no attribute 'get'\n\nusr/local/lib/python3.12/dist-packages/pydantic/main.py:1042: AttributeError"
+            }
+        ]
+    }
+}

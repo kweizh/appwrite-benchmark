@@ -1,0 +1,167 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 6 items
+
+bootstrap/test_initial_state.py::test_node_available PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_python_appwrite_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_env_vars_present PASSED
+bootstrap/test_initial_state.py::test_endpoint_reachable 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/health/version HTTP/1.1" 200 19
+PASSED
+bootstrap/test_initial_state.py::test_seed_database_and_documents 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "DELETE /v1/databases/gql_zr-jyej8gv HTTP/1.1" 404 138
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "POST /v1/databases HTTP/1.1" 201 197
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "POST /v1/databases/gql_zr-jyej8gv/collections HTTP/1.1" 201 328
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "POST /v1/databases/gql_zr-jyej8gv/collections/articles/attributes/string HTTP/1.1" 202 226
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/databases/gql_zr-jyej8gv/collections/articles/attributes HTTP/1.1" 200 252
+FAILED
+
+=================================== FAILURES ===================================
+_______________________ test_seed_database_and_documents _______________________
+
+    def test_seed_database_and_documents():
+        from appwrite.client import Client
+        from appwrite.services.databases import Databases
+        from appwrite.permission import Permission
+        from appwrite.role import Role
+        from appwrite.id import ID
+        from appwrite.exception import AppwriteException
+    
+        run_id = os.environ["ZEALT_RUN_ID"]
+        db_id = f"gql_{run_id}"
+        col_id = "articles"
+    
+        client = (
+            Client()
+            .set_endpoint(os.environ["APPWRITE_ENDPOINT"].rstrip("/"))
+            .set_project(os.environ["APPWRITE_PROJECT_ID"])
+            .set_key(os.environ["APPWRITE_API_KEY"])
+        )
+        databases = Databases(client)
+    
+        # Pre-clean
+        try:
+            databases.delete(database_id=db_id)
+        except AppwriteException:
+            pass
+        except TypeError:
+            try:
+                databases.delete(db_id)
+            except Exception:
+                pass
+    
+        try:
+            databases.create(database_id=db_id, name=db_id)
+        except TypeError:
+            databases.create(db_id, db_id)
+    
+        try:
+            databases.create_collection(
+                database_id=db_id, collection_id=col_id, name="articles",
+                permissions=[Permission.read(Role.any()), Permission.create(Role.any()), Permission.update(Role.any())],
+                document_security=False,
+            )
+        except TypeError:
+            databases.create_collection(db_id, col_id, "articles",
+                [Permission.read(Role.any()), Permission.create(Role.any()), Permission.update(Role.any())], False)
+    
+        try:
+            databases.create_string_attribute(
+                database_id=db_id, collection_id=col_id, key="title", size=255, required=True,
+            )
+        except TypeError:
+            databases.create_string_attribute(db_id, col_id, "title", 255, True)
+    
+        # Wait for attribute to be available
+        for _ in range(30):
+            try:
+                attrs = databases.list_attributes(database_id=db_id, collection_id=col_id)
+            except TypeError:
+                attrs = databases.list_attributes(db_id, col_id)
+            if any(a.get("key") == "title" and a.get("status") == "available"
+>                  for a in attrs.get("attributes", []) or []):
+
+bootstrap/test_initial_state.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = AttributeList(total=1.0, attributes=[AttributeVarchar(key='title', type='string', status=<AttributeStatus.AVAILABLE: '...='2026-05-22T13:30:55.701+00:00', updatedat='2026-05-22T13:30:56.321+00:00', size=255.0, default=None, encrypt=False)])
+item = 'get'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'AttributeList' object has no attribute 'get'
+
+usr/local/lib/python3.12/dist-packages/pydantic/main.py:1042: AttributeError
+------------------------------ Captured log call -------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "DELETE /v1/databases/gql_zr-jyej8gv HTTP/1.1" 404 138
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "POST /v1/databases HTTP/1.1" 201 197
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "POST /v1/databases/gql_zr-jyej8gv/collections HTTP/1.1" 201 328
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "POST /v1/databases/gql_zr-jyej8gv/collections/articles/attributes/string HTTP/1.1" 202 226
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/databases/gql_zr-jyej8gv/collections/articles/attributes HTTP/1.1" 200 252
+=============================== warnings summary ===============================
+test_initial_state.py::test_seed_database_and_documents
+  /bootstrap/test_initial_state.py:67: DeprecationWarning: Call to deprecated function 'delete'. This API has been deprecated since 1.8.0. Please use `tablesDB.delete` instead.
+    databases.delete(database_id=db_id)
+
+test_initial_state.py::test_seed_database_and_documents
+  /bootstrap/test_initial_state.py:77: DeprecationWarning: Call to deprecated function 'create'. This API has been deprecated since 1.8.0. Please use `tablesDB.create` instead.
+    databases.create(database_id=db_id, name=db_id)
+
+test_initial_state.py::test_seed_database_and_documents
+  /bootstrap/test_initial_state.py:82: DeprecationWarning: Call to deprecated function 'create_collection'. This API has been deprecated since 1.8.0. Please use `tablesDB.create_table` instead.
+    databases.create_collection(
+
+test_initial_state.py::test_seed_database_and_documents
+  /bootstrap/test_initial_state.py:92: DeprecationWarning: Call to deprecated function 'create_string_attribute'. This API has been deprecated since 1.8.0. Please use `tablesDB.create_string_column` instead.
+    databases.create_string_attribute(
+
+test_initial_state.py::test_seed_database_and_documents
+  /bootstrap/test_initial_state.py:101: DeprecationWarning: Call to deprecated function 'list_attributes'. This API has been deprecated since 1.8.0. Please use `tablesDB.list_columns` instead.
+    attrs = databases.list_attributes(database_id=db_id, collection_id=col_id)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED bootstrap/test_initial_state.py::test_seed_database_and_documents - At...
+=================== 1 failed, 5 passed, 5 warnings in 7.66s ====================

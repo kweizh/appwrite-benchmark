@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 10 items
+
+bootstrap/test_initial_state.py::test_appwrite_cli_on_path PASSED
+bootstrap/test_initial_state.py::test_appwrite_cli_version_runs PASSED
+bootstrap/test_initial_state.py::test_project_dir_exists PASSED
+bootstrap/test_initial_state.py::test_required_env_var_present[APPWRITE_ENDPOINT] PASSED
+bootstrap/test_initial_state.py::test_required_env_var_present[APPWRITE_PROJECT_ID] PASSED
+bootstrap/test_initial_state.py::test_required_env_var_present[APPWRITE_API_KEY] PASSED
+bootstrap/test_initial_state.py::test_required_env_var_present[ZEALT_RUN_ID] PASSED
+bootstrap/test_initial_state.py::test_node_available PASSED
+bootstrap/test_initial_state.py::test_python_appwrite_sdk_importable PASSED
+bootstrap/test_initial_state.py::test_appwrite_endpoint_reachable PASSED
+
+============================== 10 passed in 3.14s ==============================

@@ -1,0 +1,82 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 15 items
+
+bootstrap/test_initial_state.py::test_node_binary_available PASSED
+bootstrap/test_initial_state.py::test_npm_binary_available PASSED
+bootstrap/test_initial_state.py::test_python3_binary_available PASSED
+bootstrap/test_initial_state.py::test_pytest_binary_available PASSED
+bootstrap/test_initial_state.py::test_project_dir_exists PASSED
+bootstrap/test_initial_state.py::test_package_json_exists PASSED
+bootstrap/test_initial_state.py::test_appwrite_web_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_node_appwrite_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_python_appwrite_sdk_importable PASSED
+bootstrap/test_initial_state.py::test_required_env_vars_present[APPWRITE_ENDPOINT] PASSED
+bootstrap/test_initial_state.py::test_required_env_vars_present[APPWRITE_PROJECT_ID] PASSED
+bootstrap/test_initial_state.py::test_required_env_vars_present[APPWRITE_API_KEY] PASSED
+bootstrap/test_initial_state.py::test_required_env_vars_present[APPWRITE_TEST_PHONE] FAILED
+bootstrap/test_initial_state.py::test_appwrite_endpoint_reachable 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/health HTTP/1.1" 401 133
+PASSED
+bootstrap/test_initial_state.py::test_appwrite_project_accessible 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/health/version HTTP/1.1" 401 184
+FAILED
+
+=================================== FAILURES ===================================
+_____________ test_required_env_vars_present[APPWRITE_TEST_PHONE] ______________
+
+var_name = 'APPWRITE_TEST_PHONE'
+
+    @pytest.mark.parametrize(
+        "var_name",
+        [
+            "APPWRITE_ENDPOINT",
+            "APPWRITE_PROJECT_ID",
+            "APPWRITE_API_KEY",
+            "APPWRITE_TEST_PHONE",
+        ],
+    )
+    def test_required_env_vars_present(var_name):
+        value = os.environ.get(var_name)
+>       assert value, f"Required environment variable {var_name} is not set."
+E       AssertionError: Required environment variable APPWRITE_TEST_PHONE is not set.
+E       assert None
+
+bootstrap/test_initial_state.py:75: AssertionError
+_______________________ test_appwrite_project_accessible _______________________
+
+    def test_appwrite_project_accessible():
+        endpoint = os.environ.get("APPWRITE_ENDPOINT")
+        project_id = os.environ.get("APPWRITE_PROJECT_ID")
+        api_key = os.environ.get("APPWRITE_API_KEY")
+        assert endpoint and project_id and api_key, "Missing Appwrite env vars."
+        url = endpoint.rstrip("/") + "/health/version"
+        headers = {
+            "X-Appwrite-Project": project_id,
+            "X-Appwrite-Key": api_key,
+        }
+        try:
+            response = requests.get(url, headers=headers, timeout=15)
+        except requests.RequestException as exc:
+            pytest.fail(f"Failed to query Appwrite health/version: {exc}")
+>       assert response.status_code == 200, (
+            f"Appwrite health/version returned {response.status_code}: {response.text}"
+        )
+E       AssertionError: Appwrite health/version returned 401: {"message":"app.REDACTED@service.sfo.cloud.appwrite.io (role: applications) missing scopes ([\"public\"])","code":401,"type":"general_unauthorized_scope","version":"1.9.5"}
+E       assert 401 == 200
+E        +  where 401 = <Response [401]>.status_code
+
+bootstrap/test_initial_state.py:105: AssertionError
+------------------------------ Captured log call -------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/health/version HTTP/1.1" 401 184
+=========================== short test summary info ============================
+FAILED bootstrap/test_initial_state.py::test_required_env_vars_present[APPWRITE_TEST_PHONE]
+FAILED bootstrap/test_initial_state.py::test_appwrite_project_accessible - As...
+========================= 2 failed, 13 passed in 3.31s =========================

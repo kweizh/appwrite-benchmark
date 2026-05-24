@@ -1,0 +1,44 @@
+Traceback (most recent call last):
+  File "/home/kw/code/zealt/pochi-harbor/agents/pochi.py", line 208, in run
+    await self.exec_as_agent(
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 366, in exec_as_agent
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 329, in _exec
+    raise NonZeroAgentExitCodeError(
+harbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 1): if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+stdout: ============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 10 items
+
+bootstrap/test_initial_state.py::test_node_binary_available PASSED
+bootstrap/test_initial_state.py::test_npm_binary_available PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_node_appwrite_installed PASSED
+bootstrap/test_initial_state.py::test_python_appwrite_installed PASSED
+bootstrap/test_initial_state.py::test_appwrite_env_vars_present PASSED
+bootstrap/test_initial_state.py::test_zealt_run_id_present PASSED
+bootstrap/test_initial_state.py::test_appwrite_endpoint_reachable PASSED
+bootstrap/test_initial_state.py::test_seed_database_and_persist_seed_file 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection  ... [truncated]
+stderr: None
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 1262, in run
+    await self._execute_agent()
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 391, in _execute_agent
+    await asyncio.wait_for(
+  File "/opt/miniconda3/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 42, in wrapper
+    return await fn(self, instruction, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kw/code/zealt/pochi-harbor/agents/pochi.py", line 220, in run
+    raise InitialStateError("Initial state test failed") from e
+agents.pochi.InitialStateError: Initial state test failed

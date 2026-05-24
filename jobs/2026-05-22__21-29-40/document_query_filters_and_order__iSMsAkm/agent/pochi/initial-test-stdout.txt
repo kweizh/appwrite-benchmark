@@ -1,0 +1,404 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 10 items
+
+bootstrap/test_initial_state.py::test_node_binary_available PASSED
+bootstrap/test_initial_state.py::test_npm_binary_available PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_node_appwrite_installed PASSED
+bootstrap/test_initial_state.py::test_python_appwrite_installed PASSED
+bootstrap/test_initial_state.py::test_appwrite_env_vars_present PASSED
+bootstrap/test_initial_state.py::test_zealt_run_id_present PASSED
+bootstrap/test_initial_state.py::test_appwrite_endpoint_reachable PASSED
+bootstrap/test_initial_state.py::test_seed_database_and_persist_seed_file 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "POST /v1/databases HTTP/1.1" 403 189
+FAILED
+bootstrap/test_initial_state.py::test_seeded_collection_has_20_documents 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/databases/products_zr-ismsakm/collections/products/documents HTTP/1.1" 404 143
+FAILED
+
+=================================== FAILURES ===================================
+___________________ test_seed_database_and_persist_seed_file ___________________
+
+self = <appwrite.client.Client object at 0x7c69f8caca10>, method = 'post'
+path = '/databases'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': 'application/json', 'user-agent': 'AppwritePythonSDK/19.2.0 (L...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+>           response.raise_for_status()
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Response [403]>
+
+    def raise_for_status(self) -> None:
+        """Raises :class:`HTTPError`, if one occurred."""
+    
+        http_error_msg = ""
+        if isinstance(self.reason, bytes):
+            # We attempt to decode utf-8 first because some servers
+            # choose to localize their reason strings. If the string
+            # isn't utf-8, we fall back to iso-8859-1 for all other
+            # encodings. (See PR #3538)
+            try:
+                reason = self.reason.decode("utf-8")
+            except UnicodeDecodeError:
+                reason = self.reason.decode("iso-8859-1")
+        else:
+            reason = self.reason
+    
+        if 400 <= self.status_code < 500:
+            http_error_msg = (
+                f"{self.status_code} Client Error: {reason} for url: {self.url}"
+            )
+    
+        elif 500 <= self.status_code < 600:
+            http_error_msg = (
+                f"{self.status_code} Server Error: {reason} for url: {self.url}"
+            )
+    
+        if http_error_msg:
+>           raise HTTPError(http_error_msg, response=self)
+E           requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: REDACTED/databases
+
+usr/local/lib/python3.12/dist-packages/requests/models.py:1167: HTTPError
+
+During handling of the above exception, another exception occurred:
+
+    def test_seed_database_and_persist_seed_file():
+>       database_id = _seed_database()
+
+bootstrap/test_initial_state.py:217: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+bootstrap/test_initial_state.py:125: in _seed_database
+    databases.create(database_id=database_id, name=f"products-{_run_id()}")
+usr/local/lib/python3.12/dist-packages/appwrite/utils/deprecated.py:39: in wrapped
+    return func(*args, **kwargs)
+usr/local/lib/python3.12/dist-packages/appwrite/services/databases.py:141: in create
+    response = self.client.call('post', api_path, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <appwrite.client.Client object at 0x7c69f8caca10>, method = 'post'
+path = '/databases'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': 'application/json', 'user-agent': 'AppwritePythonSDK/19.2.0 (L...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+            response.raise_for_status()
+    
+            warnings = response.headers.get('x-appwrite-warning')
+            if warnings:
+                for warning in warnings.split(';'):
+                    print(f'Warning: {warning}', file=sys.stderr)
+    
+            content_type = response.headers['Content-Type']
+    
+            if response_type == 'location':
+                return response.headers.get('Location')
+    
+            if content_type.startswith('application/json'):
+                return response.json()
+    
+            return response._content
+        except Exception as e:
+            if response != None:
+                content_type = response.headers['Content-Type']
+                if content_type.startswith('application/json'):
+>                   raise AppwriteException(response.json()['message'], response.status_code, response.json().get('type'), response.text)
+E                   appwrite.exception.AppwriteException: The maximum number of databases allowed for the selected plan has reached. Upgrade to increase the limit.
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:172: AppwriteException
+------------------------------ Captured log call -------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "POST /v1/databases HTTP/1.1" 403 189
+___________________ test_seeded_collection_has_20_documents ____________________
+
+self = <appwrite.client.Client object at 0x7c69f8cae750>, method = 'get'
+path = '/databases/products_zr-ismsakm/collections/products/documents'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': '', 'user-agent': 'AppwritePythonSDK/19.2.0 (Linux; #1 SMP PRE...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+>           response.raise_for_status()
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Response [404]>
+
+    def raise_for_status(self) -> None:
+        """Raises :class:`HTTPError`, if one occurred."""
+    
+        http_error_msg = ""
+        if isinstance(self.reason, bytes):
+            # We attempt to decode utf-8 first because some servers
+            # choose to localize their reason strings. If the string
+            # isn't utf-8, we fall back to iso-8859-1 for all other
+            # encodings. (See PR #3538)
+            try:
+                reason = self.reason.decode("utf-8")
+            except UnicodeDecodeError:
+                reason = self.reason.decode("iso-8859-1")
+        else:
+            reason = self.reason
+    
+        if 400 <= self.status_code < 500:
+            http_error_msg = (
+                f"{self.status_code} Client Error: {reason} for url: {self.url}"
+            )
+    
+        elif 500 <= self.status_code < 600:
+            http_error_msg = (
+                f"{self.status_code} Server Error: {reason} for url: {self.url}"
+            )
+    
+        if http_error_msg:
+>           raise HTTPError(http_error_msg, response=self)
+E           requests.exceptions.HTTPError: 404 Client Error: Not Found for url: REDACTED/databases/products_zr-ismsakm/collections/products/documents
+
+usr/local/lib/python3.12/dist-packages/requests/models.py:1167: HTTPError
+
+During handling of the above exception, another exception occurred:
+
+    def test_seeded_collection_has_20_documents():
+        """Sanity-check that after seeding the collection contains 20 documents."""
+        from appwrite.client import Client
+        from appwrite.services.databases import Databases
+    
+        client = (
+            Client()
+            .set_endpoint(os.environ["APPWRITE_ENDPOINT"])
+            .set_project(os.environ["APPWRITE_PROJECT_ID"])
+            .set_key(os.environ["APPWRITE_API_KEY"])
+        )
+        databases = Databases(client)
+    
+>       res = databases.list_documents(database_id=_database_id(), collection_id=COLLECTION_ID)
+
+bootstrap/test_initial_state.py:244: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+usr/local/lib/python3.12/dist-packages/appwrite/utils/deprecated.py:39: in wrapped
+    return func(*args, **kwargs)
+usr/local/lib/python3.12/dist-packages/appwrite/services/databases.py:3719: in list_documents
+    response = self.client.call('get', api_path, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <appwrite.client.Client object at 0x7c69f8cae750>, method = 'get'
+path = '/databases/products_zr-ismsakm/collections/products/documents'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': '', 'user-agent': 'AppwritePythonSDK/19.2.0 (Linux; #1 SMP PRE...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+            response.raise_for_status()
+    
+            warnings = response.headers.get('x-appwrite-warning')
+            if warnings:
+                for warning in warnings.split(';'):
+                    print(f'Warning: {warning}', file=sys.stderr)
+    
+            content_type = response.headers['Content-Type']
+    
+            if response_type == 'location':
+                return response.headers.get('Location')
+    
+            if content_type.startswith('application/json'):
+                return response.json()
+    
+            return response._content
+        except Exception as e:
+            if response != None:
+                content_type = response.headers['Content-Type']
+                if content_type.startswith('application/json'):
+>                   raise AppwriteException(response.json()['message'], response.status_code, response.json().get('type'), response.text)
+E                   appwrite.exception.AppwriteException: Database with the requested ID 'products_zr-ismsakm' could not be found.
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:172: AppwriteException
+------------------------------ Captured log call -------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/databases/products_zr-ismsakm/collections/products/documents HTTP/1.1" 404 143
+=============================== warnings summary ===============================
+test_initial_state.py::test_seed_database_and_persist_seed_file
+  /bootstrap/test_initial_state.py:125: DeprecationWarning: Call to deprecated function 'create'. This API has been deprecated since 1.8.0. Please use `tablesDB.create` instead.
+    databases.create(database_id=database_id, name=f"products-{_run_id()}")
+
+test_initial_state.py::test_seeded_collection_has_20_documents
+  /bootstrap/test_initial_state.py:244: DeprecationWarning: Call to deprecated function 'list_documents'. This API has been deprecated since 1.8.0. Please use `tablesDB.list_rows` instead.
+    res = databases.list_documents(database_id=_database_id(), collection_id=COLLECTION_ID)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED bootstrap/test_initial_state.py::test_seed_database_and_persist_seed_file
+FAILED bootstrap/test_initial_state.py::test_seeded_collection_has_20_documents
+=================== 2 failed, 8 passed, 2 warnings in 4.49s ====================

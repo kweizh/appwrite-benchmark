@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 9 items
+
+bootstrap/test_initial_state.py::test_node_binary_available PASSED
+bootstrap/test_initial_state.py::test_npm_binary_available PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_node_appwrite_installed PASSED
+bootstrap/test_initial_state.py::test_python3_available PASSED
+bootstrap/test_initial_state.py::test_python_appwrite_sdk_available PASSED
+bootstrap/test_initial_state.py::test_appwrite_env_vars_present PASSED
+bootstrap/test_initial_state.py::test_zealt_run_id_present PASSED
+bootstrap/test_initial_state.py::test_appwrite_endpoint_reachable PASSED
+
+============================== 9 passed in 2.04s ===============================

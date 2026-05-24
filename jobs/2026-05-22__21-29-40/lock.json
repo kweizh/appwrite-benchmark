@@ -1,0 +1,747 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-05-22T13:29:42.504394Z",
+    "harbor": {
+        "version": "0.7.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "/home/kw/.local/bin/harbor",
+        "run",
+        "--yes",
+        "--agent-import-path",
+        "agents.pochi:Pochi",
+        "--artifact",
+        "/home/user",
+        "--mounts",
+        "[{\"type\": \"bind\",\"source\":\"test_initial_state.py\",\"target\":\"/bootstrap/test_initial_state.py\"}]",
+        "--model",
+        "google/gemini-3-flash",
+        "-p",
+        "/home/kw/code/zealt/appwrite-benchmark/tasks",
+        "--n-attempts",
+        "1",
+        "--max-retries",
+        "0",
+        "--job-name",
+        "2026-05-22__21-29-40",
+        "-n",
+        "5"
+    ],
+    "n_concurrent_trials": 5,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "AgentTimeoutError",
+            "RewardFileEmptyError",
+            "RewardFileNotFoundError",
+            "VerifierOutputParseError",
+            "VerifierTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "jwt_authenticated_server_call",
+                "type": "local",
+                "digest": "sha256:daee4a1b810a1f2c84584b044b915cdbe4bff58ec353f24741083a8b8bf1cc59",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/jwt_authenticated_server_call"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "account_email_verification_flow",
+                "type": "local",
+                "digest": "sha256:05cfd25aac55da3ce1c2fc578d560261fae0b39bbffbb05e53d54c5b11de8ae9",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/account_email_verification_flow"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "document_query_filters_and_ordering",
+                "type": "local",
+                "digest": "sha256:aa0e61e5dbc2ccbae885f12c6a750a27dd3bfb258924bbbdaa847d13f38c5d26",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/document_query_filters_and_ordering"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "graphql_query_documents",
+                "type": "local",
+                "digest": "sha256:1e92115fba92059fae69f9d2711f36c79c7f30d9e100d25b6699350be2952968",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/graphql_query_documents"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "email_password_signup_and_session",
+                "type": "local",
+                "digest": "sha256:5d610f02d1757e482a3c1614c570e6d8ef271a1284b52c4d4a9dea2706d6f984",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/email_password_signup_and_session"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "appwrite_cli_project_init",
+                "type": "local",
+                "digest": "sha256:beb3df3790537f1ff7ebdf97b08838c143c4c561fde2fe7c2743b9499a8bd1dd",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/appwrite_cli_project_init"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "function_database_event_trigger",
+                "type": "local",
+                "digest": "sha256:915f37638b5f45f835847d38e3a9ebb852dbd9066f2c356ecd16986049a18de8",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/function_database_event_trigger"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "bucket_security_constraints_creation",
+                "type": "local",
+                "digest": "sha256:0e68b20bae28ebbcce1bb04647e7d5e874a9b497ad29b07219c5c56122f1ed9c",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/bucket_security_constraints_creation"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "function_http_endpoint_json",
+                "type": "local",
+                "digest": "sha256:1b1c9177106f96e3884222357e485ff591bbb5c4a6ff32c4987bc47a83d1952c",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/function_http_endpoint_json"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "database_one_to_many_relationship",
+                "type": "local",
+                "digest": "sha256:23d0da4e4ffa3fe25968d8971002bfcc78384a7023d3d3e83112fd4c22a385e5",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/database_one_to_many_relationship"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "image_preview_url_transformations",
+                "type": "local",
+                "digest": "sha256:eefdd03ede3f7136388a581fc1e01ec3062a28426c441fe12e8ab00129c142af",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/image_preview_url_transformations"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "database_collection_attributes_and_indexes",
+                "type": "local",
+                "digest": "sha256:b9bdae4c7ad24cb9e169af86d5a635f12a40b965b4c43b989585a4cc05401b24",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/database_collection_attributes_and_indexes"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "function_scheduled_cron",
+                "type": "local",
+                "digest": "sha256:7cd482a7a638bbf7a453a3f42b349a9bd6ee99ef2bd1f17e99d58c390527b5f7",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/function_scheduled_cron"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "user_labels_for_role_based_access",
+                "type": "local",
+                "digest": "sha256:59aef444cb25d006c2969b737260abcda9d911094b25cc51cd9fb1d7551b6ffa",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/user_labels_for_role_based_access"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "team_create_invite_and_membership",
+                "type": "local",
+                "digest": "sha256:45302c0530adc505754a6dec0d24c15282f77f340fd8594fe6ffe02f512155de",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/team_create_invite_and_membership"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "oauth2_session_token_exchange",
+                "type": "local",
+                "digest": "sha256:50ce421b109390f11516979c42ed2ac8776edc2ee5b09423f57037d927ff7534",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/oauth2_session_token_exchange"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "realtime_document_subscription",
+                "type": "local",
+                "digest": "sha256:4a5ec8e2338c1ef5228d33deac879ff2d4f00a2e23c98585b3d3b1e8141d2b33",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/realtime_document_subscription"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "chunked_large_file_upload",
+                "type": "local",
+                "digest": "sha256:270e2a1df6774a5da2280f3be93eef7a09c21d2049c7050beb98991ce1183255",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/chunked_large_file_upload"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "magic_url_token_creation",
+                "type": "local",
+                "digest": "sha256:feb0b92086f3cfaee0d006c180dde501c4fa5f845a375c5eb9e901cbaa03bd73",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/magic_url_token_creation"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        },
+        {
+            "task": {
+                "name": "phone_otp_token_creation",
+                "type": "local",
+                "digest": "sha256:0bcf93712f620ba77ad99f24dd95613940568f608fea3221e66d09eeab55890d",
+                "source": "tasks",
+                "path": "/home/kw/code/zealt/appwrite-benchmark/tasks/phone_otp_token_creation"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.pochi:Pochi",
+                "model_name": "google/gemini-3-flash",
+                "kwargs": {},
+                "env": {}
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "mounts": [
+                    {
+                        "type": "bind",
+                        "source": "test_initial_state.py",
+                        "target": "/bootstrap/test_initial_state.py"
+                    }
+                ],
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}

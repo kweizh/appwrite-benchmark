@@ -1,0 +1,11 @@
+{
+  "name": "appwrite-function-database-event-trigger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Solver scaffold for Appwrite Functions database-event-trigger task.",
+  "type": "commonjs",
+  "dependencies": {
+    "node-appwrite": "^17.0.0",
+    "tar": "^7.4.3"
+  }
+}

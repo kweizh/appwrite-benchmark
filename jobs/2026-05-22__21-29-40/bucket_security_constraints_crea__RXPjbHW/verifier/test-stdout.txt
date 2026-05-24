@@ -1,0 +1,150 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.0
+collected 10 items
+
+tests/test_final_state.py FFEEEEEEEE                                     [100%]
+
+==================================== ERRORS ====================================
+______________ ERROR at setup of test_bucket_name_matches_run_id _______________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    @pytest.fixture(scope="session")
+    def fetched_bucket(solver_run):
+        bucket_id = solver_run["bucket_id"]
+>       assert bucket_id, "Cannot fetch bucket without a bucket id from solver stdout."
+E       AssertionError: Cannot fetch bucket without a bucket id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:118: AssertionError
+_____________ ERROR at setup of test_bucket_file_security_enabled ______________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    @pytest.fixture(scope="session")
+    def fetched_bucket(solver_run):
+        bucket_id = solver_run["bucket_id"]
+>       assert bucket_id, "Cannot fetch bucket without a bucket id from solver stdout."
+E       AssertionError: Cannot fetch bucket without a bucket id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:118: AssertionError
+_______________ ERROR at setup of test_bucket_maximum_file_size ________________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    @pytest.fixture(scope="session")
+    def fetched_bucket(solver_run):
+        bucket_id = solver_run["bucket_id"]
+>       assert bucket_id, "Cannot fetch bucket without a bucket id from solver stdout."
+E       AssertionError: Cannot fetch bucket without a bucket id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:118: AssertionError
+____________ ERROR at setup of test_bucket_allowed_file_extensions _____________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    @pytest.fixture(scope="session")
+    def fetched_bucket(solver_run):
+        bucket_id = solver_run["bucket_id"]
+>       assert bucket_id, "Cannot fetch bucket without a bucket id from solver stdout."
+E       AssertionError: Cannot fetch bucket without a bucket id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:118: AssertionError
+______________ ERROR at setup of test_bucket_compression_is_gzip _______________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    @pytest.fixture(scope="session")
+    def fetched_bucket(solver_run):
+        bucket_id = solver_run["bucket_id"]
+>       assert bucket_id, "Cannot fetch bucket without a bucket id from solver stdout."
+E       AssertionError: Cannot fetch bucket without a bucket id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:118: AssertionError
+_______________ ERROR at setup of test_bucket_encryption_enabled _______________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    @pytest.fixture(scope="session")
+    def fetched_bucket(solver_run):
+        bucket_id = solver_run["bucket_id"]
+>       assert bucket_id, "Cannot fetch bucket without a bucket id from solver stdout."
+E       AssertionError: Cannot fetch bucket without a bucket id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:118: AssertionError
+_______________ ERROR at setup of test_bucket_antivirus_enabled ________________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    @pytest.fixture(scope="session")
+    def fetched_bucket(solver_run):
+        bucket_id = solver_run["bucket_id"]
+>       assert bucket_id, "Cannot fetch bucket without a bucket id from solver stdout."
+E       AssertionError: Cannot fetch bucket without a bucket id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:118: AssertionError
+__________ ERROR at setup of test_bucket_permissions_users_read_write __________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    @pytest.fixture(scope="session")
+    def fetched_bucket(solver_run):
+        bucket_id = solver_run["bucket_id"]
+>       assert bucket_id, "Cannot fetch bucket without a bucket id from solver stdout."
+E       AssertionError: Cannot fetch bucket without a bucket id from solver stdout.
+E       assert None
+
+tests/test_final_state.py:118: AssertionError
+=================================== FAILURES ===================================
+________________________ test_solver_exits_successfully ________________________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    def test_solver_exits_successfully(solver_run):
+>       assert solver_run["returncode"] == 0, (
+            f"Solver script failed with exit code {solver_run['returncode']}.\n"
+            f"stdout:\n{solver_run['stdout']}\nstderr:\n{solver_run['stderr']}"
+        )
+E       AssertionError: Solver script failed with exit code 1.
+E         stdout:
+E         
+E         stderr:
+E         Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.
+E         
+E       assert 1 == 0
+
+tests/test_final_state.py:102: AssertionError
+_________________________ test_solver_prints_bucket_id _________________________
+
+solver_run = {'bucket_id': None, 'returncode': 1, 'stderr': 'Error creating bucket: The maximum number of buckets allowed for the selected plan has reached. Upgrade to increase the limit.\n', 'stdout': ''}
+
+    def test_solver_prints_bucket_id(solver_run):
+>       assert solver_run["bucket_id"], (
+            "Solver stdout did not contain a line matching 'BUCKET_ID: <bucket_id>'. "
+            f"Full stdout:\n{solver_run['stdout']}"
+        )
+E       AssertionError: Solver stdout did not contain a line matching 'BUCKET_ID: <bucket_id>'. Full stdout:
+E         
+E       assert None
+
+tests/test_final_state.py:109: AssertionError
+=========================== short test summary info ============================
+ERROR tests/test_final_state.py::test_bucket_name_matches_run_id - AssertionE...
+ERROR tests/test_final_state.py::test_bucket_file_security_enabled - Assertio...
+ERROR tests/test_final_state.py::test_bucket_maximum_file_size - AssertionErr...
+ERROR tests/test_final_state.py::test_bucket_allowed_file_extensions - Assert...
+ERROR tests/test_final_state.py::test_bucket_compression_is_gzip - AssertionE...
+ERROR tests/test_final_state.py::test_bucket_encryption_enabled - AssertionEr...
+ERROR tests/test_final_state.py::test_bucket_antivirus_enabled - AssertionErr...
+ERROR tests/test_final_state.py::test_bucket_permissions_users_read_write - A...
+FAILED tests/test_final_state.py::test_solver_exits_successfully - AssertionE...
+FAILED tests/test_final_state.py::test_solver_prints_bucket_id - AssertionErr...
+========================= 2 failed, 8 errors in 1.67s ==========================

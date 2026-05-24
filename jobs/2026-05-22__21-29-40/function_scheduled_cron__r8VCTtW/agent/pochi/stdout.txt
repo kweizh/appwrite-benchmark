@@ -1,0 +1,81 @@
+- Initializing MCP connections...
+You
+# Appwrite Scheduled Function (CRON) ## Background You are setting up a backend Appwrite Function that runs automatically on a fixed CRON schedule (every 5 minutes). The function does not need event triggers — it must rely solely on Appwrite's built-in schedule feature exposed via the `node-appwrite` Server SDK. You will write the function code and a deployment script that registers the function with the schedule and ships an active deployment built from the local `src/` directory. The target Appwrite project is already provisioned. Credentials are provided via the following environment variables: * `APPWRITE_ENDPOINT` (e.g. `https://<region>.cloud.appwrite.io/v1`) * `APPWRITE_PROJECT_ID` * `APPWRITE_API_KEY` (server API key with full Functions scopes) * `ZEALT_RUN_ID` (used to make resource names unique per run) ## Requirements 1. Implement an Appwrite Function in `src/main.js` using the Node.js 22 runtime that: * Exports a default async handler with the signature `({ req, res, log, error })`. * For any incoming request, returns `res.json({ ok: true, ts: new Date().toISOString() })` with HTTP status `200`. 2. Implement a deploy script `deploy.js` (run with `node deploy.js`) that uses the `node-appwrite` SDK to: * Read `run-id` from the `ZEALT_RUN_ID` environment variable. * Create a function whose ID is `cron-fn-${run-id}` configured with: * `runtime = 'node-22'` * `schedule = '*/5 * * * *'` (every 5 minutes) * `execute = ['any']` * No event triggers (the `events` array must be empty / unset) * Entrypoint `src/main.js` * Package the `src/` directory into a `tar.gz` archive on disk and upload it as a new deployment that is activated automatically (the deployment must end up as the active deployment for the function). * Poll the deployment until its build `status` becomes `ready` before exiting. * As the LAST line of stdout, print a single JSON object with exactly the function `$id` and the function's `schedule` field, e.g. `{"$id":"cron-fn-<run-id>","schedule":"*/5 * * * *"}`. ## Implementation Hints * Use the `node-appwrite` SDK (`Client`, `Functions`, `InputFile`) for every Appwrite call — do **not** invoke the REST API directly with `fetch`/`curl`, and do **not** use the Appwrite CLI / `appwrite.json` flow. * The schedule must be configured via the SDK's `functions.create` call by passing the `schedule` argument; do not rely on a separate `functions.update` call. * For packaging, the `tar` npm package (already installed) can create a gzipped tarball from the `src/` directory. * `functions.createDeployment` accepts `code` as an `InputFile.fromPath(<path-to-tar.gz>, <filename>)` and exposes an `activate` flag. * Function builds are asynchronous: after `createDeployment`, poll `functions.getDeployment` until its `status` becomes `ready` (or fail fast on `failed`) before printing the final JSON line. * After polling, you can call `functions.get` once more to read the persisted `schedule` value before printing the final JSON line. * Functions and schedule documentation: * https://appwrite.io/docs/products/functions/schedule * https://appwrite.io/docs/references/cloud/server-nodejs/functions#create ## Acceptance Criteria * Project path: /home/user/myproject * Resource naming: The deployed function ID must be exactly `cron-fn-${run-id}` where `run-id` is read from the `ZEALT_RUN_ID` environment variable. * Running `node deploy.js` from the project path must: * Create the function via the SDK's `functions.create` call with `runtime='node-22'`, `schedule='*/5 * * * *'`, `execute=['any']`, no event triggers, and entrypoint `src/main.js` (if it does not already exist). * Create and activate a new deployment built from the `src/` directory (packaged as `tar.gz`). The function's active deployment must have build status `ready`. * As the LAST line of stdout, print a single JSON object containing the function `$id` and its `schedule` field, both matching the values configured above. * The Function code at `src/main.js` must respond to any request with HTTP 200 and a JSON body of shape `{"ok": true, "ts": <ISO-8601 timestamp string>}`.   
+
+Pochi
+📋 Updating todo list (4 items) ✔ 
+💫 Executing mkdir -p /home/user/myproject/src && cd /home/user/myproject && npm init -y && npm install node-appwrite tar ✔ 
+📋 Updating todo list (4 items) ✔ 
+✏️  Writing /home/user/myproject/src/main.js ✔ 
+📋 Updating todo list (4 items) ✔ 
+✏️  Writing /home/user/myproject/deploy.js ✔ 
+📋 Updating todo list (4 items) ✔ 
+💫 Executing cd /home/user/myproject && node deploy.js ✖ "Command exited with code 1"
+🔧 Applying diff to /home/user/myproject/deploy.js ✔ 
+💫 Executing cd /home/user/myproject && node deploy.js ✖ "Command exited with code 1"
+💫 Executing cat << 'EOF' > /home/user/myproject/check_sdk.js
+const { InputFile } = require('node-appwrite');
+console.log('InputFile:', InputFile);
+if (InputFile) {
+  console.log('InputFile keys:', Object.keys(InputFile));
+}
+EOF
+node /home/user/myproject/check_sdk.js ✔ 
+💫 Executing cat << 'EOF' > /home/user/myproject/check_sdk_2.js
+const sdk = require('node-appwrite');
+console.log('SDK keys:', Object.keys(sdk));
+EOF
+node /home/user/myproject/check_sdk_2.js ✔ 
+💫 Executing cat << 'EOF' > /home/user/myproject/check_sdk_3.js
+const { Client, Functions } = require('node-appwrite');
+const client = new Client();
+const functions = new Functions(client);
+console.log('Functions.prototype keys:', Object.keys(Object.getPrototypeOf(functions)));
+EOF
+node /home/user/myproject/check_sdk_3.js ✔ 
+💫 Executing grep -r "createDeployment" /home/user/myproject/node_modules/node-appwrite ✔ 
+💫 Executing grep -r "class Functions" /home/user/myproject/node_modules/node-appwrite/dist ✔ 
+📖 Reading /home/user/myproject/node_modules/node-appwrite/package.json ✔ 
+💫 Executing cat << 'EOF' > /home/user/myproject/check_sdk_4.js
+const { InputFile } = require('node-appwrite/file');
+console.log('InputFile:', InputFile);
+if (InputFile) {
+  console.log('InputFile keys:', Object.keys(InputFile));
+}
+EOF
+node /home/user/myproject/check_sdk_4.js ✔ 
+💫 Executing cat << 'EOF' > /home/user/myproject/check_sdk_5.js
+const { InputFile } = require('node-appwrite/file');
+console.log('fromPath:', InputFile.fromPath);
+EOF
+node /home/user/myproject/check_sdk_5.js ✔ 
+🔧 Applying diff to /home/user/myproject/deploy.js ✔ 
+💫 Executing cd /home/user/myproject && node deploy.js ✔ 
+📋 Updating todo list (4 items) ✔ 
+🎉 Task Completed
+I have successfully implemented the Appwrite scheduled function and the deployment script.
+
+### Changes:
+1.  **Function Implementation (`src/main.js`):**
+    *   Implemented a Node.js 22 function that returns a JSON response with `ok: true` and an ISO timestamp.
+    *   The handler follows the required signature `({ req, res, log, error })`.
+
+2.  **Deployment Script (`deploy.js`):**
+    *   Uses the `node-appwrite` Server SDK to manage the function and deployments.
+    *   **Function Creation:** Creates (or retrieves if existing) a function with ID `cron-fn-${ZEALT_RUN_ID}`, configured with:
+        *   Runtime: `node-22`
+        *   Schedule: `*/5 * * * *` (every 5 minutes)
+        *   Execute Permissions: `['any']`
+        *   Entrypoint: `src/main.js`
+        *   No event triggers.
+    *   **Packaging:** Uses the `tar` package to create a `code.tar.gz` archive of the `src/` directory.
+    *   **Deployment:** Uploads and activates the deployment using `functions.createDeployment`.
+    *   **Polling:** Monitors the deployment build status until it reaches `ready`.
+    *   **Output:** Prints the final JSON object containing the function `$id` and `schedule` as the last line of stdout.
+
+### Verification:
+*   The deployment script was executed successfully, creating/updating the function and waiting for the build to be `ready`.
+*   The final output was: `{"$id":"cron-fn-zr-r8vcttw","schedule":"*/5 * * * *"}` (example ID).
+
+The project is ready at `/home/user/myproject`.   
+  

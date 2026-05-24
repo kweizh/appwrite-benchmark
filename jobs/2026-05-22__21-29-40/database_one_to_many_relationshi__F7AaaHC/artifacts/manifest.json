@@ -1,0 +1,8 @@
+[
+  {
+    "source": "/home/user",
+    "destination": "artifacts/user",
+    "type": "directory",
+    "status": "ok"
+  }
+]

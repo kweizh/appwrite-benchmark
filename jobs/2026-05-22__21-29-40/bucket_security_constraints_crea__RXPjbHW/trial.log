@@ -1,0 +1,94 @@
+Skipping image OS validation for hb__bucket_security_constraints_creation: docker inspect returned 1
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s -- pochi-v0.6.8 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo zr-rxpjbhw > /logs/artifacts/run-id && echo bucket_security_constraints_crea__RXPjbHW > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Appwrite Storage: Create a Secure Uploads Bucket
+
+## Background
+Appwrite Storage organizes files into buckets. Each bucket can enforce file size limits, allowed extensions, compression, encryption, virus scanning, and per-file or per-bucket permissions. Your team needs a hardened bucket called `secure-uploads` that only authenticated users can access, with a strict size/extension policy and storage-side protections enabled.
+
+You will write a Node.js script (using the official `node-appwrite` Server SDK) that creates this bucket against a real Appwrite project. The Appwrite endpoint, project ID, and API key are provided via environment variables.
+
+## Requirements
+- Create a new Storage bucket using `storage.createBucket` with all of the following settings:
+  - `permissions`: grant read AND write access to any signed-in user (use `Role.users()`).
+  - `fileSecurity`: `true` (per-file permissions enabled).
+  - `maximumFileSize`: `5242880` bytes (exactly 5 MiB).
+  - `allowedFileExtensions`: `["jpg", "jpeg", "png", "webp"]` (order does not matter; values must be exactly these four).
+  - `compression`: `"gzip"`.
+  - `encryption`: `true`.
+  - `antivirus`: `true`.
+- Use the bucket name `secure-uploads-${run-id}` (see `run-id` rules below). The bucket display name and the bucket ID must both incorporate the `run-id` suffix.
+- After creation, print the newly created bucket's ID to standard output as the LAST non-empty line, in the format: `BUCKET_ID: <bucket_id>`.
+
+## Implementation Hints
+- Install/use the `node-appwrite` Server SDK. The SDK exposes `Client`, `Storage`, `ID`, `Permission`, and `Role`.
+- Read `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, and `APPWRITE_API_KEY` from environment variables to configure the client.
+- Read the current `run-id` from the `ZEALT_RUN_ID` environment variable and append it to the bucket name and ID so the task is safe to run concurrently.
+- Refer to the Appwrite docs:
+  - https://appwrite.io/docs/references/cloud/server-nodejs/storage#createBucket
+  - https://appwrite.io/docs/products/storage/buckets
+- The newer SDK style uses a single options object: `storage.createBucket({ bucketId, name, permissions, fileSecurity, maximumFileSize, allowedFileExtensions, compression, encryption, antivirus })`.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Entry point: a Node.js script that can be executed by the verifier. The verifier will invoke it with `node /home/user/myproject/index.js`.
+- The script reads `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, and `ZEALT_RUN_ID` from environment variables.
+- When the script runs successfully, a Storage bucket exists in the configured Appwrite project whose ID matches the value the script printed to stdout.
+- The created bucket must satisfy ALL of:
+  - `name` equals `secure-uploads-${run-id}` (where `run-id` is read from `ZEALT_RUN_ID`).
+  - `fileSecurity` is `true`.
+  - `maximumFileSize` equals `5242880`.
+  - `allowedFileExtensions` is a set equal to `{"jpg", "jpeg", "png", "webp"}`.
+  - `compression` equals `"gzip"`.
+  - `encryption` is `true`.
+  - `antivirus` is `true`.
+  - `$permissions` contains both `read("users")` and `write("users")` (i.e., `Role.users()` for read and write).
+- The final non-empty line of stdout must match the pattern: `BUCKET_ID: <bucket_id>`.
+
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

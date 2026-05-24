@@ -1,0 +1,94 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.0
+collected 9 items
+
+bootstrap/test_initial_state.py::test_node_available PASSED
+bootstrap/test_initial_state.py::test_npm_available PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_appwrite_client_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_node_appwrite_server_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_python_appwrite_sdk_installed PASSED
+bootstrap/test_initial_state.py::test_env_vars_present PASSED
+bootstrap/test_initial_state.py::test_endpoint_reachable 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/health/version HTTP/1.1" 200 19
+PASSED
+bootstrap/test_initial_state.py::test_seed_user_created 
+-------------------------------- live log call ---------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/users?queries%5B0%5D=%7B%22method%22%3A%22equal%22%2C%22attribute%22%3A%22email%22%2C%22values%22%3A%5B%22verify-zr-gnnygkf%40example.com%22%5D%7D HTTP/1.1" 200 22
+FAILED
+
+=================================== FAILURES ===================================
+____________________________ test_seed_user_created ____________________________
+
+    def test_seed_user_created():
+        from appwrite.client import Client
+        from appwrite.services.users import Users
+        from appwrite.query import Query
+        from appwrite.id import ID
+    
+        run_id = os.environ["ZEALT_RUN_ID"]
+        email = f"verify-{run_id}@example.com"
+        password = "TempPassw0rd!"
+    
+        client = (
+            Client()
+            .set_endpoint(os.environ["APPWRITE_ENDPOINT"].rstrip("/"))
+            .set_project(os.environ["APPWRITE_PROJECT_ID"])
+            .set_key(os.environ["APPWRITE_API_KEY"])
+        )
+        users = Users(client)
+    
+        # Pre-clean
+        try:
+            existing = users.list(queries=[Query.equal("email", email)])
+        except TypeError:
+            existing = users.list([Query.equal("email", email)])
+>       for u in existing.get("users", []) or []:
+
+bootstrap/test_initial_state.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = UserList(total=0.0, users=[]), item = 'get'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'UserList' object has no attribute 'get'
+
+usr/local/lib/python3.12/dist-packages/pydantic/main.py:1042: AttributeError
+------------------------------ Captured log call -------------------------------
+DEBUG    urllib3.connectionpool:connectionpool.py:1062 Starting new HTTPS connection (1): sfo.cloud.appwrite.io:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://sfo.cloud.appwrite.io:443 "GET /v1/users?queries%5B0%5D=%7B%22method%22%3A%22equal%22%2C%22attribute%22%3A%22email%22%2C%22values%22%3A%5B%22verify-zr-gnnygkf%40example.com%22%5D%7D HTTP/1.1" 200 22
+=========================== short test summary info ============================
+FAILED bootstrap/test_initial_state.py::test_seed_user_created - AttributeErr...
+========================= 1 failed, 8 passed in 2.80s ==========================

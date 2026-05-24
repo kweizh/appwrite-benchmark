@@ -1,0 +1,79 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1779456987549,
+            "stop": 1779456995907
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_source_files_exist",
+                "status": "passed",
+                "duration": 1,
+                "start": 1779456987568,
+                "stop": 1779456987569,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_output_log_contains_hello_appwrite",
+                "status": "passed",
+                "duration": 0,
+                "start": 1779456987569,
+                "stop": 1779456987569,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_function_exists_with_expected_configuration",
+                "status": "passed",
+                "duration": 2304,
+                "start": 1779456987570,
+                "stop": 1779456989874,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_execution_greeting_with_name",
+                "status": "passed",
+                "duration": 1584,
+                "start": 1779456989874,
+                "stop": 1779456991458,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_execution_greeting_default_name",
+                "status": "passed",
+                "duration": 821,
+                "start": 1779456991459,
+                "stop": 1779456992280,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_execution_not_found",
+                "status": "passed",
+                "duration": 3627,
+                "start": 1779456992280,
+                "stop": 1779456995907,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

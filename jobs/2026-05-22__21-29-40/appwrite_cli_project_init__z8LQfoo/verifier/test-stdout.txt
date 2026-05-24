@@ -1,0 +1,722 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.0
+collected 5 items
+
+tests/test_final_state.py FFFFF                                          [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_run_script_exits_zero __________________________
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+
+    def test_run_script_exits_zero(run_solver):
+>       assert run_solver.returncode == 0, (
+            f"`bash {RUN_SCRIPT}` exited with code {run_solver.returncode}. "
+            f"stdout={run_solver.stdout!r} stderr={run_solver.stderr!r}"
+        )
+E       AssertionError: `bash /home/user/myproject/run.sh` exited with code 1. stdout='✓ Success: Setting client\n' stderr=''
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='').returncode
+
+tests/test_final_state.py:88: AssertionError
+____________________ test_last_stdout_line_is_expected_json ____________________
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+expected_ids = {'collectionId': 'notes-zr-z8lqfoo', 'databaseId': 'cli-zr-z8lqfoo'}
+
+    def test_last_stdout_line_is_expected_json(run_solver, expected_ids):
+        stdout_lines = [line for line in run_solver.stdout.splitlines() if line.strip()]
+        assert stdout_lines, (
+            f"Solver produced no non-empty stdout lines. stderr={run_solver.stderr!r}"
+        )
+        last_line = stdout_lines[-1].strip()
+    
+        try:
+>           parsed = json.loads(last_line)
+
+tests/test_final_state.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+usr/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+usr/lib/python3.12/json/decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7ee7ec177140>
+s = '✓ Success: Setting client', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+usr/lib/python3.12/json/decoder.py:355: JSONDecodeError
+
+During handling of the above exception, another exception occurred:
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+expected_ids = {'collectionId': 'notes-zr-z8lqfoo', 'databaseId': 'cli-zr-z8lqfoo'}
+
+    def test_last_stdout_line_is_expected_json(run_solver, expected_ids):
+        stdout_lines = [line for line in run_solver.stdout.splitlines() if line.strip()]
+        assert stdout_lines, (
+            f"Solver produced no non-empty stdout lines. stderr={run_solver.stderr!r}"
+        )
+        last_line = stdout_lines[-1].strip()
+    
+        try:
+            parsed = json.loads(last_line)
+        except json.JSONDecodeError as e:
+>           pytest.fail(
+                f"Last stdout line is not valid JSON: {last_line!r} ({e}). "
+                f"Full stdout was:\n{run_solver.stdout}"
+            )
+E           Failed: Last stdout line is not valid JSON: '✓ Success: Setting client' (Expecting value: line 1 column 1 (char 0)). Full stdout was:
+E           ✓ Success: Setting client
+
+tests/test_final_state.py:104: Failed
+______________________ test_database_exists_via_admin_sdk ______________________
+
+self = <appwrite.client.Client object at 0x7ee7ea3b0dd0>, method = 'get'
+path = '/databases/cli-zr-z8lqfoo'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': '', 'user-agent': 'AppwritePythonSDK/19.2.0 (Linux; #1 SMP PRE...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+>           response.raise_for_status()
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Response [404]>
+
+    def raise_for_status(self) -> None:
+        """Raises :class:`HTTPError`, if one occurred."""
+    
+        http_error_msg = ""
+        if isinstance(self.reason, bytes):
+            # We attempt to decode utf-8 first because some servers
+            # choose to localize their reason strings. If the string
+            # isn't utf-8, we fall back to iso-8859-1 for all other
+            # encodings. (See PR #3538)
+            try:
+                reason = self.reason.decode("utf-8")
+            except UnicodeDecodeError:
+                reason = self.reason.decode("iso-8859-1")
+        else:
+            reason = self.reason
+    
+        if 400 <= self.status_code < 500:
+            http_error_msg = (
+                f"{self.status_code} Client Error: {reason} for url: {self.url}"
+            )
+    
+        elif 500 <= self.status_code < 600:
+            http_error_msg = (
+                f"{self.status_code} Server Error: {reason} for url: {self.url}"
+            )
+    
+        if http_error_msg:
+>           raise HTTPError(http_error_msg, response=self)
+E           requests.exceptions.HTTPError: 404 Client Error: Not Found for url: REDACTED/databases/cli-zr-z8lqfoo
+
+usr/local/lib/python3.12/dist-packages/requests/models.py:1167: HTTPError
+
+During handling of the above exception, another exception occurred:
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+expected_ids = {'collectionId': 'notes-zr-z8lqfoo', 'databaseId': 'cli-zr-z8lqfoo'}
+
+    def test_database_exists_via_admin_sdk(run_solver, expected_ids):
+        from appwrite.services.databases import Databases
+        from appwrite.exception import AppwriteException
+    
+        databases = Databases(_make_client())
+        try:
+>           info = databases.get(database_id=expected_ids["databaseId"])
+
+tests/test_final_state.py:126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+usr/local/lib/python3.12/dist-packages/appwrite/utils/deprecated.py:39: in wrapped
+    return func(*args, **kwargs)
+usr/local/lib/python3.12/dist-packages/appwrite/services/databases.py:419: in get
+    response = self.client.call('get', api_path, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <appwrite.client.Client object at 0x7ee7ea3b0dd0>, method = 'get'
+path = '/databases/cli-zr-z8lqfoo'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': '', 'user-agent': 'AppwritePythonSDK/19.2.0 (Linux; #1 SMP PRE...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+            response.raise_for_status()
+    
+            warnings = response.headers.get('x-appwrite-warning')
+            if warnings:
+                for warning in warnings.split(';'):
+                    print(f'Warning: {warning}', file=sys.stderr)
+    
+            content_type = response.headers['Content-Type']
+    
+            if response_type == 'location':
+                return response.headers.get('Location')
+    
+            if content_type.startswith('application/json'):
+                return response.json()
+    
+            return response._content
+        except Exception as e:
+            if response != None:
+                content_type = response.headers['Content-Type']
+                if content_type.startswith('application/json'):
+>                   raise AppwriteException(response.json()['message'], response.status_code, response.json().get('type'), response.text)
+E                   appwrite.exception.AppwriteException: Database with the requested ID 'cli-zr-z8lqfoo' could not be found.
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:172: AppwriteException
+
+During handling of the above exception, another exception occurred:
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+expected_ids = {'collectionId': 'notes-zr-z8lqfoo', 'databaseId': 'cli-zr-z8lqfoo'}
+
+    def test_database_exists_via_admin_sdk(run_solver, expected_ids):
+        from appwrite.services.databases import Databases
+        from appwrite.exception import AppwriteException
+    
+        databases = Databases(_make_client())
+        try:
+            info = databases.get(database_id=expected_ids["databaseId"])
+        except AppwriteException as e:
+>           pytest.fail(
+                f"Appwrite database {expected_ids['databaseId']!r} not found via admin SDK: {e}"
+            )
+E           Failed: Appwrite database 'cli-zr-z8lqfoo' not found via admin SDK: Database with the requested ID 'cli-zr-z8lqfoo' could not be found.
+
+tests/test_final_state.py:128: Failed
+______________________ test_collection_exists_in_database ______________________
+
+self = <appwrite.client.Client object at 0x7ee7ea3b3e00>, method = 'get'
+path = '/databases/cli-zr-z8lqfoo/collections'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': '', 'user-agent': 'AppwritePythonSDK/19.2.0 (Linux; #1 SMP PRE...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+>           response.raise_for_status()
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Response [404]>
+
+    def raise_for_status(self) -> None:
+        """Raises :class:`HTTPError`, if one occurred."""
+    
+        http_error_msg = ""
+        if isinstance(self.reason, bytes):
+            # We attempt to decode utf-8 first because some servers
+            # choose to localize their reason strings. If the string
+            # isn't utf-8, we fall back to iso-8859-1 for all other
+            # encodings. (See PR #3538)
+            try:
+                reason = self.reason.decode("utf-8")
+            except UnicodeDecodeError:
+                reason = self.reason.decode("iso-8859-1")
+        else:
+            reason = self.reason
+    
+        if 400 <= self.status_code < 500:
+            http_error_msg = (
+                f"{self.status_code} Client Error: {reason} for url: {self.url}"
+            )
+    
+        elif 500 <= self.status_code < 600:
+            http_error_msg = (
+                f"{self.status_code} Server Error: {reason} for url: {self.url}"
+            )
+    
+        if http_error_msg:
+>           raise HTTPError(http_error_msg, response=self)
+E           requests.exceptions.HTTPError: 404 Client Error: Not Found for url: REDACTED/databases/cli-zr-z8lqfoo/collections
+
+usr/local/lib/python3.12/dist-packages/requests/models.py:1167: HTTPError
+
+During handling of the above exception, another exception occurred:
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+expected_ids = {'collectionId': 'notes-zr-z8lqfoo', 'databaseId': 'cli-zr-z8lqfoo'}
+
+    def test_collection_exists_in_database(run_solver, expected_ids):
+        from appwrite.services.databases import Databases
+        from appwrite.exception import AppwriteException
+    
+        databases = Databases(_make_client())
+        try:
+>           result = databases.list_collections(database_id=expected_ids["databaseId"])
+
+tests/test_final_state.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+usr/local/lib/python3.12/dist-packages/appwrite/utils/deprecated.py:39: in wrapped
+    return func(*args, **kwargs)
+usr/local/lib/python3.12/dist-packages/appwrite/services/databases.py:566: in list_collections
+    response = self.client.call('get', api_path, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <appwrite.client.Client object at 0x7ee7ea3b3e00>, method = 'get'
+path = '/databases/cli-zr-z8lqfoo/collections'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': '', 'user-agent': 'AppwritePythonSDK/19.2.0 (Linux; #1 SMP PRE...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+            response.raise_for_status()
+    
+            warnings = response.headers.get('x-appwrite-warning')
+            if warnings:
+                for warning in warnings.split(';'):
+                    print(f'Warning: {warning}', file=sys.stderr)
+    
+            content_type = response.headers['Content-Type']
+    
+            if response_type == 'location':
+                return response.headers.get('Location')
+    
+            if content_type.startswith('application/json'):
+                return response.json()
+    
+            return response._content
+        except Exception as e:
+            if response != None:
+                content_type = response.headers['Content-Type']
+                if content_type.startswith('application/json'):
+>                   raise AppwriteException(response.json()['message'], response.status_code, response.json().get('type'), response.text)
+E                   appwrite.exception.AppwriteException: Database with the requested ID 'cli-zr-z8lqfoo' could not be found.
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:172: AppwriteException
+
+During handling of the above exception, another exception occurred:
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+expected_ids = {'collectionId': 'notes-zr-z8lqfoo', 'databaseId': 'cli-zr-z8lqfoo'}
+
+    def test_collection_exists_in_database(run_solver, expected_ids):
+        from appwrite.services.databases import Databases
+        from appwrite.exception import AppwriteException
+    
+        databases = Databases(_make_client())
+        try:
+            result = databases.list_collections(database_id=expected_ids["databaseId"])
+        except AppwriteException as e:
+>           pytest.fail(
+                f"list_collections failed for database {expected_ids['databaseId']!r}: {e}"
+            )
+E           Failed: list_collections failed for database 'cli-zr-z8lqfoo': Database with the requested ID 'cli-zr-z8lqfoo' could not be found.
+
+tests/test_final_state.py:147: Failed
+__________________ test_collection_has_body_string_attribute ___________________
+
+self = <appwrite.client.Client object at 0x7ee7ea21fcb0>, method = 'get'
+path = '/databases/cli-zr-z8lqfoo/collections/notes-zr-z8lqfoo/attributes'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': '', 'user-agent': 'AppwritePythonSDK/19.2.0 (Linux; #1 SMP PRE...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+>           response.raise_for_status()
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Response [404]>
+
+    def raise_for_status(self) -> None:
+        """Raises :class:`HTTPError`, if one occurred."""
+    
+        http_error_msg = ""
+        if isinstance(self.reason, bytes):
+            # We attempt to decode utf-8 first because some servers
+            # choose to localize their reason strings. If the string
+            # isn't utf-8, we fall back to iso-8859-1 for all other
+            # encodings. (See PR #3538)
+            try:
+                reason = self.reason.decode("utf-8")
+            except UnicodeDecodeError:
+                reason = self.reason.decode("iso-8859-1")
+        else:
+            reason = self.reason
+    
+        if 400 <= self.status_code < 500:
+            http_error_msg = (
+                f"{self.status_code} Client Error: {reason} for url: {self.url}"
+            )
+    
+        elif 500 <= self.status_code < 600:
+            http_error_msg = (
+                f"{self.status_code} Server Error: {reason} for url: {self.url}"
+            )
+    
+        if http_error_msg:
+>           raise HTTPError(http_error_msg, response=self)
+E           requests.exceptions.HTTPError: 404 Client Error: Not Found for url: REDACTED/databases/cli-zr-z8lqfoo/collections/notes-zr-z8lqfoo/attributes
+
+usr/local/lib/python3.12/dist-packages/requests/models.py:1167: HTTPError
+
+During handling of the above exception, another exception occurred:
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+expected_ids = {'collectionId': 'notes-zr-z8lqfoo', 'databaseId': 'cli-zr-z8lqfoo'}
+
+    def test_collection_has_body_string_attribute(run_solver, expected_ids):
+        from appwrite.services.databases import Databases
+        from appwrite.exception import AppwriteException
+    
+        databases = Databases(_make_client())
+        try:
+>           result = databases.list_attributes(
+                database_id=expected_ids["databaseId"],
+                collection_id=expected_ids["collectionId"],
+            )
+
+tests/test_final_state.py:165: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+usr/local/lib/python3.12/dist-packages/appwrite/utils/deprecated.py:39: in wrapped
+    return func(*args, **kwargs)
+usr/local/lib/python3.12/dist-packages/appwrite/services/databases.py:869: in list_attributes
+    response = self.client.call('get', api_path, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <appwrite.client.Client object at 0x7ee7ea21fcb0>, method = 'get'
+path = '/databases/cli-zr-z8lqfoo/collections/notes-zr-z8lqfoo/attributes'
+headers = {'X-Appwrite-Response-Format': '1.9.5', 'content-type': '', 'user-agent': 'AppwritePythonSDK/19.2.0 (Linux; #1 SMP PRE...0a2b063de7a0acc2c250bf141e3df89c3fbddb48a7014ff5ee74b85da0d7f0d41b28a0f4567d7ad41ea83c26eee65d990e533e2efb61a956', ...}
+params = {}, response_type = 'json'
+
+    def call(self, method, path='', headers=None, params=None, response_type='json'):
+        if headers is None:
+            headers = {}
+    
+        if params is None:
+            params = {}
+    
+        data = {}
+        files = {}
+        stringify = False
+    
+        headers = {**self._global_headers, **headers}
+    
+        if method != 'get':
+            data = params
+            params = {}
+    
+        if headers['content-type'].startswith('application/json'):
+            data = json.dumps(data, cls=ValueClassEncoder)
+    
+        if headers['content-type'].startswith('multipart/form-data'):
+            del headers['content-type']
+            stringify = True
+            for key in data.copy():
+                if isinstance(data[key], InputFile):
+                    files[key] = (data[key].filename, data[key].data)
+                    del data[key]
+            data = self.flatten(data, stringify=stringify)
+    
+        response = None
+        try:
+            response = requests.request(  # call method dynamically https://stackoverflow.com/a/4246075/2299554
+                method=method,
+                url=self._endpoint + path,
+                params=self.flatten(params, stringify=stringify),
+                data=data,
+                files=files,
+                headers=headers,
+                verify=(not self._self_signed),
+                allow_redirects=False if response_type == 'location' else True
+            )
+    
+            response.raise_for_status()
+    
+            warnings = response.headers.get('x-appwrite-warning')
+            if warnings:
+                for warning in warnings.split(';'):
+                    print(f'Warning: {warning}', file=sys.stderr)
+    
+            content_type = response.headers['Content-Type']
+    
+            if response_type == 'location':
+                return response.headers.get('Location')
+    
+            if content_type.startswith('application/json'):
+                return response.json()
+    
+            return response._content
+        except Exception as e:
+            if response != None:
+                content_type = response.headers['Content-Type']
+                if content_type.startswith('application/json'):
+>                   raise AppwriteException(response.json()['message'], response.status_code, response.json().get('type'), response.text)
+E                   appwrite.exception.AppwriteException: Database with the requested ID 'cli-zr-z8lqfoo' could not be found.
+
+usr/local/lib/python3.12/dist-packages/appwrite/client.py:172: AppwriteException
+
+During handling of the above exception, another exception occurred:
+
+run_solver = CompletedProcess(args=['bash', '/home/user/myproject/run.sh'], returncode=1, stdout='✓ Success: Setting client\n', stderr='')
+expected_ids = {'collectionId': 'notes-zr-z8lqfoo', 'databaseId': 'cli-zr-z8lqfoo'}
+
+    def test_collection_has_body_string_attribute(run_solver, expected_ids):
+        from appwrite.services.databases import Databases
+        from appwrite.exception import AppwriteException
+    
+        databases = Databases(_make_client())
+        try:
+            result = databases.list_attributes(
+                database_id=expected_ids["databaseId"],
+                collection_id=expected_ids["collectionId"],
+            )
+        except AppwriteException as e:
+>           pytest.fail(
+                f"list_attributes failed for collection "
+                f"{expected_ids['collectionId']!r}: {e}"
+            )
+E           Failed: list_attributes failed for collection 'notes-zr-z8lqfoo': Database with the requested ID 'cli-zr-z8lqfoo' could not be found.
+
+tests/test_final_state.py:170: Failed
+=============================== warnings summary ===============================
+test_final_state.py::test_run_script_exits_zero
+test_final_state.py::test_collection_has_body_string_attribute
+  /tests/test_final_state.py:40: DeprecationWarning: Call to deprecated function 'delete'. This API has been deprecated since 1.8.0. Please use `tablesDB.delete` instead.
+    Databases(_make_client()).delete(database_id=database_id)
+
+test_final_state.py::test_database_exists_via_admin_sdk
+  /tests/test_final_state.py:126: DeprecationWarning: Call to deprecated function 'get'. This API has been deprecated since 1.8.0. Please use `tablesDB.get` instead.
+    info = databases.get(database_id=expected_ids["databaseId"])
+
+test_final_state.py::test_collection_exists_in_database
+  /tests/test_final_state.py:145: DeprecationWarning: Call to deprecated function 'list_collections'. This API has been deprecated since 1.8.0. Please use `tablesDB.list_tables` instead.
+    result = databases.list_collections(database_id=expected_ids["databaseId"])
+
+test_final_state.py::test_collection_has_body_string_attribute
+  /tests/test_final_state.py:165: DeprecationWarning: Call to deprecated function 'list_attributes'. This API has been deprecated since 1.8.0. Please use `tablesDB.list_columns` instead.
+    result = databases.list_attributes(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_final_state.py::test_run_script_exits_zero - AssertionError...
+FAILED tests/test_final_state.py::test_last_stdout_line_is_expected_json - Fa...
+FAILED tests/test_final_state.py::test_database_exists_via_admin_sdk - Failed...
+FAILED tests/test_final_state.py::test_collection_exists_in_database - Failed...
+FAILED tests/test_final_state.py::test_collection_has_body_string_attribute
+======================== 5 failed, 5 warnings in 10.91s ========================
