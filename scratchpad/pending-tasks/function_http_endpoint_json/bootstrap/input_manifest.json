@@ -1,7 +1,0 @@
-{
-  "library_name": "Appwrite",
-  "task_name": "function_http_endpoint_json",
-  "complexity_level": "multi-step sequential command set",
-  "research_plan_path": "plan.md",
-  "output_dir": "scratchpad/pending-tasks/"
-}

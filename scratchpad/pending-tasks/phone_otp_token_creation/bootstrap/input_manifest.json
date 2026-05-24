@@ -1,7 +1,0 @@
-{
-  "library_name": "Appwrite",
-  "task_name": "phone_otp_token_creation",
-  "complexity_level": "simple set of 2-5 commands",
-  "research_plan_path": "https://appwrite.io/docs/references/cloud/client-web/account#createPhoneToken",
-  "output_dir": "scratchpad/pending-tasks/"
-}

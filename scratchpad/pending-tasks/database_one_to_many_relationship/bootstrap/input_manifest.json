@@ -1,7 +1,0 @@
-{
-  "library_name": "Appwrite",
-  "task_name": "database_one_to_many_relationship",
-  "complexity_level": "multi-step sequential command set",
-  "research_plan_path": "N/A - inline task concept provided by user",
-  "output_dir": "scratchpad/pending-tasks/"
-}

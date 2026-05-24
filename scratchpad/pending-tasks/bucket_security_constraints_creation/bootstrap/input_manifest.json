@@ -1,7 +1,0 @@
-{
-  "library_name": "Appwrite",
-  "task_name": "bucket_security_constraints_creation",
-  "complexity_level": "simple set of 2-5 commands",
-  "research_plan_path": "N/A - inline task concept provided by user",
-  "output_dir": "scratchpad/pending-tasks/"
-}

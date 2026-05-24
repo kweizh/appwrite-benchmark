@@ -1,7 +1,0 @@
-{
-  "library_name": "Appwrite",
-  "task_name": "user_labels_for_role_based_access",
-  "complexity_level": "simple set of 2-5 commands",
-  "research_plan_path": "plan.md",
-  "output_dir": "scratchpad/pending-tasks/"
-}
