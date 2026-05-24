@@ -5,6 +5,14 @@ import subprocess
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SOLVER_PATH = os.path.join(PROJECT_DIR, "index.js")
 
@@ -98,11 +106,11 @@ def solver_result():
 
 def test_database_exists_and_named_correctly(solver_result):
     databases = _appwrite_databases()
-    db = databases.get(database_id=solver_result["db_id"])
+    db = to_dict(databases).get(database_id=solver_result["db_id"])
     run_id = os.environ["ZEALT_RUN_ID"]
     expected_name = f"tasks_db_{run_id}"
-    assert db.get("name") == expected_name, (
-        f"Database name mismatch. Expected {expected_name!r}, got {db.get('name')!r}."
+    assert to_dict(db).get("name") == expected_name, (
+        f"Database name mismatch. Expected {expected_name!r}, got {to_dict(db).get('name')!r}."
     )
 
 
@@ -112,10 +120,10 @@ def test_collection_exists_with_read_any_permission(solver_result):
         database_id=solver_result["db_id"],
         collection_id=solver_result["col_id"],
     )
-    assert col.get("name") == "tasks", (
-        f"Collection name must be 'tasks', got {col.get('name')!r}."
+    assert to_dict(col).get("name") == "tasks", (
+        f"Collection name must be 'tasks', got {to_dict(col).get('name')!r}."
     )
-    perms = col.get("$permissions") or []
+    perms = to_dict(col).get("$permissions") or []
     # Normalise permission strings such as 'read("any")' (Appwrite may render with single or double quotes).
     normalised = [p.replace("'", '"').replace(" ", "") for p in perms]
     assert 'read("any")' in normalised, (
@@ -129,7 +137,7 @@ def test_collection_has_required_attributes(solver_result):
         database_id=solver_result["db_id"],
         collection_id=solver_result["col_id"],
     )
-    attrs = resp.get("attributes", [])
+    attrs = to_dict(resp).get("attributes", [])
     by_key = {a["key"]: a for a in attrs}
 
     expected_keys = {"title", "priority", "completed", "dueDate"}
@@ -138,43 +146,43 @@ def test_collection_has_required_attributes(solver_result):
     )
 
     title = by_key["title"]
-    assert title.get("type") == "string", f"'title' must be string, got {title.get('type')!r}."
-    assert title.get("size") == 255, f"'title' size must be 255, got {title.get('size')!r}."
-    assert title.get("required") is True, "'title' must be required."
-    assert title.get("status") == "available", (
-        f"'title' status must be 'available', got {title.get('status')!r}."
+    assert to_dict(title).get("type") == "string", f"'title' must be string, got {to_dict(title).get('type')!r}."
+    assert to_dict(title).get("size") == 255, f"'title' size must be 255, got {to_dict(title).get('size')!r}."
+    assert to_dict(title).get("required") is True, "'title' must be required."
+    assert to_dict(title).get("status") == "available", (
+        f"'title' status must be 'available', got {to_dict(title).get('status')!r}."
     )
 
     priority = by_key["priority"]
-    assert priority.get("type") == "integer", (
-        f"'priority' must be integer, got {priority.get('type')!r}."
+    assert to_dict(priority).get("type") == "integer", (
+        f"'priority' must be integer, got {to_dict(priority).get('type')!r}."
     )
-    assert priority.get("required") is True, "'priority' must be required."
-    assert priority.get("min") == 1, f"'priority' min must be 1, got {priority.get('min')!r}."
-    assert priority.get("max") == 5, f"'priority' max must be 5, got {priority.get('max')!r}."
-    assert priority.get("status") == "available", (
-        f"'priority' status must be 'available', got {priority.get('status')!r}."
+    assert to_dict(priority).get("required") is True, "'priority' must be required."
+    assert to_dict(priority).get("min") == 1, f"'priority' min must be 1, got {to_dict(priority).get('min')!r}."
+    assert to_dict(priority).get("max") == 5, f"'priority' max must be 5, got {to_dict(priority).get('max')!r}."
+    assert to_dict(priority).get("status") == "available", (
+        f"'priority' status must be 'available', got {to_dict(priority).get('status')!r}."
     )
 
     completed = by_key["completed"]
-    assert completed.get("type") == "boolean", (
-        f"'completed' must be boolean, got {completed.get('type')!r}."
+    assert to_dict(completed).get("type") == "boolean", (
+        f"'completed' must be boolean, got {to_dict(completed).get('type')!r}."
     )
-    assert completed.get("required") is False, "'completed' must not be required."
-    assert completed.get("default") is False, (
-        f"'completed' default must be False, got {completed.get('default')!r}."
+    assert to_dict(completed).get("required") is False, "'completed' must not be required."
+    assert to_dict(completed).get("default") is False, (
+        f"'completed' default must be False, got {to_dict(completed).get('default')!r}."
     )
-    assert completed.get("status") == "available", (
-        f"'completed' status must be 'available', got {completed.get('status')!r}."
+    assert to_dict(completed).get("status") == "available", (
+        f"'completed' status must be 'available', got {to_dict(completed).get('status')!r}."
     )
 
     due_date = by_key["dueDate"]
-    assert due_date.get("type") == "datetime", (
-        f"'dueDate' must be datetime, got {due_date.get('type')!r}."
+    assert to_dict(due_date).get("type") == "datetime", (
+        f"'dueDate' must be datetime, got {to_dict(due_date).get('type')!r}."
     )
-    assert due_date.get("required") is False, "'dueDate' must not be required."
-    assert due_date.get("status") == "available", (
-        f"'dueDate' status must be 'available', got {due_date.get('status')!r}."
+    assert to_dict(due_date).get("required") is False, "'dueDate' must not be required."
+    assert to_dict(due_date).get("status") == "available", (
+        f"'dueDate' status must be 'available', got {to_dict(due_date).get('status')!r}."
     )
 
 
@@ -184,7 +192,7 @@ def test_collection_has_required_indexes(solver_result):
         database_id=solver_result["db_id"],
         collection_id=solver_result["col_id"],
     )
-    indexes = resp.get("indexes", [])
+    indexes = to_dict(resp).get("indexes", [])
     by_key = {i["key"]: i for i in indexes}
 
     expected_keys = {"priority_idx", "title_unique"}
@@ -193,17 +201,17 @@ def test_collection_has_required_indexes(solver_result):
     )
 
     p = by_key["priority_idx"]
-    assert p.get("type") == "key", f"'priority_idx' type must be 'key', got {p.get('type')!r}."
-    assert list(p.get("attributes") or []) == ["priority"], (
-        f"'priority_idx' attributes must be ['priority'], got {p.get('attributes')!r}."
+    assert to_dict(p).get("type") == "key", f"'priority_idx' type must be 'key', got {to_dict(p).get('type')!r}."
+    assert list(to_dict(p).get("attributes") or []) == ["priority"], (
+        f"'priority_idx' attributes must be ['priority'], got {to_dict(p).get('attributes')!r}."
     )
-    orders = [o.lower() for o in (p.get("orders") or [])]
-    assert orders == ["asc"], f"'priority_idx' orders must be ['asc'], got {p.get('orders')!r}."
+    orders = [o.lower() for o in (to_dict(p).get("orders") or [])]
+    assert orders == ["asc"], f"'priority_idx' orders must be ['asc'], got {to_dict(p).get('orders')!r}."
 
     t = by_key["title_unique"]
-    assert t.get("type") == "unique", (
-        f"'title_unique' type must be 'unique', got {t.get('type')!r}."
+    assert to_dict(t).get("type") == "unique", (
+        f"'title_unique' type must be 'unique', got {to_dict(t).get('type')!r}."
     )
-    assert list(t.get("attributes") or []) == ["title"], (
-        f"'title_unique' attributes must be ['title'], got {t.get('attributes')!r}."
+    assert list(to_dict(t).get("attributes") or []) == ["title"], (
+        f"'title_unique' attributes must be ['title'], got {to_dict(t).get('attributes')!r}."
     )

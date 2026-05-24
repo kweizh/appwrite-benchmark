@@ -4,6 +4,14 @@ import subprocess
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SCRIPT_PATH = os.path.join(PROJECT_DIR, "index.js")
 STDOUT_LOG = os.path.join(PROJECT_DIR, "stdout.log")
@@ -95,10 +103,10 @@ def test_user_labels_persisted_on_appwrite(run_solver):
     seed = _seed()
     users = _admin_users()
     try:
-        user = users.get(user_id=seed["userId"])
+        user = to_dict(users).get(user_id=seed["userId"])
     except TypeError:
-        user = users.get(seed["userId"])
-    labels = user.get("labels") or []
+        user = to_dict(users).get(seed["userId"])
+    labels = to_dict(user).get("labels") or []
     assert sorted(labels) == ["admin", "moderator"], (
         f"User labels not persisted; got {labels!r}"
     )

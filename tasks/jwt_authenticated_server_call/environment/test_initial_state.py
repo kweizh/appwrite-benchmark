@@ -5,6 +5,14 @@ import subprocess
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SEED_FILE = os.path.join(PROJECT_DIR, ".seed.json")
 
@@ -58,7 +66,7 @@ def test_env_vars_present():
 def test_endpoint_reachable():
     import requests
     endpoint = os.environ["APPWRITE_ENDPOINT"].rstrip("/")
-    r = requests.get(
+    r = to_dict(requests).get(
         f"{endpoint}/health/version",
         headers={"X-Appwrite-Project": os.environ["APPWRITE_PROJECT_ID"]},
         timeout=30,
@@ -89,12 +97,12 @@ def test_seed_user_created():
         existing = users.list(queries=[Query.equal("email", email)])
     except TypeError:
         existing = users.list([Query.equal("email", email)])
-    for u in existing.get("users", []) or []:
+    for u in to_dict(existing).get("users", []) or []:
         try:
-            users.delete(user_id=u["$id"])
+            users.delete(user_id=to_dict(u)["$id"])
         except TypeError:
             try:
-                users.delete(u["$id"])
+                users.delete(to_dict(u)["$id"])
             except Exception:
                 pass
 
@@ -106,5 +114,5 @@ def test_seed_user_created():
         new_user = users.create(ID.unique(), email, None, password, f"JWT User {run_id}")
 
     with open(SEED_FILE, "w") as f:
-        json.dump({"userId": new_user["$id"], "email": email, "password": password}, f)
+        json.dump({"userId": to_dict(new_user)["$id"], "email": email, "password": password}, f)
     assert os.path.isfile(SEED_FILE)

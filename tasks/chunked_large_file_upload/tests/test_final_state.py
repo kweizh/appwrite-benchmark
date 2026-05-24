@@ -153,7 +153,7 @@ def test_progress_lines_have_required_keys(solver_run):
 
 def test_chunks_total_is_at_least_two(solver_run):
     for i, obj in enumerate(solver_run["progress_lines"]):
-        ct = obj.get("chunksTotal")
+        ct = to_dict(obj).get("chunksTotal")
         assert isinstance(ct, int) and ct >= 2, (
             f"Progress line #{i} chunksTotal must be int >= 2; got {ct!r}."
         )
@@ -162,7 +162,7 @@ def test_chunks_total_is_at_least_two(solver_run):
 def test_chunks_uploaded_is_monotonically_non_decreasing(solver_run):
     prev = -1
     for i, obj in enumerate(solver_run["progress_lines"]):
-        cu = obj.get("chunksUploaded")
+        cu = to_dict(obj).get("chunksUploaded")
         assert isinstance(cu, int), (
             f"Progress line #{i} chunksUploaded must be an integer; got {cu!r}."
         )
@@ -191,19 +191,19 @@ def fetched_file(solver_run, bucket_id):
 
 
 def test_uploaded_file_matches_expected_id(fetched_file, solver_run):
-    assert fetched_file.get("$id") == solver_run["file_id"], (
-        f"Appwrite returned $id={fetched_file.get('$id')!r}, expected {solver_run['file_id']!r}."
+    assert to_dict(fetched_file).get("$id") == solver_run["file_id"], (
+        f"Appwrite returned $id={to_dict(fetched_file).get('$id')!r}, expected {solver_run['file_id']!r}."
     )
 
 
 def test_uploaded_file_belongs_to_created_bucket(fetched_file, bucket_id):
-    assert fetched_file.get("bucketId") == bucket_id, (
-        f"Uploaded file bucketId is {fetched_file.get('bucketId')!r}; expected {bucket_id!r}."
+    assert to_dict(fetched_file).get("bucketId") == bucket_id, (
+        f"Uploaded file bucketId is {to_dict(fetched_file).get('bucketId')!r}; expected {bucket_id!r}."
     )
 
 
 def test_uploaded_file_size_original_matches_6_5_mib(fetched_file):
-    actual = fetched_file.get("sizeOriginal")
+    actual = to_dict(fetched_file).get("sizeOriginal")
     assert actual == EXPECTED_SIZE_BYTES, (
         f"Uploaded file sizeOriginal must be {EXPECTED_SIZE_BYTES} bytes; got {actual!r}."
     )

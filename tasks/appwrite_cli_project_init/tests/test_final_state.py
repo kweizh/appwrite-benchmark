@@ -13,6 +13,14 @@ import subprocess
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 RUN_SCRIPT = "/home/user/myproject/run.sh"
 
 
@@ -109,11 +117,11 @@ def test_last_stdout_line_is_expected_json(run_solver, expected_ids):
     assert isinstance(parsed, dict), (
         f"Last stdout line JSON must be an object, got: {parsed!r}"
     )
-    assert parsed.get("databaseId") == expected_ids["databaseId"], (
-        f"Expected databaseId={expected_ids['databaseId']!r}, got {parsed.get('databaseId')!r}"
+    assert to_dict(parsed).get("databaseId") == expected_ids["databaseId"], (
+        f"Expected databaseId={expected_ids['databaseId']!r}, got {to_dict(parsed).get('databaseId')!r}"
     )
-    assert parsed.get("collectionId") == expected_ids["collectionId"], (
-        f"Expected collectionId={expected_ids['collectionId']!r}, got {parsed.get('collectionId')!r}"
+    assert to_dict(parsed).get("collectionId") == expected_ids["collectionId"], (
+        f"Expected collectionId={expected_ids['collectionId']!r}, got {to_dict(parsed).get('collectionId')!r}"
     )
 
 
@@ -123,15 +131,15 @@ def test_database_exists_via_admin_sdk(run_solver, expected_ids):
 
     databases = Databases(_make_client())
     try:
-        info = databases.get(database_id=expected_ids["databaseId"])
+        info = to_dict(databases).get(database_id=expected_ids["databaseId"])
     except AppwriteException as e:
         pytest.fail(
             f"Appwrite database {expected_ids['databaseId']!r} not found via admin SDK: {e}"
         )
 
     # The Appwrite SDK returns dict-like responses keyed by `$id`.
-    assert info.get("$id") == expected_ids["databaseId"], (
-        f"Returned database $id ({info.get('$id')!r}) does not match expected "
+    assert to_dict(info).get("$id") == expected_ids["databaseId"], (
+        f"Returned database $id ({to_dict(info).get('$id')!r}) does not match expected "
         f"{expected_ids['databaseId']!r}."
     )
 
@@ -148,8 +156,8 @@ def test_collection_exists_in_database(run_solver, expected_ids):
             f"list_collections failed for database {expected_ids['databaseId']!r}: {e}"
         )
 
-    collections = result.get("collections", [])
-    collection_ids = [c.get("$id") for c in collections]
+    collections = to_dict(result).get("collections", [])
+    collection_ids = [to_dict(c).get("$id") for c in collections]
     assert expected_ids["collectionId"] in collection_ids, (
         f"Expected collection {expected_ids['collectionId']!r} inside database "
         f"{expected_ids['databaseId']!r}, but found: {collection_ids}"
@@ -172,19 +180,19 @@ def test_collection_has_body_string_attribute(run_solver, expected_ids):
             f"{expected_ids['collectionId']!r}: {e}"
         )
 
-    attrs = result.get("attributes", [])
-    matching = [a for a in attrs if a.get("key") == "body"]
+    attrs = to_dict(result).get("attributes", [])
+    matching = [a for a in attrs if to_dict(a).get("key") == "body"]
     assert matching, (
         f"Expected an attribute named 'body' on collection "
         f"{expected_ids['collectionId']!r}; got attributes: "
-        f"{[a.get('key') for a in attrs]}"
+        f"{[to_dict(a).get('key') for a in attrs]}"
     )
 
     body_attr = matching[0]
-    attr_type = str(body_attr.get("type", "")).lower()
+    attr_type = str(body_to_dict(attr).get("type", "")).lower()
     # The Appwrite databases API exposes string attributes as type='string';
     # the newer tables API may surface them as 'varchar'.
     assert attr_type in {"string", "varchar"}, (
         f"Expected 'body' attribute to be a string/varchar type, got: "
-        f"{body_attr.get('type')!r}"
+        f"{body_to_dict(attr).get('type')!r}"
     )

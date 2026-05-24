@@ -5,6 +5,14 @@ import subprocess
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SCRIPT_PATH = os.path.join(PROJECT_DIR, "send_magic_url.js")
 STDOUT_LOG = os.path.join(PROJECT_DIR, "stdout.log")
@@ -127,8 +135,8 @@ const users = new sdk.Users(client);
     )
     last_line = result.stdout.strip().splitlines()[-1]
     payload = json.loads(last_line)
-    assert payload.get("total", 0) >= 1 and any(
-        run_id.lower() in (u.get("email") or "").lower() for u in payload.get("users", [])
+    assert to_dict(payload).get("total", 0) >= 1 and any(
+        run_id.lower() in (to_dict(u).get("email") or "").lower() for u in to_dict(payload).get("users", [])
     ), (
         "No Appwrite user with the configured ZEALT_RUN_ID was found. "
         f"List payload: {payload}"

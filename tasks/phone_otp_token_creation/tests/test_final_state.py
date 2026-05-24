@@ -3,6 +3,14 @@ import re
 import subprocess
 
 import pytest
+
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
 from appwrite.client import Client
 from appwrite.services.users import Users
 from appwrite.exception import AppwriteException
@@ -59,7 +67,7 @@ def solver_run():
     yield captured
 
     # Teardown: delete the created user to avoid leaking test users between runs.
-    user_id = captured.get("user_id")
+    user_id = to_dict(captured).get("user_id")
     if user_id:
         try:
             users = _build_users_service()
@@ -114,18 +122,18 @@ def test_user_exists_in_appwrite_with_expected_phone(solver_run):
 
     users = _build_users_service()
     try:
-        user = users.get(user_id=user_id)
+        user = to_dict(users).get(user_id=user_id)
     except AppwriteException as exc:
         pytest.fail(
             f"Failed to fetch user '{user_id}' via Appwrite SDK: {exc}"
         )
 
-    assert user.get("$id") == user_id, (
-        f"Returned user $id {user.get('$id')!r} does not match captured userId {user_id!r}."
+    assert to_dict(user).get("$id") == user_id, (
+        f"Returned user $id {to_dict(user).get('$id')!r} does not match captured userId {user_id!r}."
     )
-    assert user.get("phone") == expected_phone, (
+    assert to_dict(user).get("phone") == expected_phone, (
         f"Expected user phone to equal {expected_phone!r}, "
-        f"but got {user.get('phone')!r}."
+        f"but got {to_dict(user).get('phone')!r}."
     )
 
 
@@ -142,7 +150,7 @@ def test_no_session_created_for_user(solver_run):
             f"Failed to list sessions for user '{user_id}': {exc}"
         )
 
-    session_list = sessions.get("sessions", [])
+    session_list = to_dict(sessions).get("sessions", [])
     assert len(session_list) == 0, (
         f"Expected no active sessions for user {user_id}, but found "
         f"{len(session_list)} session(s)."

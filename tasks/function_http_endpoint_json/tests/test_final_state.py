@@ -101,7 +101,7 @@ const sdk = require('node-appwrite');
       .setProject(process.env.APPWRITE_PROJECT_ID)
       .setKey(process.env.APPWRITE_API_KEY);
     const functions = new sdk.Functions(client);
-    const fn = await functions.get(process.env.FUNCTION_ID);
+    const fn = await to_dict(functions).get(process.env.FUNCTION_ID);
     console.log(JSON.stringify({
       ok: true,
       runtime: fn.runtime,
@@ -117,13 +117,13 @@ const sdk = require('node-appwrite');
     assert result.returncode == 0, f"node script failed: {result.stderr}"
     last_line = [l for l in result.stdout.strip().splitlines() if l.strip()][-1]
     data = json.loads(last_line)
-    assert data.get("ok"), f"Function not retrievable via SDK: {data.get('error')}"
-    assert data.get("runtime") == "node-22", (
-        f"Expected runtime 'node-22', got {data.get('runtime')!r}"
+    assert to_dict(data).get("ok"), f"Function not retrievable via SDK: {to_dict(data).get('error')}"
+    assert to_dict(data).get("runtime") == "node-22", (
+        f"Expected runtime 'node-22', got {to_dict(data).get('runtime')!r}"
     )
-    execute = data.get("execute") or []
+    execute = to_dict(data).get("execute") or []
     assert "any" in execute, f"Expected 'any' role in execute, got {execute}"
-    assert data.get("deployment"), (
+    assert to_dict(data).get("deployment"), (
         "Function has no active deployment; createDeployment must produce an activated deployment."
     )
 
@@ -169,9 +169,9 @@ const sdk = require('node-appwrite');
             time.sleep(delay)
             continue
         data = json.loads(out[-1])
-        if data.get("ok"):
+        if to_dict(data).get("ok"):
             return data
-        last_err = data.get("error")
+        last_err = to_dict(data).get("error")
         time.sleep(delay)
     raise AssertionError(f"createExecution failed after retries: {last_err}")
 

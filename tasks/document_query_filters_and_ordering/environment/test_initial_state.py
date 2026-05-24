@@ -1,3 +1,11 @@
+
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
 import json
 import os
 import random
@@ -95,7 +103,7 @@ def _wait_for_attribute_ready(databases, database_id, collection_id, key, timeou
     deadline = time.time() + timeout
     while time.time() < deadline:
         attr = databases.get_attribute(database_id=database_id, collection_id=collection_id, key=key)
-        status = attr.get("status") if isinstance(attr, dict) else None
+        status = to_dict(attr).get("status") if isinstance(attr, dict) else None
         if status == "available":
             return
         time.sleep(1)
@@ -165,7 +173,7 @@ def _seed_database():
 
     # 4. Determine current document count; if 20 are already present, skip seeding.
     listing = databases.list_documents(database_id=database_id, collection_id=COLLECTION_ID)
-    existing_total = listing.get("total", len(listing.get("documents", [])))
+    existing_total = to_dict(listing).get("total", len(to_dict(listing).get("documents", [])))
     if existing_total >= NUM_DOCUMENTS:
         return database_id
 
@@ -224,8 +232,8 @@ def test_seed_database_and_persist_seed_file():
     assert os.path.isfile(SEED_FILE), f"Seed metadata file {SEED_FILE} was not written."
     with open(SEED_FILE, "r", encoding="utf-8") as fp:
         data = json.load(fp)
-    assert data.get("database_id") == database_id, "Seed file does not contain the expected database_id."
-    assert data.get("collection_id") == COLLECTION_ID, "Seed file does not contain the expected collection_id."
+    assert to_dict(data).get("database_id") == database_id, "Seed file does not contain the expected database_id."
+    assert to_dict(data).get("collection_id") == COLLECTION_ID, "Seed file does not contain the expected collection_id."
 
 
 def test_seeded_collection_has_20_documents():
@@ -242,7 +250,7 @@ def test_seeded_collection_has_20_documents():
     databases = Databases(client)
 
     res = databases.list_documents(database_id=_database_id(), collection_id=COLLECTION_ID)
-    total = res.get("total")
+    total = to_dict(res).get("total")
     if total is None:
-        total = len(res.get("documents", []))
+        total = len(to_dict(res).get("documents", []))
     assert total == NUM_DOCUMENTS, f"Expected exactly {NUM_DOCUMENTS} seeded documents, got {total}."

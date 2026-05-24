@@ -5,6 +5,14 @@ import time
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 
 
@@ -187,7 +195,7 @@ def test_initial_database_and_collection_provisioned():
         attr = databases.get_attribute(
             database_id=db_id, collection_id="messages", key="text"
         )
-        last_status = attr.get("status") if isinstance(attr, dict) else None
+        last_status = to_dict(attr).get("status") if isinstance(attr, dict) else None
         if last_status == "available":
             break
         time.sleep(1)

@@ -109,11 +109,11 @@ def test_user_exists_and_email_unverified(parsed):
     seed = _seed()
     users = _admin_users()
     try:
-        u = users.get(user_id=parsed["userId"])
+        u = to_dict(users).get(user_id=parsed["userId"])
     except TypeError:
-        u = users.get(parsed["userId"])
-    assert (u.get("email") or "").lower() == seed["email"].lower()
+        u = to_dict(users).get(parsed["userId"])
+    assert (to_dict(u).get("email") or "").lower() == seed["email"].lower()
     # Verification request was sent but not completed; flag must still be False.
-    assert u.get("emailVerification") is False, (
-        f"emailVerification should still be False, got {u.get('emailVerification')!r}"
+    assert to_dict(u).get("emailVerification") is False, (
+        f"emailVerification should still be False, got {to_dict(u).get('emailVerification')!r}"
     )

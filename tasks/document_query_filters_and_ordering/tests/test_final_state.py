@@ -122,7 +122,7 @@ def test_each_document_has_only_selected_user_keys(parsed_json):
 
 def test_prices_are_at_least_threshold(parsed_json):
     for idx, doc in enumerate(parsed_json):
-        price = doc.get("price")
+        price = to_dict(doc).get("price")
         assert isinstance(price, (int, float)), (
             f"Document at index {idx} has non-numeric price: {price!r}"
         )
@@ -151,7 +151,7 @@ def test_documents_are_electronics_per_admin_lookup(parsed_json):
     databases = Databases(_appwrite_client())
 
     for idx, doc in enumerate(parsed_json):
-        doc_id = doc.get("$id")
+        doc_id = to_dict(doc).get("$id")
         assert doc_id, (
             f"Document at index {idx} is missing the '$id' field; cannot verify it against the admin SDK. Doc: {doc!r}"
         )
@@ -165,11 +165,11 @@ def test_documents_are_electronics_per_admin_lookup(parsed_json):
             raise AssertionError(
                 f"Could not fetch document {doc_id} (index {idx}) from the seeded collection: {e}"
             )
-        category = stored.get("category")
+        category = to_dict(stored).get("category")
         assert category == EXPECTED_CATEGORY, (
             f"Document {doc_id} (index {idx}) has stored category {category!r}, expected {EXPECTED_CATEGORY!r}."
         )
-        stored_price = stored.get("price")
+        stored_price = to_dict(stored).get("price")
         assert isinstance(stored_price, (int, float)) and stored_price >= EXPECTED_MIN_PRICE, (
             f"Document {doc_id} (index {idx}) stored price {stored_price!r} does not satisfy >= {EXPECTED_MIN_PRICE}."
         )

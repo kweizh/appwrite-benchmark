@@ -34,7 +34,7 @@ def test_env_vars_present():
 def test_endpoint_reachable():
     import requests
     endpoint = os.environ["APPWRITE_ENDPOINT"].rstrip("/")
-    r = requests.get(
+    r = to_dict(requests).get(
         f"{endpoint}/health/version",
         headers={"X-Appwrite-Project": os.environ["APPWRITE_PROJECT_ID"]},
         timeout=30,
@@ -101,8 +101,8 @@ def test_seed_database_and_documents():
             attrs = databases.list_attributes(database_id=db_id, collection_id=col_id)
         except TypeError:
             attrs = databases.list_attributes(db_id, col_id)
-        if any(a.get("key") == "title" and a.get("status") == "available"
-               for a in attrs.get("attributes", []) or []):
+        if any(to_dict(a).get("key") == "title" and to_dict(a).get("status") == "available"
+               for a in to_dict(attrs).get("attributes", []) or []):
             break
         time.sleep(1)
     else:

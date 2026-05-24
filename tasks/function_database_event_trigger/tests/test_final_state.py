@@ -6,6 +6,14 @@ import time
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 
 
@@ -134,8 +142,8 @@ def test_package_json_declares_node_appwrite_dep():
     with open(os.path.join(PROJECT_DIR, "package.json")) as f:
         data = json.load(f)
     deps = {}
-    deps.update(data.get("dependencies") or {})
-    deps.update(data.get("devDependencies") or {})
+    deps.update(to_dict(data).get("dependencies") or {})
+    deps.update(to_dict(data).get("devDependencies") or {})
     assert "node-appwrite" in deps, (
         f"package.json must declare 'node-appwrite' as a dependency, got deps={deps!r}"
     )
@@ -175,17 +183,17 @@ def test_function_configuration(deploy_output):
         f"status={r.status_code} body={r.text}"
     )
     data = r.json()
-    assert data.get("runtime") == "node-22", (
-        f"Expected function runtime 'node-22', got {data.get('runtime')!r}"
+    assert to_dict(data).get("runtime") == "node-22", (
+        f"Expected function runtime 'node-22', got {to_dict(data).get('runtime')!r}"
     )
 
-    events = data.get("events") or []
+    events = to_dict(data).get("events") or []
     expected = _expected_event()
     assert expected in events, (
         f"Expected function events to include {expected!r}, got {events!r}"
     )
 
-    deployment = data.get("deployment") or data.get("deploymentId") or ""
+    deployment = to_dict(data).get("deployment") or to_dict(data).get("deploymentId") or ""
     assert deployment, (
         f"Function has no active deployment; the deployment must be activated. "
         f"Function payload: {data!r}"
@@ -201,8 +209,8 @@ def test_function_variables_set(deploy_output):
         f"Failed to list function variables: status={r.status_code} body={r.text}"
     )
     payload = r.json()
-    variables = payload.get("variables", [])
-    keys = {v.get("key") for v in variables}
+    variables = to_dict(payload).get("variables", [])
+    keys = {to_dict(v).get("key") for v in variables}
     for required in ("APPWRITE_API_KEY", "AUDIT_DB", "AUDIT_COL"):
         assert required in keys, (
             f"Expected function variable {required!r} to be set, got keys={keys!r}"
@@ -248,9 +256,9 @@ def test_audit_doc_created_with_matching_source_id(deploy_output):
                 payload = r.json()
             except Exception:
                 payload = {}
-            docs = payload.get("documents", []) or []
+            docs = to_dict(payload).get("documents", []) or []
             matching = [
-                d for d in docs if d.get("source_id") == trigger_id
+                d for d in docs if to_dict(d).get("source_id") == trigger_id
             ]
             if matching:
                 break

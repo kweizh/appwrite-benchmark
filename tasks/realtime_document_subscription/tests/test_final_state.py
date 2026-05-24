@@ -6,6 +6,14 @@ import time
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SOLVER_SCRIPT = os.path.join(PROJECT_DIR, "index.js")
 
@@ -125,8 +133,8 @@ def test_realtime_subscription_receives_create_event():
         assert isinstance(payload, dict), (
             f"Expected the printed payload to be a JSON object, got: {type(payload).__name__}"
         )
-        assert payload.get("text") == "hello", (
-            f"Expected payload.text == 'hello', got {payload.get('text')!r} "
+        assert to_dict(payload).get("text") == "hello", (
+            f"Expected payload.text == 'hello', got {to_dict(payload).get('text')!r} "
             f"in payload {payload!r}"
         )
     finally:

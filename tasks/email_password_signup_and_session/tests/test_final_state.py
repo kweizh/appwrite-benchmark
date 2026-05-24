@@ -42,7 +42,7 @@ def _list_users_by_email(email):
     except TypeError:
         # Older SDKs may take positional args.
         response = users.list([Query.equal("email", email)])
-    return response.get("users", []) or []
+    return to_dict(response).get("users", []) or []
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -53,9 +53,9 @@ def _cleanup_created_user():
         users = _admin_users_client()
         for user in _list_users_by_email(_expected_email()):
             try:
-                users.delete(user_id=user["$id"])
+                users.delete(user_id=to_dict(user)["$id"])
             except TypeError:
-                users.delete(user["$id"])
+                users.delete(to_dict(user)["$id"])
             except Exception:
                 # Best-effort cleanup; do not fail the test session.
                 pass
@@ -76,9 +76,9 @@ def run_solver():
         users = _admin_users_client()
         for user in _list_users_by_email(email):
             try:
-                users.delete(user_id=user["$id"])
+                users.delete(user_id=to_dict(user)["$id"])
             except TypeError:
-                users.delete(user["$id"])
+                users.delete(to_dict(user)["$id"])
             except Exception:
                 pass
     except Exception:
@@ -160,7 +160,7 @@ def test_appwrite_user_with_expected_email_exists(run_solver):
     """Confirm via the Python admin SDK that the run-scoped user was created."""
     email = _expected_email()
     matched = _list_users_by_email(email)
-    matching_emails = [(u.get("email") or "").lower() for u in matched]
+    matching_emails = [(to_dict(u).get("email") or "").lower() for u in matched]
     assert any(e == email.lower() for e in matching_emails), (
         "No Appwrite user with the expected run-scoped email was found. "
         f"Expected: {email!r}. Got list: {matching_emails!r}"

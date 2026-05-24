@@ -6,6 +6,14 @@ import time
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SCRIPT_PATH = os.path.join(PROJECT_DIR, "index.js")
 STDOUT_LOG = os.path.join(PROJECT_DIR, "stdout.log")
@@ -84,7 +92,7 @@ def parsed(run_solver):
     except Exception as e:
         pytest.fail(f"Last stdout line is not JSON: {lines[-1]!r} ({e})")
     for k in ("jwt", "userId", "email"):
-        assert data.get(k), f"Field {k!r} missing or empty: {data!r}"
+        assert to_dict(data).get(k), f"Field {k!r} missing or empty: {data!r}"
     return data
 
 
@@ -115,10 +123,10 @@ def test_userId_and_email_match_seed(parsed):
 
 def test_jwt_payload_sub_matches_userId(parsed):
     payload = _decode_jwt_payload(parsed["jwt"])
-    assert payload.get("sub") == parsed["userId"], (
+    assert to_dict(payload).get("sub") == parsed["userId"], (
         f"JWT sub != userId: payload={payload!r}"
     )
-    exp = payload.get("exp")
+    exp = to_dict(payload).get("exp")
     assert isinstance(exp, (int, float)) and exp > time.time(), (
         f"JWT exp claim missing or already expired: {exp!r}"
     )
@@ -128,7 +136,7 @@ def test_user_still_exists(parsed):
     seed = _seed()
     users = _admin_users()
     try:
-        u = users.get(user_id=seed["userId"])
+        u = to_dict(users).get(user_id=seed["userId"])
     except TypeError:
-        u = users.get(seed["userId"])
-    assert u.get("$id") == seed["userId"]
+        u = to_dict(users).get(seed["userId"])
+    assert to_dict(u).get("$id") == seed["userId"]

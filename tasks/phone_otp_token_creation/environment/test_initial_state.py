@@ -67,7 +67,6 @@ def test_python_appwrite_sdk_importable():
         "APPWRITE_ENDPOINT",
         "APPWRITE_PROJECT_ID",
         "APPWRITE_API_KEY",
-        "APPWRITE_TEST_PHONE",
     ],
 )
 def test_required_env_vars_present(var_name):

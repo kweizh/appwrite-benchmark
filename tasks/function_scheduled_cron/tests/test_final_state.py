@@ -121,11 +121,11 @@ def test_deploy_script_prints_last_json_line(deploy_result):
         raise AssertionError(
             f"Last stdout line is not valid JSON: {last!r} ({e})"
         )
-    assert data.get("$id") == _function_id(), (
-        f"Last stdout JSON `$id` must equal {_function_id()!r}, got {data.get('$id')!r}"
+    assert to_dict(data).get("$id") == _function_id(), (
+        f"Last stdout JSON `$id` must equal {_function_id()!r}, got {to_dict(data).get('$id')!r}"
     )
-    assert data.get("schedule") == "*/5 * * * *", (
-        f"Last stdout JSON `schedule` must equal '*/5 * * * *', got {data.get('schedule')!r}"
+    assert to_dict(data).get("schedule") == "*/5 * * * *", (
+        f"Last stdout JSON `schedule` must equal '*/5 * * * *', got {to_dict(data).get('schedule')!r}"
     )
 
 
@@ -141,7 +141,7 @@ const sdk = require('node-appwrite');
       .setProject(process.env.APPWRITE_PROJECT_ID)
       .setKey(process.env.APPWRITE_API_KEY);
     const functions = new sdk.Functions(client);
-    const fn = await functions.get(process.env.FUNCTION_ID);
+    const fn = await to_dict(functions).get(process.env.FUNCTION_ID);
     console.log(JSON.stringify({
       ok: true,
       id: fn.$id,
@@ -160,23 +160,23 @@ const sdk = require('node-appwrite');
     assert result.returncode == 0, f"node SDK script failed: {result.stderr}"
     last_line = [l for l in result.stdout.strip().splitlines() if l.strip()][-1]
     data = json.loads(last_line)
-    assert data.get("ok"), f"Function not retrievable via SDK: {data.get('error')}"
-    assert data.get("id") == _function_id(), (
-        f"Expected function id {_function_id()!r}, got {data.get('id')!r}"
+    assert to_dict(data).get("ok"), f"Function not retrievable via SDK: {to_dict(data).get('error')}"
+    assert to_dict(data).get("id") == _function_id(), (
+        f"Expected function id {_function_id()!r}, got {to_dict(data).get('id')!r}"
     )
-    assert data.get("runtime") == "node-22", (
-        f"Expected runtime 'node-22', got {data.get('runtime')!r}"
+    assert to_dict(data).get("runtime") == "node-22", (
+        f"Expected runtime 'node-22', got {to_dict(data).get('runtime')!r}"
     )
-    assert data.get("schedule") == "*/5 * * * *", (
-        f"Expected schedule '*/5 * * * *', got {data.get('schedule')!r}"
+    assert to_dict(data).get("schedule") == "*/5 * * * *", (
+        f"Expected schedule '*/5 * * * *', got {to_dict(data).get('schedule')!r}"
     )
-    execute = data.get("execute") or []
+    execute = to_dict(data).get("execute") or []
     assert "any" in execute, f"Expected 'any' role in execute, got {execute}"
-    events = data.get("events") or []
+    events = to_dict(data).get("events") or []
     assert events == [], (
         f"Expected no event triggers; got events={events}"
     )
-    assert data.get("deployment"), (
+    assert to_dict(data).get("deployment"), (
         "Function has no active deployment; createDeployment must produce an activated deployment."
     )
 
@@ -192,7 +192,7 @@ const sdk = require('node-appwrite');
       .setProject(process.env.APPWRITE_PROJECT_ID)
       .setKey(process.env.APPWRITE_API_KEY);
     const functions = new sdk.Functions(client);
-    const fn = await functions.get(process.env.FUNCTION_ID);
+    const fn = await to_dict(functions).get(process.env.FUNCTION_ID);
     const activeId = fn.deployment || fn.deploymentId || '';
     if (!activeId) {
       console.log(JSON.stringify({ok: false, error: 'no active deployment'}));
@@ -213,7 +213,7 @@ const sdk = require('node-appwrite');
     assert result.returncode == 0, f"node SDK script failed: {result.stderr}"
     last_line = [l for l in result.stdout.strip().splitlines() if l.strip()][-1]
     data = json.loads(last_line)
-    assert data.get("ok"), f"Could not retrieve active deployment: {data.get('error')}"
-    assert data.get("status") == "ready", (
-        f"Expected active deployment status 'ready', got {data.get('status')!r}"
+    assert to_dict(data).get("ok"), f"Could not retrieve active deployment: {to_dict(data).get('error')}"
+    assert to_dict(data).get("status") == "ready", (
+        f"Expected active deployment status 'ready', got {to_dict(data).get('status')!r}"
     )

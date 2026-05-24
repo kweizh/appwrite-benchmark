@@ -5,6 +5,14 @@ import subprocess
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SCRIPT_PATH = os.path.join(PROJECT_DIR, "index.js")
 SEED_PATH = os.path.join(PROJECT_DIR, ".seed.json")
@@ -179,7 +187,7 @@ const users = new sdk.Users(client);
     )
     last_line = result.stdout.strip().splitlines()[-1]
     payload = json.loads(last_line)
-    ids = payload.get("ids", [])
+    ids = to_dict(payload).get("ids", [])
     assert expected_session_id in ids, (
         "Solver-printed sessionId was not found in Appwrite's session list for the user. "
         f"sessionId={expected_session_id!r}, listed={ids!r}"

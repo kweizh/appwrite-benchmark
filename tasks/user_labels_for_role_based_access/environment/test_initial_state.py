@@ -5,6 +5,14 @@ import subprocess
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SEED_FILE = os.path.join(PROJECT_DIR, ".seed.json")
 
@@ -60,7 +68,7 @@ def test_appwrite_health_version_endpoint_reachable():
     project = os.environ["APPWRITE_PROJECT_ID"]
     url = f"{endpoint}/health/version"
     try:
-        response = requests.get(
+        response = to_dict(requests).get(
             url, headers={"X-Appwrite-Project": project}, timeout=30,
         )
     except requests.RequestException as exc:
@@ -98,12 +106,12 @@ def test_seed_user_created():
         existing = users.list(queries=[Query.equal("email", email)])
     except TypeError:
         existing = users.list([Query.equal("email", email)])
-    for u in existing.get("users", []) or []:
+    for u in to_dict(existing).get("users", []) or []:
         try:
-            users.delete(user_id=u["$id"])
+            users.delete(user_id=to_dict(u)["$id"])
         except TypeError:
             try:
-                users.delete(u["$id"])
+                users.delete(to_dict(u)["$id"])
             except Exception:
                 pass
 
@@ -121,6 +129,6 @@ def test_seed_user_created():
         new_user = users.create(ID.unique(), email, None, "TempPassw0rd!", f"Labels User {run_id}")
 
     with open(SEED_FILE, "w") as f:
-        json.dump({"userId": new_user["$id"], "email": email}, f)
+        json.dump({"userId": to_dict(new_user)["$id"], "email": email}, f)
 
     assert os.path.isfile(SEED_FILE), f"Seed file {SEED_FILE} was not written."

@@ -122,27 +122,27 @@ def fetched_bucket(solver_run):
 
 
 def test_bucket_name_matches_run_id(fetched_bucket, expected_bucket_name):
-    name = fetched_bucket.get("name")
+    name = to_dict(fetched_bucket).get("name")
     assert name == expected_bucket_name, (
         f"Bucket name should be '{expected_bucket_name}', got {name!r}."
     )
 
 
 def test_bucket_file_security_enabled(fetched_bucket):
-    assert fetched_bucket.get("fileSecurity") is True, (
-        f"fileSecurity must be true. Got: {fetched_bucket.get('fileSecurity')!r}"
+    assert to_dict(fetched_bucket).get("fileSecurity") is True, (
+        f"fileSecurity must be true. Got: {to_dict(fetched_bucket).get('fileSecurity')!r}"
     )
 
 
 def test_bucket_maximum_file_size(fetched_bucket):
-    actual = fetched_bucket.get("maximumFileSize")
+    actual = to_dict(fetched_bucket).get("maximumFileSize")
     assert actual == EXPECTED_MAX_FILE_SIZE, (
         f"maximumFileSize must equal {EXPECTED_MAX_FILE_SIZE} bytes (5 MiB). Got: {actual!r}"
     )
 
 
 def test_bucket_allowed_file_extensions(fetched_bucket):
-    actual = fetched_bucket.get("allowedFileExtensions")
+    actual = to_dict(fetched_bucket).get("allowedFileExtensions")
     assert isinstance(actual, list), (
         f"allowedFileExtensions must be a list, got: {type(actual).__name__} -> {actual!r}"
     )
@@ -153,26 +153,26 @@ def test_bucket_allowed_file_extensions(fetched_bucket):
 
 
 def test_bucket_compression_is_gzip(fetched_bucket):
-    actual = fetched_bucket.get("compression")
+    actual = to_dict(fetched_bucket).get("compression")
     assert actual == EXPECTED_COMPRESSION, (
         f"compression must be 'gzip'. Got: {actual!r}"
     )
 
 
 def test_bucket_encryption_enabled(fetched_bucket):
-    assert fetched_bucket.get("encryption") is True, (
-        f"encryption must be true. Got: {fetched_bucket.get('encryption')!r}"
+    assert to_dict(fetched_bucket).get("encryption") is True, (
+        f"encryption must be true. Got: {to_dict(fetched_bucket).get('encryption')!r}"
     )
 
 
 def test_bucket_antivirus_enabled(fetched_bucket):
-    assert fetched_bucket.get("antivirus") is True, (
-        f"antivirus must be true. Got: {fetched_bucket.get('antivirus')!r}"
+    assert to_dict(fetched_bucket).get("antivirus") is True, (
+        f"antivirus must be true. Got: {to_dict(fetched_bucket).get('antivirus')!r}"
     )
 
 
 def test_bucket_permissions_users_read_write(fetched_bucket):
-    perms = fetched_bucket.get("$permissions")
+    perms = to_dict(fetched_bucket).get("$permissions")
     assert isinstance(perms, list), (
         f"$permissions must be a list, got: {type(perms).__name__} -> {perms!r}"
     )

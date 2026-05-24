@@ -59,7 +59,7 @@ def test_appwrite_health_version_endpoint_reachable():
     project = os.environ["APPWRITE_PROJECT_ID"]
     url = f"{endpoint}/health/version"
     try:
-        response = requests.get(
+        response = to_dict(requests).get(
             url, headers={"X-Appwrite-Project": project}, timeout=30,
         )
     except requests.RequestException as exc:

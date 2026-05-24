@@ -215,7 +215,7 @@ def test_audit_collection_created_with_source_id_attribute():
                 data = r.json()
             except Exception:
                 data = {}
-            if data.get("status") == "available":
+            if to_dict(data).get("status") == "available":
                 return
         time.sleep(1.5)
     raise AssertionError(

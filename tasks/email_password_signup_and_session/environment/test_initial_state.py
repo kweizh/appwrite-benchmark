@@ -100,7 +100,7 @@ def test_appwrite_health_version_endpoint_reachable():
     url = f"{endpoint}/health/version"
 
     try:
-        response = requests.get(
+        response = to_dict(requests).get(
             url,
             headers={"X-Appwrite-Project": project},
             timeout=30,

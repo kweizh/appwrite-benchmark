@@ -8,6 +8,14 @@ import urllib.request
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SOLVER_ENTRY = os.path.join(PROJECT_DIR, "index.js")
 
@@ -106,9 +114,9 @@ def solver_run(expected_database_id):
             try:
                 parsed = json.loads(last)
                 if isinstance(parsed, dict):
-                    database_id = parsed.get("databaseId")
-                    authors_id = parsed.get("authorsCollectionId")
-                    posts_id = parsed.get("postsCollectionId")
+                    database_id = to_dict(parsed).get("databaseId")
+                    authors_id = to_dict(parsed).get("authorsCollectionId")
+                    posts_id = to_dict(parsed).get("postsCollectionId")
             except json.JSONDecodeError:
                 parsed = None
 
@@ -140,7 +148,7 @@ def authors_attributes(solver_run):
         f"/databases/{db}/collections/{coll}/attributes",
     )
     assert status == 200, f"GET attributes for {db}/{coll} returned {status}: {data!r}"
-    attrs = data.get("attributes", [])
+    attrs = to_dict(data).get("attributes", [])
     assert isinstance(attrs, list), f"Expected attributes to be a list, got {attrs!r}"
     return attrs
 
@@ -155,14 +163,14 @@ def posts_attributes(solver_run):
         f"/databases/{db}/collections/{coll}/attributes",
     )
     assert status == 200, f"GET attributes for {db}/{coll} returned {status}: {data!r}"
-    attrs = data.get("attributes", [])
+    attrs = to_dict(data).get("attributes", [])
     assert isinstance(attrs, list), f"Expected attributes to be a list, got {attrs!r}"
     return attrs
 
 
 def _find_attr(attrs, key):
     for a in attrs:
-        if a.get("key") == key:
+        if to_dict(a).get("key") == key:
             return a
     return None
 
@@ -218,28 +226,28 @@ def test_posts_collection_exists(solver_run):
 def test_authors_name_attribute(authors_attributes):
     attr = _find_attr(authors_attributes, "name")
     assert attr is not None, f"authors.name attribute missing. Got attrs: {authors_attributes!r}"
-    assert attr.get("type") == "string", f"authors.name must be string, got: {attr.get('type')!r}"
-    assert attr.get("size") == 255, f"authors.name size must be 255, got: {attr.get('size')!r}"
-    assert attr.get("required") is True, f"authors.name must be required, got: {attr.get('required')!r}"
-    assert attr.get("status") == "available", f"authors.name status must be available, got: {attr.get('status')!r}"
+    assert to_dict(attr).get("type") == "string", f"authors.name must be string, got: {to_dict(attr).get('type')!r}"
+    assert to_dict(attr).get("size") == 255, f"authors.name size must be 255, got: {to_dict(attr).get('size')!r}"
+    assert to_dict(attr).get("required") is True, f"authors.name must be required, got: {to_dict(attr).get('required')!r}"
+    assert to_dict(attr).get("status") == "available", f"authors.name status must be available, got: {to_dict(attr).get('status')!r}"
 
 
 def test_posts_title_attribute(posts_attributes):
     attr = _find_attr(posts_attributes, "title")
     assert attr is not None, f"posts.title attribute missing. Got attrs: {posts_attributes!r}"
-    assert attr.get("type") == "string", f"posts.title must be string, got: {attr.get('type')!r}"
-    assert attr.get("size") == 255, f"posts.title size must be 255, got: {attr.get('size')!r}"
-    assert attr.get("required") is True, f"posts.title must be required, got: {attr.get('required')!r}"
-    assert attr.get("status") == "available", f"posts.title status must be available, got: {attr.get('status')!r}"
+    assert to_dict(attr).get("type") == "string", f"posts.title must be string, got: {to_dict(attr).get('type')!r}"
+    assert to_dict(attr).get("size") == 255, f"posts.title size must be 255, got: {to_dict(attr).get('size')!r}"
+    assert to_dict(attr).get("required") is True, f"posts.title must be required, got: {to_dict(attr).get('required')!r}"
+    assert to_dict(attr).get("status") == "available", f"posts.title status must be available, got: {to_dict(attr).get('status')!r}"
 
 
 def test_posts_body_attribute(posts_attributes):
     attr = _find_attr(posts_attributes, "body")
     assert attr is not None, f"posts.body attribute missing. Got attrs: {posts_attributes!r}"
-    assert attr.get("type") == "string", f"posts.body must be string, got: {attr.get('type')!r}"
-    assert attr.get("size") == 10000, f"posts.body size must be 10000, got: {attr.get('size')!r}"
-    assert attr.get("required") is True, f"posts.body must be required, got: {attr.get('required')!r}"
-    assert attr.get("status") == "available", f"posts.body status must be available, got: {attr.get('status')!r}"
+    assert to_dict(attr).get("type") == "string", f"posts.body must be string, got: {to_dict(attr).get('type')!r}"
+    assert to_dict(attr).get("size") == 10000, f"posts.body size must be 10000, got: {to_dict(attr).get('size')!r}"
+    assert to_dict(attr).get("required") is True, f"posts.body must be required, got: {to_dict(attr).get('required')!r}"
+    assert to_dict(attr).get("status") == "available", f"posts.body status must be available, got: {to_dict(attr).get('status')!r}"
 
 
 def test_authors_parent_relationship_attribute(authors_attributes, solver_run):
@@ -248,29 +256,29 @@ def test_authors_parent_relationship_attribute(authors_attributes, solver_run):
         f"authors.posts relationship attribute missing. Got attrs: {authors_attributes!r}. "
         "The solver MUST create the relationship with createRelationshipAttribute."
     )
-    assert attr.get("type") == "relationship", (
-        f"authors.posts must be a 'relationship' attribute, got type={attr.get('type')!r}. "
+    assert to_dict(attr).get("type") == "relationship", (
+        f"authors.posts must be a 'relationship' attribute, got type={to_dict(attr).get('type')!r}. "
         "Plain string fields are NOT acceptable."
     )
-    assert attr.get("relationType") == "oneToMany", (
-        f"authors.posts relationType must be 'oneToMany', got: {attr.get('relationType')!r}"
+    assert to_dict(attr).get("relationType") == "oneToMany", (
+        f"authors.posts relationType must be 'oneToMany', got: {to_dict(attr).get('relationType')!r}"
     )
-    assert attr.get("twoWay") is True, (
-        f"authors.posts twoWay must be true, got: {attr.get('twoWay')!r}"
+    assert to_dict(attr).get("twoWay") is True, (
+        f"authors.posts twoWay must be true, got: {to_dict(attr).get('twoWay')!r}"
     )
-    assert attr.get("twoWayKey") == "author", (
-        f"authors.posts twoWayKey must be 'author', got: {attr.get('twoWayKey')!r}"
+    assert to_dict(attr).get("twoWayKey") == "author", (
+        f"authors.posts twoWayKey must be 'author', got: {to_dict(attr).get('twoWayKey')!r}"
     )
-    assert attr.get("side") == "parent", (
-        f"authors.posts side must be 'parent', got: {attr.get('side')!r}"
+    assert to_dict(attr).get("side") == "parent", (
+        f"authors.posts side must be 'parent', got: {to_dict(attr).get('side')!r}"
     )
-    assert attr.get("onDelete") == "setNull", (
-        f"authors.posts onDelete must be 'setNull', got: {attr.get('onDelete')!r}"
+    assert to_dict(attr).get("onDelete") == "setNull", (
+        f"authors.posts onDelete must be 'setNull', got: {to_dict(attr).get('onDelete')!r}"
     )
-    assert attr.get("status") == "available", (
-        f"authors.posts status must be 'available', got: {attr.get('status')!r}"
+    assert to_dict(attr).get("status") == "available", (
+        f"authors.posts status must be 'available', got: {to_dict(attr).get('status')!r}"
     )
-    related = attr.get("relatedCollection")
+    related = to_dict(attr).get("relatedCollection")
     assert related == solver_run["postsCollectionId"], (
         f"authors.posts relatedCollection must be {solver_run['postsCollectionId']!r}, got: {related!r}"
     )
@@ -282,26 +290,26 @@ def test_posts_child_relationship_attribute(posts_attributes, solver_run):
         f"posts.author relationship attribute missing. Got attrs: {posts_attributes!r}. "
         "A two-way relationship must create the child-side key automatically."
     )
-    assert attr.get("type") == "relationship", (
-        f"posts.author must be a 'relationship' attribute, got type={attr.get('type')!r}. "
+    assert to_dict(attr).get("type") == "relationship", (
+        f"posts.author must be a 'relationship' attribute, got type={to_dict(attr).get('type')!r}. "
         "Plain string fields are NOT acceptable."
     )
-    assert attr.get("relationType") == "oneToMany", (
-        f"posts.author relationType must be 'oneToMany', got: {attr.get('relationType')!r}"
+    assert to_dict(attr).get("relationType") == "oneToMany", (
+        f"posts.author relationType must be 'oneToMany', got: {to_dict(attr).get('relationType')!r}"
     )
-    assert attr.get("twoWay") is True, (
-        f"posts.author twoWay must be true, got: {attr.get('twoWay')!r}"
+    assert to_dict(attr).get("twoWay") is True, (
+        f"posts.author twoWay must be true, got: {to_dict(attr).get('twoWay')!r}"
     )
-    assert attr.get("twoWayKey") == "posts", (
-        f"posts.author twoWayKey must be 'posts', got: {attr.get('twoWayKey')!r}"
+    assert to_dict(attr).get("twoWayKey") == "posts", (
+        f"posts.author twoWayKey must be 'posts', got: {to_dict(attr).get('twoWayKey')!r}"
     )
-    assert attr.get("side") == "child", (
-        f"posts.author side must be 'child', got: {attr.get('side')!r}"
+    assert to_dict(attr).get("side") == "child", (
+        f"posts.author side must be 'child', got: {to_dict(attr).get('side')!r}"
     )
-    assert attr.get("status") == "available", (
-        f"posts.author status must be 'available', got: {attr.get('status')!r}"
+    assert to_dict(attr).get("status") == "available", (
+        f"posts.author status must be 'available', got: {to_dict(attr).get('status')!r}"
     )
-    related = attr.get("relatedCollection")
+    related = to_dict(attr).get("relatedCollection")
     assert related == solver_run["authorsCollectionId"], (
         f"posts.author relatedCollection must be {solver_run['authorsCollectionId']!r}, got: {related!r}"
     )
@@ -334,7 +342,7 @@ def created_author(solver_run):
 def created_posts(solver_run, created_author):
     db = solver_run["databaseId"]
     posts = solver_run["postsCollectionId"]
-    author_id = created_author["$id"]
+    author_id = to_dict(created_author)["$id"]
     results = []
     for title, body in (("P1", "B1"), ("P2", "B2")):
         pid = _unique_id("p")
@@ -355,7 +363,7 @@ def test_relationship_link_via_documents(solver_run, created_author, created_pos
     its posts nested and assert both posts are returned."""
     db = solver_run["databaseId"]
     authors = solver_run["authorsCollectionId"]
-    author_id = created_author["$id"]
+    author_id = to_dict(created_author)["$id"]
 
     # Request the author with the related posts loaded via the `select` query.
     # Appwrite encodes queries as JSON strings of the form: {"method":"select","values":["*","posts.*"]}
@@ -367,7 +375,7 @@ def test_relationship_link_via_documents(solver_run, created_author, created_pos
     )
     assert status == 200, f"GET author document returned {status}: {data!r}"
 
-    nested = data.get("posts")
+    nested = to_dict(data).get("posts")
     assert isinstance(nested, list), (
         f"Author document must contain a 'posts' list when the relationship is loaded. "
         f"Got: {data!r}"
@@ -375,7 +383,7 @@ def test_relationship_link_via_documents(solver_run, created_author, created_pos
     assert len(nested) == 2, (
         f"Expected exactly 2 nested posts for the author, got {len(nested)}: {nested!r}"
     )
-    titles = {p.get("title") for p in nested}
+    titles = {to_dict(p).get("title") for p in nested}
     assert titles == {"P1", "P2"}, (
         f"Nested post titles must be {{'P1', 'P2'}}, got: {titles!r}"
     )

@@ -5,6 +5,14 @@ import subprocess
 
 import pytest
 
+def to_dict(obj):
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump(by_alias=True)
+    if hasattr(obj, "dict"):
+        return obj.dict(by_alias=True)
+    return obj
+
+
 PROJECT_DIR = "/home/user/myproject"
 SCRIPT_PATH = os.path.join(PROJECT_DIR, "index.js")
 STDOUT_LOG = os.path.join(PROJECT_DIR, "stdout.log")
@@ -51,7 +59,7 @@ def _list_teams_by_name(name):
         resp = _teams().list(queries=[Query.equal("name", name)])
     except TypeError:
         resp = _teams().list([Query.equal("name", name)])
-    return resp.get("teams", []) or []
+    return to_dict(resp).get("teams", []) or []
 
 
 def _list_users_by_email(email):
@@ -60,7 +68,7 @@ def _list_users_by_email(email):
         resp = _users().list(queries=[Query.equal("email", email)])
     except TypeError:
         resp = _users().list([Query.equal("email", email)])
-    return resp.get("users", []) or []
+    return to_dict(resp).get("users", []) or []
 
 
 def _safe_delete_team(team_id):
@@ -92,12 +100,12 @@ def _cleanup():
     yield
     try:
         for t in _list_teams_by_name(_expected_team_name()):
-            _safe_delete_team(t["$id"])
+            _safe_delete_team(to_dict(t)["$id"])
     except Exception:
         pass
     try:
         for u in _list_users_by_email(_expected_member_email()):
-            _safe_delete_user(u["$id"])
+            _safe_delete_user(to_dict(u)["$id"])
     except Exception:
         pass
 
@@ -108,9 +116,9 @@ def run_solver():
 
     # Pre-clean prior runs for this run-id.
     for t in _list_teams_by_name(_expected_team_name()):
-        _safe_delete_team(t["$id"])
+        _safe_delete_team(to_dict(t)["$id"])
     for u in _list_users_by_email(_expected_member_email()):
-        _safe_delete_user(u["$id"])
+        _safe_delete_user(to_dict(u)["$id"])
 
     if os.path.isfile(STDOUT_LOG):
         os.remove(STDOUT_LOG)
@@ -144,7 +152,7 @@ def parsed_ids(run_solver):
     except Exception as exc:
         pytest.fail(f"Last stdout line is not valid JSON: {lines[-1]!r} ({exc})")
     for k in ("teamId", "userId", "membershipId"):
-        assert isinstance(data.get(k), str) and ID_RE.match(data[k]), (
+        assert isinstance(to_dict(data).get(k), str) and ID_RE.match(data[k]), (
             f"Field {k!r} missing or malformed in solver JSON: {data!r}"
         )
     return data
@@ -170,7 +178,7 @@ def test_team_exists_with_expected_name(parsed_ids):
         team = _teams().get(team_id=parsed_ids["teamId"])
     except TypeError:
         team = _teams().get(parsed_ids["teamId"])
-    assert team.get("name") == _expected_team_name(), (
+    assert to_dict(team).get("name") == _expected_team_name(), (
         f"Team name mismatch. Expected {_expected_team_name()!r}, got {team!r}"
     )
 
@@ -180,7 +188,7 @@ def test_user_exists_with_expected_email(parsed_ids):
         user = _users().get(user_id=parsed_ids["userId"])
     except TypeError:
         user = _users().get(parsed_ids["userId"])
-    assert (user.get("email") or "").lower() == _expected_member_email().lower(), (
+    assert (to_dict(user).get("email") or "").lower() == _expected_member_email().lower(), (
         f"User email mismatch. Expected {_expected_member_email()!r}, got {user!r}"
     )
 
@@ -190,14 +198,14 @@ def test_membership_exists_with_member_role(parsed_ids):
         resp = _teams().list_memberships(team_id=parsed_ids["teamId"])
     except TypeError:
         resp = _teams().list_memberships(parsed_ids["teamId"])
-    memberships = resp.get("memberships", []) or []
-    match = next((m for m in memberships if m.get("$id") == parsed_ids["membershipId"]), None)
+    memberships = to_dict(resp).get("memberships", []) or []
+    match = next((m for m in memberships if to_dict(m).get("$id") == parsed_ids["membershipId"]), None)
     assert match is not None, (
         f"membershipId {parsed_ids['membershipId']!r} not found in team. "
-        f"Got: {[m.get('$id') for m in memberships]!r}"
+        f"Got: {[to_dict(m).get('$id') for m in memberships]!r}"
     )
-    assert match.get("userId") == parsed_ids["userId"], (
+    assert to_dict(match).get("userId") == parsed_ids["userId"], (
         f"Membership userId mismatch: {match!r}"
     )
-    roles = match.get("roles") or []
+    roles = to_dict(match).get("roles") or []
     assert "member" in roles, f"Membership missing 'member' role: {roles!r}"

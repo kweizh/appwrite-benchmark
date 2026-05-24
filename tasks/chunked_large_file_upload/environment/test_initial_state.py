@@ -193,7 +193,7 @@ def test_seed_json_persisted():
     assert os.path.isfile(SEED_FILE), f"{SEED_FILE} must exist after initial-state seeding."
     with open(SEED_FILE, encoding="utf-8") as fh:
         data = json.load(fh)
-    assert data.get("sampleSize") == SAMPLE_SIZE_BYTES, (
+    assert to_dict(data).get("sampleSize") == SAMPLE_SIZE_BYTES, (
         f".seed.json sampleSize must match SAMPLE_SIZE_BYTES. Got: {data!r}"
     )
 
